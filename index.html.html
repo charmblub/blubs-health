@@ -1,0 +1,2399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blub’s Health — 55 kg Body Recomposition, Movement &amp; Sleep</title>
+  <!-- Editorial Botanical Fonts: Lora & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FAF8F5',
+            sand: '#E6E2D8',
+            sage: '#2F5D50',
+            sageDark: '#23473D',
+            mint: '#E8F3EE',
+            amberWarm: '#D98A36',
+            amberSoft: '#FEF6EB',
+            terracotta: '#D97742',
+            terracottaSoft: '#FDF0E8',
+            ink: '#262C29',
+            slateStone: '#646D68',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Lora', 'Georgia', 'serif'],
+          },
+          boxShadow: {
+            card: '0 2px 10px -2px rgba(38, 44, 41, 0.04), 0 1px 3px -1px rgba(38, 44, 41, 0.03)',
+            modal: '0 14px 36px -6px rgba(38, 44, 41, 0.16)',
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #FAF8F5;
+      color: #262C29;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .custom-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 1.15rem;
+      height: 1.15rem;
+      border: 1.5px solid #C5BFB3;
+      border-radius: 0.375rem;
+      background-color: #FFFFFF;
+      cursor: pointer;
+      display: inline-grid;
+      place-content: center;
+      transition: all 0.18s ease;
+      flex-shrink: 0;
+    }
+    .custom-checkbox:hover {
+      border-color: #2F5D50;
+    }
+    .custom-checkbox:checked {
+      background-color: #2F5D50;
+      border-color: #2F5D50;
+    }
+    .custom-checkbox:checked::before {
+      content: "";
+      width: 0.65rem;
+      height: 0.65rem;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.6666 3.5L5.24992 9.91667L2.33325 7' stroke='white' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-x-hidden selection:bg-mint selection:text-sage">
+
+  <!-- ======================================================================= -->
+  <!-- TOP HEADER (ALWAYS VISIBLE)                                             -->
+  <!-- ======================================================================= -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-sand sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3.5 pb-3 space-y-3">
+
+      <!-- Top Row: Brand, 55 kg Weight Progress & Streak -->
+      <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3">
+        
+        <!-- Brand Identity -->
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-10 h-10 rounded-2xl bg-mint border border-sage/20 flex items-center justify-center text-sage shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+              </svg>
+            </div>
+            <div class="min-w-0">
+              <h1 class="font-serif text-lg sm:text-xl font-semibold text-ink tracking-tight truncate">
+                Blub’s Health
+              </h1>
+              <p class="text-[11px] sm:text-xs text-slateStone truncate">
+                55 kg Body Recomposition, Movement &amp; Sleep
+              </p>
+            </div>
+          </div>
+
+          <!-- Mobile Active Habit Streak Pill -->
+          <div class="xl:hidden inline-flex items-center gap-1.5 bg-mint border border-sage/15 rounded-xl px-2.5 py-1.5 shrink-0">
+            <span class="w-2 h-2 rounded-full bg-sage"></span>
+            <span id="streakBadgeMobile" class="text-xs font-semibold text-sage">1 Wk Streak</span>
+          </div>
+        </div>
+
+        <!-- 55 kg Weight Goal Progress Widget + Streak -->
+        <div class="bg-cream border border-sand rounded-2xl px-3.5 py-2.5 flex flex-col sm:flex-row sm:items-center gap-3 xl:min-w-[560px]">
+          <div class="flex items-center gap-2 shrink-0">
+            <label for="currentWeightInput" class="text-xs font-medium text-slateStone">Current:</label>
+            <div class="inline-flex items-center bg-white border border-sand rounded-lg px-2 py-1 focus-within:border-sage">
+              <input
+                id="currentWeightInput"
+                type="number"
+                step="0.1"
+                min="30"
+                max="200"
+                value="58.5"
+                aria-label="Current weight in kg"
+                onchange="handleWeightChange()"
+                onkeydown="if(event.key==='Enter'){this.blur();}"
+                class="w-14 text-xs sm:text-sm font-semibold text-ink focus:outline-none bg-transparent"
+              />
+              <span class="text-xs text-slateStone font-medium">kg</span>
+            </div>
+            <span class="text-xs text-slateStone">→</span>
+            <span class="text-xs font-semibold text-sage bg-mint px-2 py-1 rounded-lg border border-sage/15">
+              Target: 55.0 kg
+            </span>
+          </div>
+
+          <!-- Progress Bar & Timeline -->
+          <div class="flex-1 min-w-0 space-y-1">
+            <div class="flex items-center justify-between gap-2 text-[11px]">
+              <span id="weightRemainingText" class="font-semibold text-terracotta">3.5 kg remaining</span>
+              <span id="weightTimelineText" class="text-slateStone font-medium">~12 wks @ ~0.3 kg/wk</span>
+            </div>
+            <div class="w-full h-2 bg-white border border-sand rounded-full overflow-hidden">
+              <div id="weightProgressBar" class="h-full bg-sage rounded-full transition-all duration-500" style="width: 30%;"></div>
+            </div>
+          </div>
+
+          <!-- Desktop Habit Streak Badge -->
+          <div class="hidden xl:flex items-center gap-1.5 pl-2.5 border-l border-sand shrink-0">
+            <span class="w-2 h-2 rounded-full bg-sage"></span>
+            <span id="streakBadgeDesktop" class="text-xs font-semibold text-sage">1 Wk Streak</span>
+            <button type="button" onclick="adjustStreak(-1)" title="Decrease streak" class="w-5 h-5 rounded hover:bg-sand/60 text-slateStone text-xs font-bold flex items-center justify-center">−</button>
+            <button type="button" onclick="adjustStreak(1)" title="Increase streak" class="w-5 h-5 rounded hover:bg-sand/60 text-slateStone text-xs font-bold flex items-center justify-center">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Navigation Tabs -->
+      <nav aria-label="Primary Navigation" class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar pt-0.5">
+        <button type="button" id="tabBtn-dashboard" onclick="switchTab('dashboard')" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition flex items-center gap-1.5 whitespace-nowrap">
+          <span>Monthly Dashboard</span>
+        </button>
+        <button type="button" id="tabBtn-meals" onclick="switchTab('meals')" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition flex items-center gap-1.5 whitespace-nowrap">
+          <span>Meals &amp; Macros</span>
+          <span id="navCalPill" class="text-[11px] px-2 py-0.5 rounded-full bg-cream border border-sand text-slateStone font-semibold">0 / 1,450</span>
+        </button>
+        <button type="button" id="tabBtn-movement" onclick="switchTab('movement')" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition flex items-center gap-1.5 whitespace-nowrap">
+          <span>Movement &amp; Habits</span>
+          <span id="navMovePill" class="text-[11px] px-2 py-0.5 rounded-full bg-cream border border-sand text-slateStone font-semibold">0/4</span>
+        </button>
+        <button type="button" id="tabBtn-sleep" onclick="switchTab('sleep')" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition flex items-center gap-1.5 whitespace-nowrap">
+          <span>Sleep (11:30 PM)</span>
+          <span id="navSleepPill" class="text-[11px] px-2 py-0.5 rounded-full bg-cream border border-sand text-slateStone font-semibold">—</span>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ======================================================================= -->
+  <!-- MAIN WORKSPACE                                                          -->
+  <!-- ======================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: MONTHLY DASHBOARD (DEFAULT FRONT PAGE)                         -->
+    <!-- ===================================================================== -->
+    <section id="view-dashboard" class="space-y-6">
+
+      <!-- Month Switcher Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-sage">Front Page Overview</span>
+          <h2 class="font-serif text-xl sm:text-2xl font-semibold text-ink mt-0.5">Monthly Wellness Dashboard</h2>
+        </div>
+
+        <div class="flex items-center gap-2 self-start sm:self-auto">
+          <button type="button" onclick="changeDashboardMonth(-1)" class="px-3 py-2 rounded-xl bg-white border border-sand hover:bg-mint/60 text-xs sm:text-sm font-medium text-ink transition">← Prev</button>
+          <div id="dashboardMonthLabel" class="px-4 py-2 rounded-xl bg-white border border-sand font-serif text-sm sm:text-base font-semibold text-ink min-w-[160px] text-center">
+            November 2026
+          </div>
+          <button type="button" onclick="changeDashboardMonth(1)" class="px-3 py-2 rounded-xl bg-white border border-sand hover:bg-mint/60 text-xs sm:text-sm font-medium text-ink transition">Next →</button>
+        </div>
+      </div>
+
+      <!-- 3 Core Monthly Pillar Cards (Nutrition, Exercise, Blub's Sleep Only) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+        <!-- Pillar 1: Nutrition Card -->
+        <div class="bg-white border border-sand rounded-2xl p-5 shadow-card flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-sage">1 · Monthly Nutrition</span>
+              <span id="dashNutrDaysBadge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-mint text-sage">0 goal days</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2 text-center">
+              <div class="bg-cream border border-sand rounded-xl p-2.5">
+                <span class="block text-[10px] text-slateStone uppercase font-semibold">Avg Cals</span>
+                <strong id="dashAvgCal" class="font-serif text-base sm:text-lg text-ink">0</strong>
+                <span class="block text-[10px] text-slateStone">/ 1,450 max</span>
+              </div>
+              <div class="bg-cream border border-sand rounded-xl p-2.5">
+                <span class="block text-[10px] text-slateStone uppercase font-semibold">Avg Protein</span>
+                <strong id="dashAvgPro" class="font-serif text-base sm:text-lg text-sage">0g</strong>
+                <span class="block text-[10px] text-slateStone">95–100g floor</span>
+              </div>
+              <div class="bg-cream border border-sand rounded-xl p-2.5">
+                <span class="block text-[10px] text-slateStone uppercase font-semibold">Avg Fiber</span>
+                <strong id="dashAvgFib" class="font-serif text-base sm:text-lg text-ink">0g</strong>
+                <span class="block text-[10px] text-slateStone">22–25g goal</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-sand flex items-center justify-between text-xs">
+            <span id="dashNutrLoggedCount" class="text-slateStone">0 days logged this month</span>
+            <button type="button" onclick="switchTab('meals')" class="font-semibold text-sage hover:underline">Log Meals →</button>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Exercise Card -->
+        <div class="bg-white border border-sand rounded-2xl p-5 shadow-card flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-sage">2 · Monthly Exercise</span>
+              <span id="dashExSessionsBadge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-mint text-sage">0 / 16 sessions</span>
+            </div>
+            <div class="space-y-2.5">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slateStone">Movement Sessions (4/wk goal)</span>
+                  <strong id="dashExRatio" class="text-ink">0 / 16</strong>
+                </div>
+                <div class="w-full h-2 bg-cream border border-sand rounded-full overflow-hidden">
+                  <div id="dashExBar" class="h-full bg-sage rounded-full transition-all duration-500" style="width: 0%;"></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2 pt-1">
+                <div class="bg-cream border border-sand rounded-xl p-2.5">
+                  <span class="block text-[10px] text-slateStone uppercase font-semibold">Active Minutes</span>
+                  <strong id="dashExMinutes" class="font-serif text-base text-ink">0 mins</strong>
+                </div>
+                <div class="bg-cream border border-sand rounded-xl p-2.5">
+                  <span class="block text-[10px] text-slateStone uppercase font-semibold">7,500+ Step Days</span>
+                  <strong id="dashStepDays" class="font-serif text-base text-sage">0 days</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-sand flex items-center justify-between text-xs">
+            <span class="text-slateStone">Steady cardio, strength &amp; NEAT</span>
+            <button type="button" onclick="switchTab('movement')" class="font-semibold text-sage hover:underline">Open Routine →</button>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Blub's Sleep Card (Strictly Blub's stats only) -->
+        <div class="bg-white border border-sand rounded-2xl p-5 shadow-card flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-sage">3 · Blub’s Sleep (11:30 PM)</span>
+              <span id="dashBlubSleepStreakBadge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-mint text-sage">0d streak</span>
+            </div>
+            <div class="flex items-baseline justify-between gap-2">
+              <div>
+                <span id="dashBlubSleepRate" class="font-serif text-3xl font-semibold text-ink">0%</span>
+                <span class="text-xs text-slateStone ml-1">before 11:30 PM</span>
+              </div>
+              <span id="dashBlubSleepCount" class="text-xs font-semibold text-sage">0 / 0 logged nights</span>
+            </div>
+            <div class="mt-3 w-full h-2.5 bg-cream border border-sand rounded-full overflow-hidden">
+              <div id="dashBlubSleepBar" class="h-full bg-sage rounded-full transition-all duration-500" style="width: 0%;"></div>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-sand flex items-center justify-between text-xs">
+            <span class="text-slateStone">Blub’s personal 11:30 PM goal</span>
+            <button type="button" onclick="switchTab('sleep')" class="font-semibold text-sage hover:underline">Sleep Logs →</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interactive Monthly Calendar Grid -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-6 shadow-card space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 class="font-serif text-lg font-semibold text-ink">Interactive Monthly Habit Calendar</h3>
+            <p class="text-xs text-slateStone">Click any date to inspect or log that day’s meals, steps, workout &amp; sleep.</p>
+          </div>
+          <!-- Legend -->
+          <div class="flex flex-wrap items-center gap-3 text-[11px] text-slateStone">
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-sage inline-block"></span> Nutrition Goal</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-[#3B7A68] inline-block"></span> Workout / Rest Win</span>
+            <span class="inline-flex items-center gap-1"><span class="text-sage font-bold">☾✓</span> Blub &lt;11:30 PM</span>
+          </div>
+        </div>
+
+        <!-- Day-of-Week Headers -->
+        <div class="grid grid-cols-7 gap-1.5 text-center text-[11px] font-semibold uppercase tracking-wider text-slateStone">
+          <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+        </div>
+
+        <!-- Calendar Days Grid -->
+        <div id="monthlyCalendarGrid" class="grid grid-cols-7 gap-1.5 sm:gap-2">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Quick Daily Check-In Strip (Selected Date) -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-card space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-sand pb-3">
+          <div>
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-sage">Quick Daily Check-In</span>
+            <h3 id="quickStripDateTitle" class="font-serif text-base sm:text-lg font-semibold text-ink">Today</h3>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" onclick="switchTab('meals')" class="px-3 py-1.5 rounded-xl bg-sage hover:bg-sageDark text-white text-xs font-semibold transition">Log Meal →</button>
+            <button type="button" onclick="switchTab('movement')" class="px-3 py-1.5 rounded-xl bg-mint hover:bg-sage hover:text-white text-sage border border-sage/20 text-xs font-semibold transition">Log Workout →</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Selected Day NEAT Steps -->
+          <div class="bg-cream border border-sand rounded-xl p-3.5 flex flex-col justify-between gap-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-ink">NEAT Steps</span>
+              <span class="text-xs text-slateStone"><strong id="quickStepsCount" class="text-sage">0</strong> / 7,500</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="addSteps(1000)" class="flex-1 py-1.5 rounded-lg bg-white border border-sand hover:border-sage text-xs font-semibold text-ink transition">+1,000</button>
+              <button type="button" onclick="addSteps(2500)" class="flex-1 py-1.5 rounded-lg bg-mint border border-sage/20 hover:bg-sage hover:text-white text-xs font-semibold text-sage transition">+2,500</button>
+            </div>
+          </div>
+
+          <!-- Blub's Sleep Before 11:30 PM -->
+          <div class="bg-cream border border-sand rounded-xl p-3.5 flex flex-col justify-between gap-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-ink">Blub’s Sleep (&lt;11:30 PM)</span>
+              <span id="quickBlubSleepStatus" class="text-[11px] font-semibold text-slateStone">Not logged</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" id="quickBlubYesBtn" onclick="setSleepLog('blub', 'yes')" class="py-1.5 rounded-lg border text-xs font-semibold transition">Yes (&lt;11:30)</button>
+              <button type="button" id="quickBlubNoBtn" onclick="setSleepLog('blub', 'no')" class="py-1.5 rounded-lg border text-xs font-semibold transition">No (&gt;11:30)</button>
+            </div>
+          </div>
+
+          <!-- HL's Separate Sleep Before 11:30 PM -->
+          <div class="bg-cream border border-sand rounded-xl p-3.5 flex flex-col justify-between gap-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-ink">HL’s Sleep (&lt;11:30 PM)</span>
+              <span id="quickHlSleepStatus" class="text-[11px] font-semibold text-slateStone">Not logged</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" id="quickHlYesBtn" onclick="setSleepLog('hl', 'yes')" class="py-1.5 rounded-lg border text-xs font-semibold transition">Yes (&lt;11:30)</button>
+              <button type="button" id="quickHlNoBtn" onclick="setSleepLog('hl', 'no')" class="py-1.5 rounded-lg border text-xs font-semibold transition">No (&gt;11:30)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: MEALS & MACROS (55 KG RECOMP PLAN)                             -->
+    <!-- ===================================================================== -->
+    <section id="view-meals" class="hidden space-y-6">
+
+      <!-- Date Selector & Sample Preset -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" onclick="shiftSelectedDate(-1)" class="px-3 py-2 rounded-xl bg-cream border border-sand hover:bg-mint/60 text-xs sm:text-sm font-medium">← Prev</button>
+          <div class="inline-flex items-center gap-2 bg-cream border border-sand rounded-xl px-3 py-1.5">
+            <input id="mealDateInput" type="date" onchange="setSelectedDate(this.value)" class="bg-transparent text-xs sm:text-sm font-semibold text-ink focus:outline-none cursor-pointer" />
+            <span id="mealDateFriendlyPill" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-mint text-sage">Today</span>
+          </div>
+          <button type="button" onclick="shiftSelectedDate(1)" class="px-3 py-2 rounded-xl bg-cream border border-sand hover:bg-mint/60 text-xs sm:text-sm font-medium">Next →</button>
+          <button type="button" id="mealTodayJumpBtn" onclick="setSelectedDate(getTodayISO())" class="px-2.5 py-1.5 text-xs font-semibold text-sage hover:underline">Today</button>
+        </div>
+
+        <button type="button" onclick="loadSampleRecompDay()" class="px-4 py-2 rounded-xl bg-mint hover:bg-sage hover:text-white text-sage border border-sage/20 text-xs sm:text-sm font-semibold transition self-start sm:self-auto">
+          ✨ Load Sample 1,450 kcal Day
+        </button>
+      </div>
+
+      <!-- Daily Macro Runway Bars -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- Calories Ceiling -->
+        <div id="runwayCalCard" class="bg-white border border-sand rounded-2xl p-5 shadow-card flex flex-col justify-between transition-colors">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <span class="text-xs font-semibold uppercase tracking-wider text-slateStone">Calories Ceiling</span>
+              <span id="runwayCalBadge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-mint text-sage">1,450 left</span>
+            </div>
+            <div class="flex items-baseline gap-1.5">
+              <span id="runwayCalVal" class="font-serif text-3xl font-semibold text-ink">0</span>
+              <span class="text-xs sm:text-sm text-slateStone font-medium">/ 1,450 kcal ceiling</span>
+            </div>
+          </div>
+          <div class="mt-4 w-full h-3 bg-cream border border-sand rounded-full overflow-hidden p-0.5">
+            <div id="runwayCalBar" class="h-full bg-sage rounded-full transition-all duration-500" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Protein Floor -->
+        <div id="runwayProCard" class="bg-white border border-sand rounded-2xl p-5 shadow-card flex flex-col justify-between transition-colors">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <span class="text-xs font-semibold uppercase tracking-wider text-slateStone">Protein Floor</span>
+              <span id="runwayProBadge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-cream border border-sand text-slateStone">95–100g floor</span>
+            </div>
+            <div class="flex items-baseline gap-1.5">
+              <span id="runwayProVal" class="font-serif text-3xl font-semibold text-ink">0g</span>
+              <span class="text-xs sm:text-sm text-slateStone font-medium">/ 100g optimal</span>
+            </div>
+          </div>
+          <div class="mt-4 w-full h-3 bg-cream border border-sand rounded-full overflow-hidden p-0.5">
+            <div id="runwayProBar" class="h-full bg-sage rounded-full transition-all duration-500" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Fiber Target -->
+        <div id="runwayFibCard" class="bg-white border border-sand rounded-2xl p-5 shadow-card flex flex-col justify-between transition-colors">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <span class="text-xs font-semibold uppercase tracking-wider text-slateStone">Fiber Target</span>
+              <span id="runwayFibBadge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-cream border border-sand text-slateStone">22–25g goal</span>
+            </div>
+            <div class="flex items-baseline gap-1.5">
+              <span id="runwayFibVal" class="font-serif text-3xl font-semibold text-ink">0g</span>
+              <span class="text-xs sm:text-sm text-slateStone font-medium">/ 25g optimal</span>
+            </div>
+          </div>
+          <div class="mt-4 w-full h-3 bg-cream border border-sand rounded-full overflow-hidden p-0.5">
+            <div id="runwayFibBar" class="h-full bg-sage rounded-full transition-all duration-500" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Log Meal & Food Photo AI Scanner (Supports BOTH Option 1 & Option 2) -->
+      <div class="bg-white border border-sand rounded-2xl p-5 shadow-card space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-sand pb-3">
+          <div>
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-sage">Photo AI &amp; Manual Entry</span>
+            <h3 class="font-serif text-lg font-semibold text-ink">Log Meal &amp; Food Photo Scanner</h3>
+          </div>
+          <button
+            type="button"
+            onclick="toggleAiSettingsBox()"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cream hover:bg-mint/70 border border-sand text-xs font-semibold text-ink transition self-start sm:self-auto"
+          >
+            <span>⚙️ AI Photo Scanner Settings (Option 2)</span>
+            <span id="aiKeyStatusDot" class="w-2 h-2 rounded-full bg-slateStone"></span>
+          </button>
+        </div>
+
+        <!-- Collapsible Option 2: Gemini Vision API Key Settings -->
+        <div id="aiSettingsBox" class="hidden bg-cream border border-sand rounded-xl p-4 space-y-2.5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h4 class="text-xs font-semibold text-ink">Option 2: In-App Gemini Vision AI Auto-Scanner</h4>
+              <p class="text-[11px] text-slateStone">
+                Paste your Gemini API key below (stored only in your browser’s localStorage) to auto-calculate calories, protein &amp; fiber directly from food photos.
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input
+              id="geminiApiKeyInput"
+              type="password"
+              placeholder="Paste Gemini API Key (AIza...)"
+              class="flex-1 bg-white border border-sand rounded-xl px-3 py-2 text-xs sm:text-sm text-ink focus:outline-none focus:border-sage"
+            />
+            <button type="button" onclick="saveGeminiApiKey()" class="px-4 py-2 rounded-xl bg-sage hover:bg-sageDark text-white text-xs font-semibold transition">Save Key</button>
+            <button type="button" onclick="clearGeminiApiKey()" class="px-3 py-2 rounded-xl bg-white border border-sand hover:text-terracotta text-xs font-medium text-slateStone transition">Clear</button>
+          </div>
+        </div>
+
+        <!-- Meal Logging Form + Photo Upload -->
+        <form onsubmit="submitMealLogForm(event)" class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+          
+          <!-- Photo Upload & AI / Zero-Setup Controls (5 cols) -->
+          <div class="lg:col-span-5 bg-cream border border-sand rounded-xl p-3.5 space-y-3">
+            <div class="flex items-center justify-between">
+              <label for="foodPhotoInput" class="text-xs font-semibold text-ink">1. Snap or Upload Food Photo</label>
+              <button type="button" id="removePhotoBtn" onclick="clearDraftPhoto()" class="hidden text-[11px] font-semibold text-terracotta hover:underline">Remove Photo</button>
+            </div>
+
+            <label for="foodPhotoInput" class="flex flex-col items-center justify-center border-2 border-dashed border-sand hover:border-sage bg-white rounded-xl p-3 cursor-pointer transition text-center">
+              <img id="draftPhotoPreview" src="" alt="Meal preview" class="hidden max-h-36 rounded-lg object-cover mb-2 border border-sand" />
+              <div id="photoUploadPlaceholder" class="py-2 space-y-1">
+                <span class="text-xl block">📸</span>
+                <span class="text-xs font-semibold text-sage block">Tap to Take Photo or Choose Image</span>
+                <span class="text-[10px] text-slateStone block">Auto-compressed for fast storage &amp; AI scanning</span>
+              </div>
+              <input id="foodPhotoInput" type="file" accept="image/*" capture="environment" onchange="handlePhotoSelected(event)" class="hidden" />
+            </label>
+
+            <!-- Option 2 Button: Auto-Calculate from Photo (AI) -->
+            <button
+              type="button"
+              id="aiScanPhotoBtn"
+              onclick="analyzePhotoWithGemini()"
+              class="w-full py-2 px-3 rounded-xl bg-sage hover:bg-sageDark text-white text-xs font-semibold shadow-card transition flex items-center justify-center gap-2"
+            >
+              <span>✨ Auto-Calculate from Photo (AI)</span>
+            </button>
+
+            <!-- Option 1 Helpers: Zero-Setup Mode -->
+            <div class="flex items-center gap-2 pt-1 border-t border-sand/80">
+              <button
+                type="button"
+                onclick="smartEstimateFromName()"
+                class="flex-1 py-1.5 px-2.5 rounded-lg bg-white hover:bg-mint border border-sand text-[11px] font-semibold text-ink transition"
+              >
+                🔍 Smart Estimate from Name
+              </button>
+              <button
+                type="button"
+                onclick="copyChatPhotoPrompt()"
+                class="flex-1 py-1.5 px-2.5 rounded-lg bg-white hover:bg-mint border border-sand text-[11px] font-semibold text-sage transition"
+              >
+                📋 Copy Chat Photo Prompt
+              </button>
+            </div>
+          </div>
+
+          <!-- Meal Inputs (7 cols) -->
+          <div class="lg:col-span-7 space-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label for="logMealSlot" class="block text-xs font-medium text-slateStone mb-1">Meal Slot</label>
+                <select id="logMealSlot" class="w-full bg-cream border border-sand rounded-xl px-3 py-2 text-xs sm:text-sm font-semibold text-ink focus:bg-white focus:outline-none focus:border-sage">
+                  <option value="breakfast">Breakfast</option>
+                  <option value="lunch">Lunch</option>
+                  <option value="dinner">Dinner</option>
+                  <option value="snacks">Snacks &amp; Drinks</option>
+                </select>
+              </div>
+              <div class="sm:col-span-2">
+                <label for="logFoodName" class="block text-xs font-medium text-slateStone mb-1">Food / Meal Name</label>
+                <input id="logFoodName" type="text" required placeholder="e.g., Sliced Fish Soup w/o Milk + Half Rice" class="w-full bg-cream border border-sand rounded-xl px-3 py-2 text-xs sm:text-sm text-ink focus:bg-white focus:outline-none focus:border-sage" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3">
+              <div>
+                <label for="logCalories" class="block text-xs font-medium text-slateStone mb-1">Calories (kcal)</label>
+                <input id="logCalories" type="number" min="0" max="3000" step="1" required placeholder="390" class="w-full bg-cream border border-sand rounded-xl px-3 py-2 text-sm font-semibold text-ink focus:bg-white focus:outline-none focus:border-sage" />
+              </div>
+              <div>
+                <label for="logProtein" class="block text-xs font-medium text-slateStone mb-1">Protein (g)</label>
+                <input id="logProtein" type="number" min="0" max="250" step="0.5" required placeholder="34" class="w-full bg-cream border border-sand rounded-xl px-3 py-2 text-sm font-semibold text-sage focus:bg-white focus:outline-none focus:border-sage" />
+              </div>
+              <div>
+                <label for="logFiber" class="block text-xs font-medium text-slateStone mb-1">Fiber (g)</label>
+                <input id="logFiber" type="number" min="0" max="100" step="0.5" required placeholder="3" class="w-full bg-cream border border-sand rounded-xl px-3 py-2 text-sm font-semibold text-ink focus:bg-white focus:outline-none focus:border-sage" />
+              </div>
+            </div>
+
+            <div class="pt-1 flex items-center justify-between gap-3">
+              <span class="text-[11px] text-slateStone">Photo thumbnail (if uploaded) attaches automatically.</span>
+              <button type="submit" class="px-5 py-2.5 rounded-xl bg-sage hover:bg-sageDark text-white text-xs sm:text-sm font-semibold shadow-card transition shrink-0">
+                + Log Food Item
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Quick-Add Singapore Recomp Food Library Chips -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-card space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-sage">1-Tap Staples</span>
+            <h3 class="font-serif text-base font-semibold text-ink">Singapore Recomp Food Library</h3>
+          </div>
+          <div class="flex items-center gap-2">
+            <label for="quickChipMealSelect" class="text-xs text-slateStone font-medium">Add to:</label>
+            <select id="quickChipMealSelect" class="bg-cream border border-sand rounded-xl px-2.5 py-1.5 text-xs font-semibold text-ink focus:outline-none focus:border-sage">
+              <option value="auto">Smart Default Slot</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+              <option value="snacks">Snacks &amp; Drinks</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="sgQuickChipsContainer" class="flex flex-wrap gap-2">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Per-Meal Actual vs. Recommended Breakdown (4 Meal Cards) -->
+      <div id="mealBreakdownGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: MOVEMENT & HABITS                                              -->
+    <!-- ===================================================================== -->
+    <section id="view-movement" class="hidden space-y-6">
+
+      <!-- Movement Header & Archive Week Trigger -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-sage">Weekly Routine &amp; NEAT</span>
+          <h2 class="font-serif text-xl sm:text-2xl font-semibold text-ink mt-0.5">Movement &amp; Habits</h2>
+          <p id="movementWeekRangeLabel" class="text-xs text-slateStone mt-0.5">Week starting Nov 16, 2026</p>
+        </div>
+
+        <button type="button" onclick="archiveWeekAndStartNew()" class="px-4 py-2.5 rounded-xl bg-sage hover:bg-sageDark text-white text-xs sm:text-sm font-semibold shadow-card transition self-start sm:self-auto">
+          Archive Week &amp; Start New
+        </button>
+      </div>
+
+      <!-- 5 Weekly Gauges + Daily NEAT Step Counter -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="bg-white border border-sand rounded-2xl p-4 shadow-card space-y-2">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-slateStone">Active Minutes</span>
+          <div class="font-serif text-2xl font-semibold text-ink"><span id="movGaugeMins">0</span> <span class="text-xs font-sans text-slateStone font-normal">/ 160 mins</span></div>
+          <div class="w-full h-2 bg-cream border border-sand rounded-full overflow-hidden"><div id="movGaugeMinsBar" class="h-full bg-sage rounded-full transition-all" style="width:0%"></div></div>
+        </div>
+
+        <div class="bg-white border border-sand rounded-2xl p-4 shadow-card space-y-2">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-slateStone">Structured Burn</span>
+          <div class="font-serif text-2xl font-semibold text-ink"><span id="movGaugeBurn">0</span> <span class="text-xs font-sans text-slateStone font-normal">/ 1,100 kcal</span></div>
+          <div class="w-full h-2 bg-cream border border-sand rounded-full overflow-hidden"><div id="movGaugeBurnBar" class="h-full bg-sage rounded-full transition-all" style="width:0%"></div></div>
+        </div>
+
+        <div class="bg-white border border-sand rounded-2xl p-4 shadow-card space-y-2">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-slateStone">Movement Sessions</span>
+          <div class="font-serif text-2xl font-semibold text-ink"><span id="movGaugeSessions">0</span> <span class="text-xs font-sans text-slateStone font-normal">/ 4 days</span></div>
+          <div class="w-full h-2 bg-cream border border-sand rounded-full overflow-hidden"><div id="movGaugeSessionsBar" class="h-full bg-sage rounded-full transition-all" style="width:0%"></div></div>
+        </div>
+
+        <div class="bg-white border border-sand rounded-2xl p-4 shadow-card space-y-2">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-slateStone">Intentional Rest</span>
+          <div class="font-serif text-2xl font-semibold text-terracotta"><span id="movGaugeRest">0</span> <span class="text-xs font-sans text-slateStone font-normal">/ 3 days</span></div>
+          <div class="w-full h-2 bg-cream border border-sand rounded-full overflow-hidden"><div id="movGaugeRestBar" class="h-full bg-terracotta rounded-full transition-all" style="width:0%"></div></div>
+        </div>
+
+        <div class="bg-white border border-sand rounded-2xl p-4 shadow-card space-y-2 sm:col-span-2 lg:col-span-1">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-sage">NEAT Steps (<span id="movStepsDateTag">Today</span>)</span>
+            <button type="button" onclick="resetSteps()" class="text-[10px] text-slateStone hover:text-terracotta underline">Reset</button>
+          </div>
+          <div class="font-serif text-2xl font-semibold text-ink"><span id="movGaugeSteps">0</span> <span class="text-xs font-sans text-slateStone font-normal">/ 7,500</span></div>
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="addSteps(1000)" class="flex-1 py-1 rounded-lg bg-cream border border-sand hover:border-sage text-[11px] font-semibold">+1,000</button>
+            <button type="button" onclick="addSteps(2500)" class="flex-1 py-1 rounded-lg bg-mint border border-sage/20 hover:bg-sage hover:text-white text-[11px] font-semibold text-sage">+2,500</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive 7-Day Routine Cards -->
+      <div id="routineCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Archived Weeks Summary (if any) -->
+      <div id="archivedWeeksSection" class="hidden bg-white border border-sand rounded-2xl p-5 shadow-card space-y-3">
+        <h3 class="font-serif text-base font-semibold text-ink">Archived Weeks</h3>
+        <div id="archivedWeeksList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 4: SLEEP TRACKER (BEFORE 11:30 PM GOAL)                           -->
+    <!-- ===================================================================== -->
+    <section id="view-sleep" class="hidden space-y-6">
+
+      <!-- Sleep Date Selector -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-sage">Nightly Wind-Down Habit</span>
+          <h2 class="font-serif text-xl sm:text-2xl font-semibold text-ink mt-0.5">Sleep Tracker (Before 11:30 PM Goal)</h2>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" onclick="shiftSelectedDate(-1)" class="px-3 py-2 rounded-xl bg-cream border border-sand hover:bg-mint/60 text-xs sm:text-sm font-medium">← Prev</button>
+          <div class="inline-flex items-center gap-2 bg-cream border border-sand rounded-xl px-3 py-1.5">
+            <input id="sleepDateInput" type="date" onchange="setSelectedDate(this.value)" class="bg-transparent text-xs sm:text-sm font-semibold text-ink focus:outline-none cursor-pointer" />
+            <span id="sleepDateFriendlyPill" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-mint text-sage">Today</span>
+          </div>
+          <button type="button" onclick="shiftSelectedDate(1)" class="px-3 py-2 rounded-xl bg-cream border border-sand hover:bg-mint/60 text-xs sm:text-sm font-medium">Next →</button>
+          <button type="button" onclick="setSelectedDate(getTodayISO())" class="px-2.5 py-1.5 text-xs font-semibold text-sage hover:underline">Today</button>
+        </div>
+      </div>
+
+      <!-- Two Completely Separate Side-by-Side Sleep Panels (Blub vs HL) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- LEFT PANEL: BLUB'S SLEEP TRACKER -->
+        <div id="blubSleepPanel" class="bg-white border border-sand rounded-2xl p-5 sm:p-6 shadow-card space-y-5">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- RIGHT PANEL: HL'S SLEEP TRACKER (COMPLETELY SEPARATE STATS) -->
+        <div id="hlSleepPanel" class="bg-white border border-sand rounded-2xl p-5 sm:p-6 shadow-card space-y-5">
+          <!-- Rendered dynamically -->
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ======================================================================= -->
+  <!-- FOOTER: JSON EXPORT / IMPORT BACKUP & RESET                             -->
+  <!-- ======================================================================= -->
+  <footer class="border-t border-sand bg-white/85 mt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slateStone">
+      <p><strong>Blub’s Health</strong> • Saved automatically in localStorage (<code class="text-[11px]">blubs_health_v1</code>)</p>
+      <div class="flex flex-wrap items-center gap-3">
+        <button type="button" onclick="exportBackupJSON()" class="px-3 py-1.5 rounded-lg bg-cream border border-sand hover:border-sage text-ink font-medium transition">
+          ⬇ Export JSON Backup
+        </button>
+        <label class="px-3 py-1.5 rounded-lg bg-cream border border-sand hover:border-sage text-ink font-medium transition cursor-pointer">
+          ⬆ Import JSON
+          <input type="file" accept=".json,application/json" onchange="importBackupJSON(event)" class="hidden" />
+        </label>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL: EDIT DAY MOOD & NOTES (MOVEMENT TAB)                             -->
+  <!-- ======================================================================= -->
+  <div id="dayNoteModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-ink/40 backdrop-blur-xs">
+    <div class="bg-white border border-sand rounded-2xl shadow-modal w-full max-w-md overflow-hidden">
+      <div class="px-5 py-4 border-b border-sand bg-cream flex items-center justify-between">
+        <h3 id="dayNoteModalTitle" class="font-serif text-lg font-semibold text-ink">Log Session Mood &amp; Notes</h3>
+        <button type="button" onclick="closeDayNoteModal()" class="text-slateStone hover:text-ink text-lg font-bold px-1">✕</button>
+      </div>
+      <form onsubmit="saveDayNoteModal(event)" class="p-5 space-y-4">
+        <input type="hidden" id="noteModalDayIdx" />
+        <div>
+          <label class="block text-xs font-semibold text-slateStone mb-1.5">Mood / Energy Rating (1–5)</label>
+          <div id="noteModalMoodBtns" class="grid grid-cols-5 gap-2"></div>
+        </div>
+        <div>
+          <label for="noteModalTextarea" class="block text-xs font-semibold text-slateStone mb-1">Session Notes / Weights / Recovery Win</label>
+          <textarea id="noteModalTextarea" rows="3" placeholder="e.g., Goblet squat 14kg, 15 min 12% incline walk — felt energized!" class="w-full bg-cream border border-sand rounded-xl px-3 py-2 text-sm text-ink focus:bg-white focus:outline-none focus:border-sage resize-none"></textarea>
+        </div>
+        <div class="flex justify-end gap-2 pt-2 border-t border-sand">
+          <button type="button" onclick="closeDayNoteModal()" class="px-4 py-2 rounded-xl border border-sand text-xs font-semibold text-slateStone">Cancel</button>
+          <button type="submit" class="px-4 py-2 rounded-xl bg-sage hover:bg-sageDark text-white text-xs font-semibold">Save Notes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL: FOOD PHOTO LIGHTBOX PREVIEW                                      -->
+  <!-- ======================================================================= -->
+  <div id="photoLightboxModal" onclick="closePhotoLightbox()" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-ink/70 backdrop-blur-xs">
+    <div class="bg-white border border-sand rounded-2xl p-3 max-w-md w-full space-y-2 shadow-modal" onclick="event.stopPropagation()">
+      <img id="lightboxImg" src="" alt="Logged meal photo" class="w-full rounded-xl object-contain max-h-[70vh]" />
+      <div class="flex items-center justify-between px-1">
+        <span id="lightboxCaption" class="text-xs font-semibold text-ink"></span>
+        <button type="button" onclick="closePhotoLightbox()" class="text-xs font-semibold text-sage hover:underline">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Banner -->
+  <div id="toastBanner" role="status" aria-live="polite" class="fixed bottom-5 right-5 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300">
+    <div class="bg-ink text-white text-xs sm:text-sm font-medium px-4 py-3 rounded-xl shadow-modal flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-mint"></span>
+      <span id="toastMsg">Saved</span>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. CONSTANTS, SINGAPORE RECOMP LIBRARY & INITIAL STATE
+    // =========================================================================
+    const STORAGE_KEY = 'blubs_health_v1';
+
+    const MEAL_TARGETS = {
+      breakfast: { label: 'Breakfast', icon: '☀️', calories: 350, protein: 25, fiber: 7 },
+      lunch:     { label: 'Lunch',     icon: '🥗', calories: 450, protein: 35, fiber: 8 },
+      dinner:    { label: 'Dinner',    icon: '🍲', calories: 450, protein: 32, fiber: 7 },
+      snacks:    { label: 'Snacks & Drinks', icon: '🍵', calories: 200, protein: 8, fiber: 3 }
+    };
+
+    const SG_FOOD_LIBRARY = [
+      { id: 'sg1', name: 'Overnight Oats w/ NutriSoy & Chia', slot: 'breakfast', calories: 340, protein: 22, fiber: 9 },
+      { id: 'sg2', name: 'Kopi C Kosong', slot: 'snacks', calories: 45, protein: 1, fiber: 0 },
+      { id: 'sg3', name: 'Artisanal Iced Matcha Latte', slot: 'snacks', calories: 130, protein: 6, fiber: 1 },
+      { id: 'sg4', name: 'iKi Light Plate', slot: 'lunch', calories: 430, protein: 36, fiber: 7 },
+      { id: 'sg5', name: 'Sliced Fish Soup w/o Milk + Half Rice', slot: 'lunch', calories: 390, protein: 34, fiber: 3 },
+      { id: 'sg6', name: 'Steamed Chicken Breast Rice + Veg', slot: 'lunch', calories: 460, protein: 38, fiber: 4 },
+      { id: 'sg7', name: 'Yong Tau Foo 6 pcs Soup', slot: 'dinner', calories: 380, protein: 28, fiber: 6 },
+      { id: 'sg8', name: 'Cai Png 1 Meat 2 Veg', slot: 'dinner', calories: 440, protein: 30, fiber: 6 },
+      { id: 'sg9', name: 'Greek Yogurt Berry Bowl', slot: 'snacks', calories: 220, protein: 20, fiber: 4 },
+      { id: 'sg10', name: '2 Eggs + Edamame', slot: 'snacks', calories: 240, protein: 20, fiber: 5 },
+      { id: 'sg11', name: 'Whey Protein Shake', slot: 'snacks', calories: 130, protein: 25, fiber: 1 }
+    ];
+
+    function getDefaultRoutine() {
+      return [
+        {
+          id: 'mon', dayName: 'Monday', shortName: 'Mon',
+          title: 'Dance or 3 km Run', type: 'Cardio', duration: 40, calories: 300,
+          subtitle: 'Joyful cardio or brisk 3 km run to boost mood and energy.',
+          completed: false, mood: null, notes: '', checklist: []
+        },
+        {
+          id: 'tue', dayName: 'Tuesday', shortName: 'Tue',
+          title: 'Complete Rest', type: 'Rest', duration: 0, calories: 0,
+          subtitle: 'Recovery win — hydration, gentle stretching & 11:30 PM wind-down.',
+          completed: false, mood: null, notes: '', checklist: []
+        },
+        {
+          id: 'wed', dayName: 'Wednesday', shortName: 'Wed',
+          title: 'Gym Strength Session', type: 'Strength', duration: 55, calories: 350,
+          subtitle: 'Full-body resistance training + 12% incline walk finisher.',
+          completed: false, mood: null, notes: '',
+          checklistOpen: true,
+          checklist: [
+            { text: 'Goblet Squats', done: false },
+            { text: 'Lat Pulldowns', done: false },
+            { text: 'Rear Delt Reverse Flyes', done: false },
+            { text: 'Seated Leg Curls', done: false },
+            { text: 'Standing Calf Raises', done: false },
+            { text: 'Weighted Planks', done: false },
+            { text: '12% Incline Walk', done: false }
+          ]
+        },
+        {
+          id: 'thu', dayName: 'Thursday', shortName: 'Thu',
+          title: 'Yoga or 10-Min Mat Pilates', type: 'Mobility', duration: 20, calories: 100,
+          subtitle: 'Low-barrier core & mobility flow to release shoulder and hip tension.',
+          completed: false, mood: null, notes: '', checklist: []
+        },
+        {
+          id: 'fri', dayName: 'Friday', shortName: 'Fri',
+          title: 'Complete Rest', type: 'Rest', duration: 0, calories: 0,
+          subtitle: 'Decompression win — guilt-free transition into the weekend.',
+          completed: false, mood: null, notes: '', checklist: []
+        },
+        {
+          id: 'sat', dayName: 'Saturday', shortName: 'Sat',
+          title: '4 km Nature Walk', type: 'Cardio', duration: 45, calories: 350,
+          subtitle: 'Scenic outdoor walk (Southern Ridges or coastal park).',
+          completed: false, mood: null, notes: '', checklist: []
+        },
+        {
+          id: 'sun', dayName: 'Sunday', shortName: 'Sun',
+          title: 'Complete Rest', type: 'Rest', duration: 0, calories: 0,
+          subtitle: 'Slow-living reset, meal prep & weekly reflection.',
+          completed: false, mood: null, notes: '', checklist: []
+        }
+      ];
+    }
+
+    function getTodayISO() {
+      const now = new Date();
+      return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    }
+
+    function shiftDateISO(isoStr, days) {
+      const [y, m, d] = isoStr.split('-').map(Number);
+      const dt = new Date(y, m - 1, d + days);
+      return `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}`;
+    }
+
+    function getMondayOfWeekISO(isoStr) {
+      const [y, m, d] = isoStr.split('-').map(Number);
+      const dt = new Date(y, m - 1, d);
+      const day = dt.getDay();
+      const diff = day === 0 ? -6 : 1 - day;
+      dt.setDate(dt.getDate() + diff);
+      return `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}`;
+    }
+
+    function getDefaultState() {
+      const today = getTodayISO();
+      return {
+        activeTab: 'dashboard',
+        selectedDate: today,
+        dashboardMonth: today.slice(0, 7), // YYYY-MM
+        weekStartISO: getMondayOfWeekISO(today),
+        streak: 1,
+        geminiApiKey: '',
+        weight: { start: 60.0, current: 58.5, target: 55.0 },
+        // dailyLogs[YYYY-MM-DD]: {
+        //   meals: { breakfast: [], lunch: [], dinner: [], snacks: [] },
+        //   steps: 0,
+        //   exercise: { completed: bool, type: string, duration: number, title: string },
+        //   sleepBlub: { status: 'yes' | 'no' | null, note: '' },
+        //   sleepHL:   { status: 'yes' | 'no' | null, note: '' }
+        // }
+        dailyLogs: {},
+        routine: getDefaultRoutine(),
+        archivedWeeks: []
+      };
+    }
+
+    let state = loadState();
+    let draftPhotoBase64 = null;
+    let modalDraftMood = null;
+    let toastTimer = null;
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return getDefaultState();
+        const parsed = JSON.parse(raw);
+        const def = getDefaultState();
+        return {
+          ...def,
+          ...parsed,
+          weight: { ...def.weight, ...(parsed.weight || {}) },
+          dailyLogs: parsed.dailyLogs && typeof parsed.dailyLogs === 'object' ? parsed.dailyLogs : {},
+          routine: Array.isArray(parsed.routine) && parsed.routine.length === 7 ? parsed.routine : def.routine,
+          archivedWeeks: Array.isArray(parsed.archivedWeeks) ? parsed.archivedWeeks : []
+        };
+      } catch (e) {
+        console.error('Failed to load state:', e);
+        return getDefaultState();
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.error('Failed to save state:', e);
+        showToast('Storage warning: image data may be full. Export JSON backup.');
+      }
+    }
+
+    function ensureDayLog(isoStr) {
+      if (!state.dailyLogs[isoStr]) {
+        state.dailyLogs[isoStr] = {
+          meals: { breakfast: [], lunch: [], dinner: [], snacks: [] },
+          steps: 0,
+          exercise: null,
+          sleepBlub: { status: null, note: '' },
+          sleepHL: { status: null, note: '' }
+        };
+      } else {
+        const l = state.dailyLogs[isoStr];
+        if (!l.meals) l.meals = { breakfast: [], lunch: [], dinner: [], snacks: [] };
+        ['breakfast', 'lunch', 'dinner', 'snacks'].forEach((k) => {
+          if (!Array.isArray(l.meals[k])) l.meals[k] = [];
+        });
+        if (typeof l.steps !== 'number') l.steps = 0;
+        if (!l.sleepBlub) l.sleepBlub = { status: null, note: '' };
+        if (!l.sleepHL) l.sleepHL = { status: null, note: '' };
+      }
+      return state.dailyLogs[isoStr];
+    }
+
+    // Sync the 7-day movement routine cards with their corresponding calendar dates in dailyLogs
+    function syncRoutineToDailyLogs() {
+      state.routine.forEach((day, idx) => {
+        const dateISO = shiftDateISO(state.weekStartISO, idx);
+        const log = ensureDayLog(dateISO);
+        log.exercise = {
+          completed: Boolean(day.completed),
+          type: day.type,
+          duration: Number(day.duration) || 0,
+          title: day.title
+        };
+      });
+    }
+
+    // =========================================================================
+    // 2. HELPERS & NAVIGATION
+    // =========================================================================
+    function esc(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function fmtNum(n) {
+      const v = Number(n) || 0;
+      return Number.isInteger(v) ? String(v) : v.toFixed(1).replace(/\.0$/, '');
+    }
+
+    function formatFriendlyDate(isoStr) {
+      const today = getTodayISO();
+      if (isoStr === today) return 'Today';
+      if (isoStr === shiftDateISO(today, -1)) return 'Yesterday';
+      if (isoStr === shiftDateISO(today, 1)) return 'Tomorrow';
+      const [y, m, d] = isoStr.split('-').map(Number);
+      return new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('toastBanner');
+      document.getElementById('toastMsg').textContent = msg;
+      el.classList.remove('opacity-0', 'translate-y-3');
+      el.classList.add('opacity-100', 'translate-y-0');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        el.classList.remove('opacity-100', 'translate-y-0');
+        el.classList.add('opacity-0', 'translate-y-3');
+      }, 2800);
+    }
+
+    function switchTab(tabName) {
+      state.activeTab = tabName;
+      saveState();
+
+      ['dashboard', 'meals', 'movement', 'sleep'].forEach((t) => {
+        const view = document.getElementById(`view-${t}`);
+        const btn = document.getElementById(`tabBtn-${t}`);
+        const active = t === tabName;
+        view.classList.toggle('hidden', !active);
+        btn.className = active
+          ? 'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 whitespace-nowrap bg-sage text-white shadow-card'
+          : 'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition flex items-center gap-1.5 whitespace-nowrap text-slateStone hover:text-ink hover:bg-cream';
+      });
+
+      renderAll();
+    }
+
+    function setSelectedDate(isoStr) {
+      if (!isoStr) return;
+      state.selectedDate = isoStr;
+      state.dashboardMonth = isoStr.slice(0, 7);
+      saveState();
+      renderAll();
+    }
+
+    function shiftSelectedDate(delta) {
+      setSelectedDate(shiftDateISO(state.selectedDate, delta));
+    }
+
+    // =========================================================================
+    // 3. TOP HEADER (WEIGHT PROGRESS & STREAK)
+    // =========================================================================
+    function handleWeightChange() {
+      const inp = document.getElementById('currentWeightInput');
+      const val = parseFloat(inp.value);
+      if (isNaN(val) || val < 30 || val > 220) {
+        inp.value = state.weight.current.toFixed(1);
+        return;
+      }
+      if (val > state.weight.start) state.weight.start = parseFloat((val + 0.5).toFixed(1));
+      state.weight.current = parseFloat(val.toFixed(1));
+      saveState();
+      renderHeader();
+      showToast(`Weight updated to ${state.weight.current.toFixed(1)} kg`);
+    }
+
+    function adjustStreak(delta) {
+      state.streak = Math.max(0, (state.streak || 0) + delta);
+      saveState();
+      renderHeader();
+    }
+
+    function getDayMacroTotals(isoStr) {
+      const log = ensureDayLog(isoStr);
+      let calories = 0, protein = 0, fiber = 0;
+      const bySlot = {};
+      Object.keys(MEAL_TARGETS).forEach((slot) => {
+        const items = log.meals[slot] || [];
+        let c = 0, p = 0, f = 0;
+        items.forEach((it) => {
+          c += Number(it.calories) || 0;
+          p += Number(it.protein) || 0;
+          f += Number(it.fiber) || 0;
+        });
+        bySlot[slot] = { calories: c, protein: p, fiber: f, items };
+        calories += c;
+        protein += p;
+        fiber += f;
+      });
+      return { calories, protein, fiber, bySlot };
+    }
+
+    function renderHeader() {
+      const { start, current, target } = state.weight;
+      const inp = document.getElementById('currentWeightInput');
+      if (document.activeElement !== inp) inp.value = current.toFixed(1);
+
+      const rem = Math.max(0, current - target);
+      const span = Math.max(0.5, start - target);
+      const pct = current <= target ? 100 : Math.min(100, Math.max(0, Math.round(((start - current) / span) * 100)));
+      document.getElementById('weightProgressBar').style.width = `${pct}%`;
+
+      if (rem <= 0.05) {
+        document.getElementById('weightRemainingText').textContent = '55.0 kg Goal Reached 🎉';
+        document.getElementById('weightRemainingText').className = 'font-semibold text-sage';
+        document.getElementById('weightTimelineText').textContent = 'Maintenance & tone';
+      } else {
+        const wks = Math.max(1, Math.ceil(rem / 0.3));
+        document.getElementById('weightRemainingText').textContent = `${rem.toFixed(1)} kg remaining`;
+        document.getElementById('weightRemainingText').className = 'font-semibold text-terracotta';
+        document.getElementById('weightTimelineText').textContent = `~${wks} ${wks === 1 ? 'wk' : 'wks'} @ ~0.3 kg/wk`;
+      }
+
+      const stTxt = `${state.streak} Wk Streak`;
+      document.getElementById('streakBadgeMobile').textContent = stTxt;
+      document.getElementById('streakBadgeDesktop').textContent = stTxt;
+
+      // Nav tab status pills
+      const macros = getDayMacroTotals(state.selectedDate);
+      document.getElementById('navCalPill').textContent = `${Math.round(macros.calories).toLocaleString()} / 1,450`;
+
+      const movDone = state.routine.filter((d) => d.type !== 'Rest' && d.completed).length;
+      document.getElementById('navMovePill').textContent = `${movDone}/4`;
+
+      const log = ensureDayLog(state.selectedDate);
+      const bSleep = log.sleepBlub?.status;
+      document.getElementById('navSleepPill').textContent = bSleep === 'yes' ? '✓ <11:30' : bSleep === 'no' ? '✕ >11:30' : '—';
+    }
+
+    // =========================================================================
+    // 4. TAB 1: MONTHLY DASHBOARD (FRONT PAGE)
+    // =========================================================================
+    function changeDashboardMonth(delta) {
+      const [y, m] = state.dashboardMonth.split('-').map(Number);
+      const dt = new Date(y, m - 1 + delta, 1);
+      state.dashboardMonth = `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}`;
+      saveState();
+      renderMonthlyDashboard();
+    }
+
+    function calculateSleepStats(personKey, monthPrefix) {
+      // personKey: 'sleepBlub' or 'sleepHL' — strictly isolated
+      const allDates = Object.keys(state.dailyLogs).sort();
+      let monthLogged = 0, monthYes = 0;
+
+      allDates.forEach((iso) => {
+        const entry = state.dailyLogs[iso]?.[personKey];
+        if (entry && (entry.status === 'yes' || entry.status === 'no')) {
+          if (iso.startsWith(monthPrefix)) {
+            monthLogged += 1;
+            if (entry.status === 'yes') monthYes += 1;
+          }
+        }
+      });
+
+      // Current streak counting backwards from today (or latest logged night up to today)
+      let currentStreak = 0;
+      let cursor = getTodayISO();
+      // If today isn't logged yet, check starting from yesterday so active streak stays visible
+      if (!state.dailyLogs[cursor]?.[personKey]?.status) {
+        cursor = shiftDateISO(cursor, -1);
+      }
+      while (state.dailyLogs[cursor]?.[personKey]?.status === 'yes') {
+        currentStreak += 1;
+        cursor = shiftDateISO(cursor, -1);
+      }
+
+      // Weekly hit rate (based on state.weekStartISO .. +6 days)
+      let weekLogged = 0, weekYes = 0;
+      for (let i = 0; i < 7; i++) {
+        const dIso = shiftDateISO(state.weekStartISO, i);
+        const st = state.dailyLogs[dIso]?.[personKey]?.status;
+        if (st === 'yes' || st === 'no') {
+          weekLogged += 1;
+          if (st === 'yes') weekYes += 1;
+        }
+      }
+
+      const monthPct = monthLogged > 0 ? Math.round((monthYes / monthLogged) * 100) : 0;
+      const weekPct = weekLogged > 0 ? Math.round((weekYes / weekLogged) * 100) : 0;
+
+      return { monthLogged, monthYes, monthPct, weekLogged, weekYes, weekPct, currentStreak };
+    }
+
+    function renderMonthlyDashboard() {
+      syncRoutineToDailyLogs();
+      const [year, month] = state.dashboardMonth.split('-').map(Number);
+      const monthDt = new Date(year, month - 1, 1);
+      document.getElementById('dashboardMonthLabel').textContent = monthDt.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+      const daysInMonth = new Date(year, month, 0).getDate();
+      const prefix = state.dashboardMonth;
+
+      // Aggregate Monthly Nutrition, Exercise & Blub's Sleep
+      let nutrDaysLogged = 0, nutrGoalDays = 0, sumCal = 0, sumPro = 0, sumFib = 0;
+      let exSessions = 0, exMinutes = 0, stepGoalDays = 0;
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const iso = `${prefix}-${String(d).padStart(2, '0')}`;
+        const macros = getDayMacroTotals(iso);
+        if (macros.calories > 0) {
+          nutrDaysLogged += 1;
+          sumCal += macros.calories;
+          sumPro += macros.protein;
+          sumFib += macros.fiber;
+          if (macros.calories <= 1450 && macros.protein >= 95 && macros.fiber >= 22) {
+            nutrGoalDays += 1;
+          }
+        }
+
+        const log = ensureDayLog(iso);
+        if (log.exercise && log.exercise.completed) {
+          if (log.exercise.type !== 'Rest') {
+            exSessions += 1;
+            exMinutes += Number(log.exercise.duration) || 0;
+          }
+        }
+        if ((log.steps || 0) >= 7500) {
+          stepGoalDays += 1;
+        }
+      }
+
+      // 1. Update Nutrition Pillar Card
+      const avgCal = nutrDaysLogged > 0 ? Math.round(sumCal / nutrDaysLogged) : 0;
+      const avgPro = nutrDaysLogged > 0 ? Math.round(sumPro / nutrDaysLogged) : 0;
+      const avgFib = nutrDaysLogged > 0 ? Math.round(sumFib / nutrDaysLogged) : 0;
+      document.getElementById('dashAvgCal').textContent = avgCal.toLocaleString();
+      document.getElementById('dashAvgPro').textContent = `${avgPro}g`;
+      document.getElementById('dashAvgFib').textContent = `${avgFib}g`;
+      document.getElementById('dashNutrDaysBadge').textContent = `${nutrGoalDays} goal ${nutrGoalDays === 1 ? 'day' : 'days'}`;
+      document.getElementById('dashNutrLoggedCount').textContent = `${nutrDaysLogged} ${nutrDaysLogged === 1 ? 'day' : 'days'} logged this month`;
+
+      // 2. Update Exercise Pillar Card
+      document.getElementById('dashExSessionsBadge').textContent = `${exSessions} / 16 sessions`;
+      document.getElementById('dashExRatio').textContent = `${exSessions} / 16`;
+      document.getElementById('dashExBar').style.width = `${Math.min(100, Math.round((exSessions / 16) * 100))}%`;
+      document.getElementById('dashExMinutes').textContent = `${exMinutes.toLocaleString()} mins`;
+      document.getElementById('dashStepDays').textContent = `${stepGoalDays} ${stepGoalDays === 1 ? 'day' : 'days'}`;
+
+      // 3. Update Blub's Sleep Pillar Card (Strictly Blub only)
+      const blubSleep = calculateSleepStats('sleepBlub', prefix);
+      document.getElementById('dashBlubSleepStreakBadge').textContent = `${blubSleep.currentStreak}d streak`;
+      document.getElementById('dashBlubSleepRate').textContent = `${blubSleep.monthPct}%`;
+      document.getElementById('dashBlubSleepCount').textContent = `${blubSleep.monthYes} / ${blubSleep.monthLogged} logged nights`;
+      document.getElementById('dashBlubSleepBar').style.width = `${blubSleep.monthPct}%`;
+
+      // 4. Render Interactive Monthly Calendar Grid (Mon-first alignment)
+      const firstDayDow = new Date(year, month - 1, 1).getDay(); // 0=Sun..6=Sat
+      const leadingBlanks = firstDayDow === 0 ? 6 : firstDayDow - 1;
+      const todayISO = getTodayISO();
+
+      let cellsHtml = '';
+      for (let b = 0; b < leadingBlanks; b++) {
+        cellsHtml += `<div class="min-h-[68px] sm:min-h-[82px] rounded-xl bg-cream/40 border border-transparent"></div>`;
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const iso = `${prefix}-${String(d).padStart(2, '0')}`;
+        const macros = getDayMacroTotals(iso);
+        const log = ensureDayLog(iso);
+
+        const isSelected = iso === state.selectedDate;
+        const isToday = iso === todayISO;
+
+        // Nutrition indicator
+        let nutrDot = `<span title="Nutrition unlogged" class="w-2 h-2 rounded-full bg-sand"></span>`;
+        if (macros.calories > 0) {
+          const hitAll = macros.calories <= 1450 && macros.protein >= 95 && macros.fiber >= 22;
+          nutrDot = hitAll
+            ? `<span title="Nutrition on target (${Math.round(macros.calories)} kcal)" class="w-2.5 h-2.5 rounded-full bg-sage"></span>`
+            : `<span title="Nutrition logged (${Math.round(macros.calories)} kcal)" class="w-2.5 h-2.5 rounded-full bg-amberWarm"></span>`;
+        }
+
+        // Exercise indicator
+        let exDot = `<span title="No workout logged" class="w-2 h-2 rounded-sm bg-sand"></span>`;
+        if (log.exercise && log.exercise.completed) {
+          exDot =
+            log.exercise.type === 'Rest'
+              ? `<span title="Rest win completed" class="w-2.5 h-2.5 rounded-sm bg-terracotta/80"></span>`
+              : `<span title="Workout completed: ${esc(log.exercise.title)}" class="w-2.5 h-2.5 rounded-sm bg-[#3B7A68]"></span>`;
+        }
+
+        // Blub's sleep indicator
+        let sleepTag = `<span title="Blub sleep unlogged" class="text-[10px] text-slateStone/60">☾</span>`;
+        if (log.sleepBlub?.status === 'yes') {
+          sleepTag = `<span title="Blub slept before 11:30 PM" class="text-[10px] font-bold text-sage">☾✓</span>`;
+        } else if (log.sleepBlub?.status === 'no') {
+          sleepTag = `<span title="Blub slept after 11:30 PM" class="text-[10px] font-bold text-terracotta">☾✕</span>`;
+        }
+
+        const borderClass = isSelected
+          ? 'border-sage ring-2 ring-sage/25 bg-mint/45'
+          : isToday
+            ? 'border-sage/50 bg-cream'
+            : 'border-sand bg-white hover:border-sage/40';
+
+        cellsHtml += `
+          <button
+            type="button"
+            onclick="setSelectedDate('${iso}')"
+            class="min-h-[68px] sm:min-h-[82px] rounded-xl border p-1.5 sm:p-2 text-left flex flex-col justify-between transition ${borderClass}"
+          >
+            <div class="flex items-center justify-between w-full">
+              <span class="text-xs font-semibold ${isToday ? 'text-sage underline' : 'text-ink'}">${d}</span>
+              ${sleepTag}
+            </div>
+            <div class="flex items-center gap-1.5 pt-1">
+              ${nutrDot}
+              ${exDot}
+            </div>
+          </button>
+        `;
+      }
+      document.getElementById('monthlyCalendarGrid').innerHTML = cellsHtml;
+
+      // 5. Render Quick Daily Check-In Strip for state.selectedDate
+      const selLog = ensureDayLog(state.selectedDate);
+      document.getElementById('quickStripDateTitle').textContent = `${formatFriendlyDate(state.selectedDate)} (${state.selectedDate})`;
+      document.getElementById('quickStepsCount').textContent = (selLog.steps || 0).toLocaleString();
+
+      updateQuickSleepButtons('blub', selLog.sleepBlub?.status);
+      updateQuickSleepButtons('hl', selLog.sleepHL?.status);
+    }
+
+    function updateQuickSleepButtons(who, status) {
+      const cap = who === 'blub' ? 'Blub' : 'Hl';
+      const statusEl = document.getElementById(`quick${cap}SleepStatus`);
+      const yesBtn = document.getElementById(`quick${cap}YesBtn`);
+      const noBtn = document.getElementById(`quick${cap}NoBtn`);
+
+      if (status === 'yes') {
+        statusEl.textContent = '✓ Yes (<11:30 PM)';
+        statusEl.className = 'text-[11px] font-semibold text-sage';
+        yesBtn.className = 'py-1.5 rounded-lg border border-sage bg-sage text-white text-xs font-semibold transition';
+        noBtn.className = 'py-1.5 rounded-lg border border-sand bg-white text-slateStone hover:text-ink text-xs font-medium transition';
+      } else if (status === 'no') {
+        statusEl.textContent = '✕ No (>11:30 PM)';
+        statusEl.className = 'text-[11px] font-semibold text-terracotta';
+        yesBtn.className = 'py-1.5 rounded-lg border border-sand bg-white text-slateStone hover:text-ink text-xs font-medium transition';
+        noBtn.className = 'py-1.5 rounded-lg border border-terracotta bg-terracotta text-white text-xs font-semibold transition';
+      } else {
+        statusEl.textContent = 'Not logged';
+        statusEl.className = 'text-[11px] font-medium text-slateStone';
+        yesBtn.className = 'py-1.5 rounded-lg border border-sand bg-white hover:border-sage text-ink text-xs font-semibold transition';
+        noBtn.className = 'py-1.5 rounded-lg border border-sand bg-white hover:border-terracotta text-ink text-xs font-semibold transition';
+      }
+    }
+
+    // =========================================================================
+    // 5. TAB 2: MEALS & MACROS + PHOTO AI SCANNER (OPTION 1 & OPTION 2)
+    // =========================================================================
+    function toggleAiSettingsBox() {
+      const box = document.getElementById('aiSettingsBox');
+      box.classList.toggle('hidden');
+      if (!box.classList.contains('hidden')) {
+        document.getElementById('geminiApiKeyInput').value = state.geminiApiKey || '';
+      }
+    }
+
+    function saveGeminiApiKey() {
+      const val = document.getElementById('geminiApiKeyInput').value.trim();
+      state.geminiApiKey = val;
+      saveState();
+      renderMealsTab();
+      showToast(val ? 'Gemini API key saved locally ✓' : 'API key cleared');
+    }
+
+    function clearGeminiApiKey() {
+      state.geminiApiKey = '';
+      document.getElementById('geminiApiKeyInput').value = '';
+      saveState();
+      renderMealsTab();
+      showToast('Gemini API key cleared');
+    }
+
+    // Compress uploaded photo via offscreen HTML5 Canvas (max width 420px, JPEG quality 0.65)
+    function handlePhotoSelected(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = new Image();
+        img.onload = function () {
+          const maxWidth = 420;
+          let w = img.width;
+          let h = img.height;
+          if (w > maxWidth) {
+            h = Math.round((h * maxWidth) / w);
+            w = maxWidth;
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+
+          draftPhotoBase64 = canvas.toDataURL('image/jpeg', 0.65);
+
+          const previewEl = document.getElementById('draftPhotoPreview');
+          previewEl.src = draftPhotoBase64;
+          previewEl.classList.remove('hidden');
+          document.getElementById('photoUploadPlaceholder').classList.add('hidden');
+          document.getElementById('removePhotoBtn').classList.remove('hidden');
+          showToast('Food photo attached & compressed ✓');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearDraftPhoto() {
+      draftPhotoBase64 = null;
+      document.getElementById('foodPhotoInput').value = '';
+      document.getElementById('draftPhotoPreview').src = '';
+      document.getElementById('draftPhotoPreview').classList.add('hidden');
+      document.getElementById('photoUploadPlaceholder').classList.remove('hidden');
+      document.getElementById('removePhotoBtn').classList.add('hidden');
+    }
+
+    // Option 2: In-App Gemini Vision AI Auto-Calculate
+    async function analyzePhotoWithGemini() {
+      if (!draftPhotoBase64) {
+        showToast('Please snap or upload a food photo first 📸');
+        return;
+      }
+      if (!state.geminiApiKey) {
+        const box = document.getElementById('aiSettingsBox');
+        box.classList.remove('hidden');
+        document.getElementById('geminiApiKeyInput').focus();
+        showToast('Paste a Gemini API key in Settings to enable auto-scan, or log manually (Option 1).');
+        return;
+      }
+
+      const btn = document.getElementById('aiScanPhotoBtn');
+      const origHtml = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<span>⏳ Scanning meal photo with Gemini Vision...</span>`;
+
+      try {
+        const base64Data = draftPhotoBase64.split(',')[1];
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(state.geminiApiKey)}`;
+
+        const payload = {
+          contents: [
+            {
+              parts: [
+                {
+                  text: 'Analyze this food photo and estimate portion nutrition. Return ONLY valid JSON with keys: {"name": string, "calories": number, "protein": number, "fiber": number}. Use realistic Singapore/Asian or standard portion estimates.'
+                },
+                {
+                  inline_data: {
+                    mime_type: 'image/jpeg',
+                    data: base64Data
+                  }
+                }
+              ]
+            }
+          ],
+          generationConfig: {
+            responseMimeType: 'application/json'
+          }
+        };
+
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error(`API error (${response.status})`);
+        }
+
+        const data = await response.json();
+        const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+        const cleaned = rawText.replace(/```json|```/gi, '').trim();
+        const parsed = JSON.parse(cleaned);
+
+        if (parsed.name) document.getElementById('logFoodName').value = parsed.name;
+        if (parsed.calories !== undefined) document.getElementById('logCalories').value = Math.round(Number(parsed.calories) || 0);
+        if (parsed.protein !== undefined) document.getElementById('logProtein').value = Math.round((Number(parsed.protein) || 0) * 10) / 10;
+        if (parsed.fiber !== undefined) document.getElementById('logFiber').value = Math.round((Number(parsed.fiber) || 0) * 10) / 10;
+
+        showToast(`AI estimated: ${parsed.name || 'Meal'} (${Math.round(parsed.calories || 0)} kcal) ✨`);
+      } catch (err) {
+        console.error('Gemini Vision scan error:', err);
+        showToast('Could not auto-scan photo. Check API key or use Smart Estimate.');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = origHtml;
+      }
+    }
+
+    // Option 1: Built-in Smart Estimate from Food Name
+    function smartEstimateFromName() {
+      const q = (document.getElementById('logFoodName').value || '').trim().toLowerCase();
+      if (!q) {
+        showToast('Type a food name first to estimate macros.');
+        return;
+      }
+
+      const libHit = SG_FOOD_LIBRARY.find((f) => f.name.toLowerCase().includes(q) || q.includes(f.name.toLowerCase()));
+      if (libHit) {
+        document.getElementById('logCalories').value = libHit.calories;
+        document.getElementById('logProtein').value = libHit.protein;
+        document.getElementById('logFiber').value = libHit.fiber;
+        showToast(`Matched "${libHit.name}" ✓`);
+        return;
+      }
+
+      const dict = [
+        { k: ['oats', 'oatmeal'], c: 340, p: 20, f: 8 },
+        { k: ['chicken rice'], c: 460, p: 38, f: 4 },
+        { k: ['fish soup'], c: 390, p: 34, f: 3 },
+        { k: ['yong tau foo', 'ytf'], c: 380, p: 28, f: 6 },
+        { k: ['cai png', 'economy rice'], c: 440, p: 30, f: 6 },
+        { k: ['matcha', 'latte'], c: 130, p: 6, f: 1 },
+        { k: ['kopi', 'coffee', 'teh'], c: 45, p: 1, f: 0 },
+        { k: ['yogurt'], c: 220, p: 20, f: 4 },
+        { k: ['egg', 'edamame'], c: 240, p: 20, f: 5 },
+        { k: ['whey', 'shake'], c: 130, p: 25, f: 1 },
+        { k: ['salmon'], c: 380, p: 34, f: 3 },
+        { k: ['salad', 'broccoli', 'veg'], c: 160, p: 8, f: 6 }
+      ];
+      const hit = dict.find((d) => d.k.some((word) => q.includes(word)));
+      if (hit) {
+        document.getElementById('logCalories').value = hit.c;
+        document.getElementById('logProtein').value = hit.p;
+        document.getElementById('logFiber').value = hit.f;
+        showToast('Applied smart portion estimate ✓');
+      } else {
+        document.getElementById('logCalories').value = 320;
+        document.getElementById('logProtein').value = 20;
+        document.getElementById('logFiber').value = 4;
+        showToast('Applied balanced meal baseline (320 kcal · 20g P · 4g F)');
+      }
+    }
+
+    // Option 1: Copy Chat Photo Prompt Helper
+    function copyChatPhotoPrompt() {
+      const promptText =
+        "Please analyze my meal photo and estimate the Calories (kcal), Protein (g), and Fiber (g) so I can log it into Blub’s Health (1,450 kcal ceiling, 95–100g protein, 22–25g fiber plan).";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(promptText).then(
+          () => showToast('Chat photo prompt copied! Paste your photo + prompt in chat 📋'),
+          () => fallbackCopyText(promptText)
+        );
+      } else {
+        fallbackCopyText(promptText);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('Chat photo prompt copied! Paste your photo + prompt in chat 📋');
+    }
+
+    function submitMealLogForm(e) {
+      e.preventDefault();
+      const slot = document.getElementById('logMealSlot').value;
+      const name = document.getElementById('logFoodName').value.trim();
+      const calories = Math.max(0, parseFloat(document.getElementById('logCalories').value) || 0);
+      const protein = Math.max(0, parseFloat(document.getElementById('logProtein').value) || 0);
+      const fiber = Math.max(0, parseFloat(document.getElementById('logFiber').value) || 0);
+      if (!name) return;
+
+      const log = ensureDayLog(state.selectedDate);
+      log.meals[slot].push({
+        id: `m-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        name,
+        calories,
+        protein,
+        fiber,
+        photo: draftPhotoBase64 || null
+      });
+
+      document.getElementById('logFoodName').value = '';
+      document.getElementById('logCalories').value = '';
+      document.getElementById('logProtein').value = '';
+      document.getElementById('logFiber').value = '';
+      clearDraftPhoto();
+
+      saveState();
+      renderAll();
+      showToast(`Logged "${name}" to ${MEAL_TARGETS[slot].label} ✓`);
+    }
+
+    function quickAddSgFood(id) {
+      const item = SG_FOOD_LIBRARY.find((f) => f.id === id);
+      if (!item) return;
+      const selSlot = document.getElementById('quickChipMealSelect').value;
+      const targetSlot = selSlot === 'auto' ? item.slot : selSlot;
+
+      const log = ensureDayLog(state.selectedDate);
+      log.meals[targetSlot].push({
+        id: `m-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        name: item.name,
+        calories: item.calories,
+        protein: item.protein,
+        fiber: item.fiber,
+        photo: null
+      });
+
+      saveState();
+      renderAll();
+      showToast(`Added "${item.name}" to ${MEAL_TARGETS[targetSlot].label} ✓`);
+    }
+
+    function deleteMealItem(slot, id) {
+      const log = ensureDayLog(state.selectedDate);
+      log.meals[slot] = (log.meals[slot] || []).filter((it) => it.id !== id);
+      saveState();
+      renderAll();
+      showToast('Meal item removed');
+    }
+
+    function loadSampleRecompDay() {
+      const log = ensureDayLog(state.selectedDate);
+      const t = Date.now();
+      log.meals = {
+        breakfast: [{ id: `s-${t}-1`, name: 'Overnight Oats w/ NutriSoy & Chia', calories: 340, protein: 22, fiber: 9, photo: null }],
+        lunch: [{ id: `s-${t}-2`, name: 'Steamed Chicken Breast Rice + Veg', calories: 460, protein: 38, fiber: 4, photo: null }],
+        dinner: [{ id: `s-${t}-3`, name: 'Yong Tau Foo 6 pcs Soup', calories: 380, protein: 28, fiber: 6, photo: null }],
+        snacks: [
+          { id: `s-${t}-4`, name: 'Greek Yogurt Berry Bowl', calories: 220, protein: 20, fiber: 4, photo: null },
+          { id: `s-${t}-5`, name: 'Kopi C Kosong', calories: 45, protein: 1, fiber: 0, photo: null }
+        ]
+      };
+      // Total: 1,445 kcal | 109g Protein | 23g Fiber
+      saveState();
+      renderAll();
+      showToast('Loaded Sample 1,445 kcal Recomp Day (109g P · 23g F) ✨');
+    }
+
+    function renderMealsTab() {
+      const iso = state.selectedDate;
+      document.getElementById('mealDateInput').value = iso;
+      document.getElementById('mealDateFriendlyPill').textContent = formatFriendlyDate(iso);
+      document.getElementById('mealTodayJumpBtn').classList.toggle('hidden', iso === getTodayISO());
+
+      // AI key indicator dot
+      document.getElementById('aiKeyStatusDot').className = state.geminiApiKey
+        ? 'w-2 h-2 rounded-full bg-sage'
+        : 'w-2 h-2 rounded-full bg-slateStone';
+
+      const totals = getDayMacroTotals(iso);
+
+      // 1. Calories Runway: green <1,350, warm amber 1,350-1,450, terracotta >1,450
+      const calCard = document.getElementById('runwayCalCard');
+      const calBadge = document.getElementById('runwayCalBadge');
+      const calBar = document.getElementById('runwayCalBar');
+      document.getElementById('runwayCalVal').textContent = Math.round(totals.calories).toLocaleString();
+      calBar.style.width = `${Math.min(100, Math.round((totals.calories / 1450) * 100))}%`;
+
+      if (totals.calories > 1450) {
+        calCard.className = 'bg-terracottaSoft/50 border border-terracotta/40 rounded-2xl p-5 shadow-card flex flex-col justify-between transition-colors';
+        calBadge.className = 'text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-terracotta text-white';
+        calBadge.textContent = `Over by ${Math.round(totals.calories - 1450)} kcal`;
+        calBar.className = 'h-full bg-terracotta rounded-full transition-all duration-500';
+      } else if (totals.calories >= 1350) {
+        calCard.className = 'bg-amberSoft/60 border border-amberWarm/40 rounded-2xl p-5 shadow-card flex flex-col justify-between transition-colors';
+        calBadge.className = 'text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-amberWarm text-white';
+        calBadge.textContent = `${Math.round(1450 - totals.calories)} kcal left`;
+        calBar.className = 'h-full bg-amberWarm rounded-full transition-all duration-500';
+      } else {
+        calCard.className = 'bg-white border border-sand rounded-2xl p-5 shadow-card flex flex-col justify-between transition-colors';
+        calBadge.className = 'text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-mint text-sage';
+        calBadge.textContent = `${Math.round(1450 - totals.calories).toLocaleString()} kcal left`;
+        calBar.className = 'h-full bg-sage rounded-full transition-all duration-500';
+      }
+
+      // 2. Protein Runway: turns celebratory forest green at >=95g
+      const proCard = document.getElementById('runwayProCard');
+      const proBadge = document.getElementById('runwayProBadge');
+      document.getElementById('runwayProVal').textContent = `${fmtNum(totals.protein)}g`;
+      document.getElementById('runwayProBar').style.width = `${Math.min(100, Math.round((totals.protein / 100) * 100))}%`;
+      if (totals.protein >= 95) {
+        proCard.className = 'bg-mint/55 border border-sage/40 rounded-2xl p-5 shadow-card flex flex-col justify-between transition-colors';
+        proBadge.className = 'text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-sage text-white';
+        proBadge.textContent = '✓ 95g+ Floor Hit!';
+      } else {
+        proCard.className = 'bg-white border border-sand rounded-2xl p-5 shadow-card flex flex-col justify-between transition-colors';
+        proBadge.className = 'text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-cream border border-sand text-slateStone';
+        proBadge.textContent = `${fmtNum(95 - totals.protein)}g to floor`;
+      }
+
+      // 3. Fiber Runway: turns celebratory forest green at >=22g
+      const fibCard = document.getElementById('runwayFibCard');
+      const fibBadge = document.getElementById('runwayFibBadge');
+      document.getElementById('runwayFibVal').textContent = `${fmtNum(totals.fiber)}g`;
+      document.getElementById('runwayFibBar').style.width = `${Math.min(100, Math.round((totals.fiber / 25) * 100))}%`;
+      if (totals.fiber >= 22) {
+        fibCard.className = 'bg-mint/55 border border-sage/40 rounded-2xl p-5 shadow-card flex flex-col justify-between transition-colors';
+        fibBadge.className = 'text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-sage text-white';
+        fibBadge.textContent = '✓ 22g+ Goal Hit!';
+      } else {
+        fibCard.className = 'bg-white border border-sand rounded-2xl p-5 shadow-card flex flex-col justify-between transition-colors';
+        fibBadge.className = 'text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-cream border border-sand text-slateStone';
+        fibBadge.textContent = `${fmtNum(22 - totals.fiber)}g to goal`;
+      }
+
+      // 4. Quick-Add SG Food Chips
+      document.getElementById('sgQuickChipsContainer').innerHTML = SG_FOOD_LIBRARY.map(
+        (f) => `
+          <button
+            type="button"
+            onclick="quickAddSgFood('${f.id}')"
+            class="px-3 py-1.5 rounded-xl bg-cream hover:bg-mint border border-sand hover:border-sage/30 text-left transition flex items-center gap-2 group"
+          >
+            <div>
+              <span class="block text-xs font-semibold text-ink group-hover:text-sage">${esc(f.name)}</span>
+              <span class="block text-[10px] text-slateStone">${f.calories} kcal · <strong class="text-sage">${f.protein}g P</strong> · ${f.fiber}g F</span>
+            </div>
+            <span class="text-xs font-bold text-sage">+</span>
+          </button>
+        `
+      ).join('');
+
+      // 5. Per-Meal Actual vs. Recommended Breakdown Cards
+      document.getElementById('mealBreakdownGrid').innerHTML = Object.keys(MEAL_TARGETS)
+        .map((slot) => {
+          const rec = MEAL_TARGETS[slot];
+          const act = totals.bySlot[slot] || { calories: 0, protein: 0, fiber: 0, items: [] };
+
+          const calDiff = Math.round(act.calories - rec.calories);
+          const proDiff = Number((act.protein - rec.protein).toFixed(1));
+          const fibDiff = Number((act.fiber - rec.fiber).toFixed(1));
+
+          const calVarBadge =
+            act.calories === 0
+              ? `<span class="text-[11px] px-2 py-0.5 rounded bg-cream text-slateStone border border-sand">${calDiff} kcal</span>`
+              : calDiff <= 0
+                ? `<span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-mint text-sage">${calDiff} kcal</span>`
+                : `<span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-terracottaSoft text-terracotta">+${calDiff} kcal</span>`;
+
+          const proVarBadge =
+            act.protein === 0
+              ? `<span class="text-[11px] px-2 py-0.5 rounded bg-cream text-slateStone border border-sand">${fmtNum(proDiff)}g</span>`
+              : proDiff >= 0
+                ? `<span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-mint text-sage">+${fmtNum(proDiff)}g ✓</span>`
+                : `<span class="text-[11px] px-2 py-0.5 rounded bg-amberSoft text-amberWarm">${fmtNum(proDiff)}g</span>`;
+
+          const fibVarBadge =
+            act.fiber === 0
+              ? `<span class="text-[11px] px-2 py-0.5 rounded bg-cream text-slateStone border border-sand">${fmtNum(fibDiff)}g</span>`
+              : fibDiff >= 0
+                ? `<span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-mint text-sage">+${fmtNum(fibDiff)}g ✓</span>`
+                : `<span class="text-[11px] px-2 py-0.5 rounded bg-amberSoft text-amberWarm">${fmtNum(fibDiff)}g</span>`;
+
+          const itemsHtml =
+            act.items.length === 0
+              ? `<p class="text-xs text-slateStone italic py-2 text-center bg-cream/60 rounded-xl border border-dashed border-sand">No items logged yet.</p>`
+              : `<ul class="divide-y divide-sand border border-sand rounded-xl bg-cream/40 overflow-hidden">
+                  ${act.items
+                    .map(
+                      (it) => `
+                      <li class="px-3 py-2 flex items-center justify-between gap-2.5 hover:bg-white transition">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                          ${
+                            it.photo
+                              ? `<img src="${it.photo}" alt="${esc(it.name)}" onclick="openPhotoLightbox('${it.photo}', '${esc(it.name)}')" class="w-10 h-10 rounded-lg object-cover border border-sand shrink-0 cursor-pointer hover:opacity-90" />`
+                              : ''
+                          }
+                          <div class="min-w-0">
+                            <p class="text-xs sm:text-sm font-medium text-ink truncate">${esc(it.name)}</p>
+                            <p class="text-[11px] text-slateStone">
+                              <strong>${Math.round(it.calories)} kcal</strong> · <strong class="text-sage">${fmtNum(it.protein)}g P</strong> · ${fmtNum(it.fiber)}g F
+                            </p>
+                          </div>
+                        </div>
+                        <button type="button" onclick="deleteMealItem('${slot}', '${esc(it.id)}')" title="Delete item" class="p-1.5 rounded-lg text-slateStone hover:text-terracotta hover:bg-terracottaSoft transition shrink-0">✕</button>
+                      </li>
+                    `
+                    )
+                    .join('')}
+                </ul>`;
+
+          return `
+            <article class="bg-white border border-sand rounded-2xl p-5 shadow-card space-y-3.5">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-serif text-lg font-semibold text-ink">${rec.icon} ${rec.label}</h3>
+                  <p class="text-[11px] text-slateStone">Rec: <strong>${rec.calories} kcal</strong> | <strong>${rec.protein}g P</strong> | <strong>${rec.fiber}g F</strong></p>
+                </div>
+              </div>
+
+              <!-- Actual vs. Recommended Mini Table -->
+              <div class="bg-cream/80 border border-sand rounded-xl p-3 space-y-2 text-xs">
+                <div class="grid grid-cols-12 items-center gap-2">
+                  <span class="col-span-3 font-semibold text-ink">Calories</span>
+                  <span class="col-span-3 text-right"><strong>${Math.round(act.calories)}</strong> / ${rec.calories}</span>
+                  <div class="col-span-3 h-2 bg-white border border-sand rounded-full overflow-hidden">
+                    <div class="h-full ${act.calories > rec.calories ? 'bg-terracotta' : 'bg-sage'} rounded-full" style="width:${Math.min(100, Math.round((act.calories / rec.calories) * 100))}%"></div>
+                  </div>
+                  <div class="col-span-3 text-right">${calVarBadge}</div>
+                </div>
+
+                <div class="grid grid-cols-12 items-center gap-2">
+                  <span class="col-span-3 font-semibold text-sage">Protein</span>
+                  <span class="col-span-3 text-right"><strong>${fmtNum(act.protein)}g</strong> / ${rec.protein}g</span>
+                  <div class="col-span-3 h-2 bg-white border border-sand rounded-full overflow-hidden">
+                    <div class="h-full bg-sage rounded-full" style="width:${Math.min(100, Math.round((act.protein / rec.protein) * 100))}%"></div>
+                  </div>
+                  <div class="col-span-3 text-right">${proVarBadge}</div>
+                </div>
+
+                <div class="grid grid-cols-12 items-center gap-2">
+                  <span class="col-span-3 font-semibold text-ink">Fiber</span>
+                  <span class="col-span-3 text-right"><strong>${fmtNum(act.fiber)}g</strong> / ${rec.fiber}g</span>
+                  <div class="col-span-3 h-2 bg-white border border-sand rounded-full overflow-hidden">
+                    <div class="h-full bg-sage rounded-full" style="width:${Math.min(100, Math.round((act.fiber / rec.fiber) * 100))}%"></div>
+                  </div>
+                  <div class="col-span-3 text-right">${fibVarBadge}</div>
+                </div>
+              </div>
+
+              ${itemsHtml}
+            </article>
+          `;
+        })
+        .join('');
+    }
+
+    function openPhotoLightbox(src, caption) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxCaption').textContent = caption;
+      const modal = document.getElementById('photoLightboxModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closePhotoLightbox() {
+      const modal = document.getElementById('photoLightboxModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // =========================================================================
+    // 6. TAB 3: MOVEMENT & HABITS
+    // =========================================================================
+    function addSteps(amount) {
+      const log = ensureDayLog(state.selectedDate);
+      log.steps = Math.max(0, (log.steps || 0) + amount);
+      saveState();
+      renderAll();
+      showToast(`+${amount.toLocaleString()} steps added (${log.steps.toLocaleString()} total)`);
+    }
+
+    function resetSteps() {
+      const log = ensureDayLog(state.selectedDate);
+      log.steps = 0;
+      saveState();
+      renderAll();
+      showToast('Step counter reset');
+    }
+
+    function toggleRoutineComplete(idx) {
+      const day = state.routine[idx];
+      if (!day) return;
+      day.completed = !day.completed;
+      syncRoutineToDailyLogs();
+      saveState();
+      renderAll();
+      showToast(day.completed ? `${day.dayName} (${day.title}) completed ✓` : `${day.dayName} unmarked`);
+    }
+
+    function toggleSubExercise(dayIdx, itemIdx) {
+      const item = state.routine[dayIdx]?.checklist?.[itemIdx];
+      if (!item) return;
+      item.done = !item.done;
+      saveState();
+      renderMovementTab();
+    }
+
+    function toggleChecklistCollapse(dayIdx) {
+      const day = state.routine[dayIdx];
+      if (!day) return;
+      day.checklistOpen = day.checklistOpen === false ? true : false;
+      saveState();
+      renderMovementTab();
+    }
+
+    function swapRoutineDays(fromIdx, toIdxStr) {
+      if (toIdxStr === '') return;
+      const toIdx = parseInt(toIdxStr, 10);
+      if (isNaN(toIdx) || fromIdx === toIdx) return;
+
+      const a = state.routine[fromIdx];
+      const b = state.routine[toIdx];
+      ['title', 'type', 'duration', 'calories', 'subtitle', 'completed', 'mood', 'notes', 'checklist', 'checklistOpen'].forEach((k) => {
+        const tmp = a[k];
+        a[k] = b[k];
+        b[k] = tmp;
+      });
+
+      syncRoutineToDailyLogs();
+      saveState();
+      renderAll();
+      showToast(`Swapped ${a.shortName} & ${b.shortName} guilt-free ✓`);
+    }
+
+    function archiveWeekAndStartNew() {
+      const activeMins = state.routine.reduce((s, d) => s + (d.completed ? Number(d.duration) || 0 : 0), 0);
+      const burn = state.routine.reduce((s, d) => s + (d.completed ? Number(d.calories) || 0 : 0), 0);
+      const movDone = state.routine.filter((d) => d.type !== 'Rest' && d.completed).length;
+
+      state.archivedWeeks.unshift({
+        weekStartISO: state.weekStartISO,
+        movDone,
+        activeMins,
+        burn
+      });
+
+      if (movDone >= 3) state.streak = (state.streak || 0) + 1;
+      state.weekStartISO = shiftDateISO(state.weekStartISO, 7);
+
+      state.routine.forEach((d) => {
+        d.completed = false;
+        d.mood = null;
+        d.notes = '';
+        if (Array.isArray(d.checklist)) d.checklist.forEach((c) => (c.done = false));
+      });
+
+      syncRoutineToDailyLogs();
+      saveState();
+      renderAll();
+      showToast('Week archived! Started fresh week 🌿');
+    }
+
+    function openDayNoteModal(idx) {
+      const day = state.routine[idx];
+      if (!day) return;
+      document.getElementById('noteModalDayIdx').value = idx;
+      document.getElementById('dayNoteModalTitle').textContent = `${day.dayName} — ${day.title}`;
+      document.getElementById('noteModalTextarea').value = day.notes || '';
+      modalDraftMood = day.mood || null;
+      renderNoteModalMoods();
+
+      const modal = document.getElementById('dayNoteModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeDayNoteModal() {
+      const modal = document.getElementById('dayNoteModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function renderNoteModalMoods() {
+      const labels = ['1 Low', '2 Tired', '3 Steady', '4 Good', '5 Energized'];
+      document.getElementById('noteModalMoodBtns').innerHTML = [1, 2, 3, 4, 5]
+        .map(
+          (v) => `
+          <button
+            type="button"
+            onclick="modalDraftMood = modalDraftMood === ${v} ? null : ${v}; renderNoteModalMoods();"
+            class="py-2 px-1 rounded-xl border text-[11px] font-semibold transition ${
+              modalDraftMood === v ? 'bg-mint border-sage text-sage' : 'bg-cream border-sand text-slateStone'
+            }"
+          >${labels[v - 1]}</button>
+        `
+        )
+        .join('');
+    }
+
+    function saveDayNoteModal(e) {
+      e.preventDefault();
+      const idx = parseInt(document.getElementById('noteModalDayIdx').value, 10);
+      const day = state.routine[idx];
+      if (!day) return;
+      day.mood = modalDraftMood;
+      day.notes = document.getElementById('noteModalTextarea').value.trim();
+      saveState();
+      closeDayNoteModal();
+      renderMovementTab();
+      showToast(`Saved ${day.dayName} notes ✓`);
+    }
+
+    function renderMovementTab() {
+      document.getElementById('movementWeekRangeLabel').textContent = `Week of ${formatFriendlyDate(state.weekStartISO)} (${state.weekStartISO})`;
+
+      let activeMins = 0, burn = 0, movDone = 0, restDone = 0;
+      state.routine.forEach((d) => {
+        if (d.completed) {
+          activeMins += Number(d.duration) || 0;
+          burn += Number(d.calories) || 0;
+          if (d.type === 'Rest') restDone += 1;
+          else movDone += 1;
+        }
+      });
+
+      document.getElementById('movGaugeMins').textContent = activeMins;
+      document.getElementById('movGaugeMinsBar').style.width = `${Math.min(100, Math.round((activeMins / 160) * 100))}%`;
+
+      document.getElementById('movGaugeBurn').textContent = burn.toLocaleString();
+      document.getElementById('movGaugeBurnBar').style.width = `${Math.min(100, Math.round((burn / 1100) * 100))}%`;
+
+      document.getElementById('movGaugeSessions').textContent = movDone;
+      document.getElementById('movGaugeSessionsBar').style.width = `${Math.min(100, Math.round((movDone / 4) * 100))}%`;
+
+      document.getElementById('movGaugeRest').textContent = restDone;
+      document.getElementById('movGaugeRestBar').style.width = `${Math.min(100, Math.round((restDone / 3) * 100))}%`;
+
+      const selLog = ensureDayLog(state.selectedDate);
+      document.getElementById('movStepsDateTag').textContent = formatFriendlyDate(state.selectedDate);
+      document.getElementById('movGaugeSteps').textContent = (selLog.steps || 0).toLocaleString();
+
+      // Render 7-Day Routine Cards
+      document.getElementById('routineCardsGrid').innerHTML = state.routine
+        .map((day, idx) => {
+          const dateISO = shiftDateISO(state.weekStartISO, idx);
+          const isRest = day.type === 'Rest';
+          const badgeStyle = isRest
+            ? 'bg-terracottaSoft text-terracotta border-terracotta/25'
+            : day.type === 'Strength'
+              ? 'bg-sage text-white border-sage'
+              : 'bg-mint text-sage border-sage/20';
+
+          const swapOpts = state.routine
+            .map((other, oIdx) => (oIdx === idx ? '' : `<option value="${oIdx}">${other.shortName} · ${esc(other.title)}</option>`))
+            .join('');
+
+          let checklistBlock = '';
+          if (Array.isArray(day.checklist) && day.checklist.length > 0) {
+            const doneSub = day.checklist.filter((c) => c.done).length;
+            const isOpen = day.checklistOpen !== false;
+            checklistBlock = `
+              <div class="pt-3 border-t border-sand/80 space-y-2">
+                <button type="button" onclick="toggleChecklistCollapse(${idx})" class="w-full flex items-center justify-between text-xs font-semibold text-sage">
+                  <span>Gym &amp; Incline Checklist (${doneSub}/${day.checklist.length})</span>
+                  <span>${isOpen ? '▲' : '▼'}</span>
+                </button>
+                ${
+                  isOpen
+                    ? `<div class="bg-cream border border-sand rounded-xl p-2 space-y-1">
+                        ${day.checklist
+                          .map(
+                            (it, iIdx) => `
+                            <label class="flex items-center gap-2 py-1 px-1.5 rounded-lg hover:bg-white cursor-pointer text-xs">
+                              <input type="checkbox" ${it.done ? 'checked' : ''} onchange="toggleSubExercise(${idx}, ${iIdx})" class="custom-checkbox" />
+                              <span class="${it.done ? 'line-through text-slateStone' : 'text-ink'}">${esc(it.text)}</span>
+                            </label>
+                          `
+                          )
+                          .join('')}
+                      </div>`
+                    : ''
+                }
+              </div>
+            `;
+          }
+
+          const notesBlock =
+            day.mood || day.notes
+              ? `<div class="bg-cream border border-sand rounded-xl p-2.5 text-xs space-y-1">
+                  ${day.mood ? `<div class="font-semibold text-sage">Energy / Mood: ${day.mood}/5</div>` : ''}
+                  ${day.notes ? `<p class="text-ink italic">“${esc(day.notes)}”</p>` : ''}
+                </div>`
+              : '';
+
+          return `
+            <article class="border rounded-2xl p-5 flex flex-col justify-between space-y-4 transition ${
+              day.completed ? 'bg-mint/45 border-sage/40 shadow-card' : 'bg-white border-sand shadow-card'
+            }">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                  <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slateStone">${day.dayName}</span>
+                    <span class="text-[11px] text-slateStone ml-1.5">(${dateISO.slice(5)})</span>
+                  </div>
+                  <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${badgeStyle}">${esc(day.type)}</span>
+                </div>
+
+                <div>
+                  <h3 class="font-serif text-lg font-semibold text-ink">${esc(day.title)}</h3>
+                  <p class="text-xs text-slateStone mt-1 leading-relaxed">${esc(day.subtitle)}</p>
+                </div>
+
+                <div class="flex flex-wrap gap-2 text-xs">
+                  ${
+                    isRest
+                      ? `<span class="px-2.5 py-1 rounded-lg bg-terracottaSoft text-terracotta font-medium">Intentional Recovery Win</span>`
+                      : `<span class="px-2.5 py-1 rounded-lg bg-cream border border-sand font-medium">${day.duration} mins</span>
+                         <span class="px-2.5 py-1 rounded-lg bg-cream border border-sand font-medium">~${day.calories} kcal</span>`
+                  }
+                </div>
+
+                ${checklistBlock}
+                ${notesBlock}
+              </div>
+
+              <div class="pt-3 border-t border-sand space-y-2">
+                <div class="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onclick="toggleRoutineComplete(${idx})"
+                    class="flex-1 py-2 px-3 rounded-xl text-xs font-semibold transition ${
+                      day.completed
+                        ? 'bg-sage text-white'
+                        : 'bg-mint text-sage border border-sage/20 hover:bg-sage hover:text-white'
+                    }"
+                  >
+                    ${day.completed ? 'Completed ✓' : 'Mark Done'}
+                  </button>
+                  <button type="button" onclick="openDayNoteModal(${idx})" class="py-2 px-3 rounded-xl bg-cream border border-sand hover:bg-white text-xs font-semibold text-ink">
+                    Mood &amp; Notes
+                  </button>
+                </div>
+
+                <select
+                  aria-label="Swap ${day.dayName}"
+                  onchange="swapRoutineDays(${idx}, this.value); this.value='';"
+                  class="w-full bg-cream border border-sand rounded-xl px-3 py-1.5 text-xs text-slateStone focus:outline-none focus:border-sage cursor-pointer"
+                >
+                  <option value="">⇄ Swap ${day.shortName} with...</option>
+                  ${swapOpts}
+                </select>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+
+      // Archived Weeks List
+      const archSec = document.getElementById('archivedWeeksSection');
+      if (state.archivedWeeks.length > 0) {
+        archSec.classList.remove('hidden');
+        document.getElementById('archivedWeeksList').innerHTML = state.archivedWeeks
+          .map(
+            (w) => `
+            <div class="bg-cream border border-sand rounded-xl p-3 text-xs space-y-1">
+              <div class="font-semibold text-ink">Week of ${esc(w.weekStartISO)}</div>
+              <div class="text-slateStone">${w.movDone}/4 sessions · ${w.activeMins} mins · ${w.burn.toLocaleString()} kcal</div>
+            </div>
+          `
+          )
+          .join('');
+      } else {
+        archSec.classList.add('hidden');
+      }
+    }
+
+    // =========================================================================
+    // 7. TAB 4: SLEEP TRACKER (BLUB & HL COMPLETELY SEPARATE)
+    // =========================================================================
+    function setSleepLog(who, status) {
+      const key = who === 'blub' ? 'sleepBlub' : 'sleepHL';
+      const label = who === 'blub' ? 'Blub' : 'HL';
+      const log = ensureDayLog(state.selectedDate);
+      // Toggle off if clicking the same active button again
+      log[key].status = log[key].status === status ? null : status;
+      saveState();
+      renderAll();
+      if (log[key].status) {
+        showToast(
+          log[key].status === 'yes'
+            ? `${label}: Slept before 11:30 PM logged ✓`
+            : `${label}: Slept after 11:30 PM logged`
+        );
+      } else {
+        showToast(`${label}: Sleep status cleared`);
+      }
+    }
+
+    function saveSleepNote(who, noteVal) {
+      const key = who === 'blub' ? 'sleepBlub' : 'sleepHL';
+      const log = ensureDayLog(state.selectedDate);
+      log[key].note = noteVal;
+      saveState();
+    }
+
+    function buildSleepPanelHTML(who, displayName, accentSubtitle) {
+      const key = who === 'blub' ? 'sleepBlub' : 'sleepHL';
+      const log = ensureDayLog(state.selectedDate);
+      const entry = log[key] || { status: null, note: '' };
+      const stats = calculateSleepStats(key, state.selectedDate.slice(0, 7));
+
+      const yesActive = entry.status === 'yes';
+      const noActive = entry.status === 'no';
+
+      // Build recent 14-day log badges ending on today (or selectedDate if newer)
+      const anchorISO = state.selectedDate > getTodayISO() ? state.selectedDate : getTodayISO();
+      const badges = [];
+      for (let i = 13; i >= 0; i--) {
+        const dIso = shiftDateISO(anchorISO, -i);
+        const st = state.dailyLogs[dIso]?.[key]?.status;
+        const dayNum = dIso.slice(8, 10);
+        const isSel = dIso === state.selectedDate;
+        let pillClass = 'bg-cream border-sand text-slateStone';
+        let mark = '·';
+        if (st === 'yes') {
+          pillClass = 'bg-mint border-sage/35 text-sage font-bold';
+          mark = '✓';
+        } else if (st === 'no') {
+          pillClass = 'bg-terracottaSoft border-terracotta/35 text-terracotta font-bold';
+          mark = '✕';
+        }
+        badges.push(`
+          <button
+            type="button"
+            onclick="setSelectedDate('${dIso}')"
+            title="${dIso}"
+            class="py-1.5 px-1 rounded-lg border text-center transition ${pillClass} ${isSel ? 'ring-2 ring-sage/40' : ''}"
+          >
+            <span class="block text-[10px]">${dayNum}</span>
+            <span class="block text-xs leading-tight">${mark}</span>
+          </button>
+        `);
+      }
+
+      return `
+        <div class="flex items-start justify-between gap-2 border-b border-sand pb-3">
+          <div>
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-sage">${esc(accentSubtitle)}</span>
+            <h3 class="font-serif text-xl font-semibold text-ink">${esc(displayName)}’s Sleep Tracker</h3>
+            <p class="text-xs text-slateStone mt-0.5">Goal: Sleep before 11:30 PM every night</p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-mint border border-sage/20 text-xs font-semibold text-sage">
+            ${stats.currentStreak}d Streak
+          </span>
+        </div>
+
+        <!-- Yes / No Buttons for Selected Date -->
+        <div class="space-y-2">
+          <div class="text-xs font-semibold text-ink">
+            Night of ${formatFriendlyDate(state.selectedDate)} (${state.selectedDate}):
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button
+              type="button"
+              onclick="setSleepLog('${who}', 'yes')"
+              class="py-3 px-4 rounded-xl border text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-2 ${
+                yesActive
+                  ? 'bg-sage border-sage text-white shadow-card'
+                  : 'bg-mint/60 border-sage/25 text-sage hover:bg-sage hover:text-white'
+              }"
+            >
+              <span>✓ Yes — Slept Before 11:30 PM</span>
+            </button>
+            <button
+              type="button"
+              onclick="setSleepLog('${who}', 'no')"
+              class="py-3 px-4 rounded-xl border text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-2 ${
+                noActive
+                  ? 'bg-terracotta border-terracotta text-white shadow-card'
+                  : 'bg-cream border-sand text-ink hover:border-terracotta hover:text-terracotta'
+              }"
+            >
+              <span>✕ No — Slept After 11:30 PM</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Optional Bedtime / Note -->
+        <div>
+          <label class="block text-xs font-medium text-slateStone mb-1">Bedtime / Wind-Down Note (Optional)</label>
+          <input
+            type="text"
+            value="${esc(entry.note || '')}"
+            onchange="saveSleepNote('${who}', this.value)"
+            placeholder="e.g., Lights out at 11:15 PM, chamomile tea"
+            class="w-full bg-cream border border-sand rounded-xl px-3 py-2 text-xs sm:text-sm text-ink focus:bg-white focus:outline-none focus:border-sage"
+          />
+        </div>
+
+        <!-- Separate Stats Summary (Streak, Weekly Hit Rate, Monthly Hit Rate) -->
+        <div class="grid grid-cols-3 gap-2.5 text-center">
+          <div class="bg-cream border border-sand rounded-xl p-3">
+            <span class="block text-[10px] uppercase font-semibold text-slateStone">Current Streak</span>
+            <strong class="font-serif text-lg text-sage">${stats.currentStreak} ${stats.currentStreak === 1 ? 'night' : 'nights'}</strong>
+          </div>
+          <div class="bg-cream border border-sand rounded-xl p-3">
+            <span class="block text-[10px] uppercase font-semibold text-slateStone">Weekly Hit Rate</span>
+            <strong class="font-serif text-lg text-ink">${stats.weekPct}%</strong>
+            <span class="block text-[10px] text-slateStone">${stats.weekYes}/${stats.weekLogged} logged</span>
+          </div>
+          <div class="bg-cream border border-sand rounded-xl p-3">
+            <span class="block text-[10px] uppercase font-semibold text-slateStone">Monthly Hit Rate</span>
+            <strong class="font-serif text-lg text-ink">${stats.monthPct}%</strong>
+            <span class="block text-[10px] text-slateStone">${stats.monthYes}/${stats.monthLogged} logged</span>
+          </div>
+        </div>
+
+        <!-- Recent 14-Day Log Badges -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between text-[11px] text-slateStone">
+            <span class="font-semibold uppercase tracking-wider">Recent 14 Days (${esc(displayName)})</span>
+            <span>Tap a day to edit</span>
+          </div>
+          <div class="grid grid-cols-7 gap-1.5">
+            ${badges.join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSleepTab() {
+      document.getElementById('sleepDateInput').value = state.selectedDate;
+      document.getElementById('sleepDateFriendlyPill').textContent = formatFriendlyDate(state.selectedDate);
+
+      document.getElementById('blubSleepPanel').innerHTML = buildSleepPanelHTML('blub', 'Blub', 'Personal Sleep Log');
+      document.getElementById('hlSleepPanel').innerHTML = buildSleepPanelHTML('hl', 'HL', 'Separate Partner Log');
+    }
+
+    // =========================================================================
+    // 8. JSON EXPORT & IMPORT BACKUP
+    // =========================================================================
+    function exportBackupJSON() {
+      const dataStr = JSON.stringify(state, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `blubs-health-backup-${getTodayISO()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Exported Blub’s Health JSON backup ⬇');
+    }
+
+    function importBackupJSON(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (!imported || typeof imported !== 'object') throw new Error('Invalid JSON');
+          const def = getDefaultState();
+          state = {
+            ...def,
+            ...imported,
+            weight: { ...def.weight, ...(imported.weight || {}) },
+            dailyLogs: imported.dailyLogs || {},
+            routine: Array.isArray(imported.routine) && imported.routine.length === 7 ? imported.routine : def.routine,
+            archivedWeeks: Array.isArray(imported.archivedWeeks) ? imported.archivedWeeks : []
+          };
+          saveState();
+          renderAll();
+          showToast('Backup imported successfully ✓');
+        } catch (err) {
+          showToast('Invalid backup file — could not import.');
+        } finally {
+          event.target.value = '';
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // =========================================================================
+    // 9. MASTER RENDER & INIT
+    // =========================================================================
+    function renderAll() {
+      renderHeader();
+      renderMonthlyDashboard();
+      renderMealsTab();
+      renderMovementTab();
+      renderSleepTab();
+    }
+
+    syncRoutineToDailyLogs();
+    switchTab(state.activeTab || 'dashboard');
+  </script>
+</body>
+</html>
