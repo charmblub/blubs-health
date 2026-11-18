@@ -1,0 +1,2183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Blub's Health" />
+  <title>Blub’s Health</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+          },
+          colors: {
+            cream: '#FAF8F5',
+            softpanel: '#F3EFEA',
+            sand: '#E6E0D6',
+            ink: '#1E2823',
+            muted: '#606D66',
+            sage: '#2D5A43',
+            sagelight: '#E7F0EB',
+            sagedark: '#1F4130',
+            terracotta: '#C86D51',
+            terracottalight: '#F9EBE6',
+            amberwarm: '#C9822B',
+            amberlight: '#FDF3E4',
+            indigodeep: '#4B5B8C',
+            indigolight: '#ECEFF8'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .tab-panel {
+      display: none;
+    }
+    .tab-panel.active {
+      display: block;
+    }
+    .toast-banner {
+      transform: translate(-50%, 100px);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .toast-banner.show {
+      transform: translate(-50%, 0);
+    }
+  </style>
+</head>
+<body class="bg-cream text-ink antialiased leading-relaxed pb-24 selection:bg-sagelight selection:text-sagedark">
+
+  <!-- ==================== STICKY HEADER & 5 NAVIGATION TABS ==================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-sand px-4 pt-3.5 pb-2.5">
+    <div class="max-w-4xl mx-auto flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-xl bg-sage text-white flex items-center justify-center text-lg font-extrabold shadow-sm shrink-0">
+          B
+        </div>
+        <div>
+          <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-ink leading-tight">Blub’s Health</h1>
+          <p class="text-xs text-muted">Nutrition, Movement &amp; 11:30 PM Sleep</p>
+        </div>
+      </div>
+      <div id="headerDatePill" class="bg-sagelight text-sagedark text-xs font-semibold px-3 py-1.5 rounded-full whitespace-nowrap">
+        Today
+      </div>
+    </div>
+
+    <!-- 5 Navigation Tabs -->
+    <nav class="max-w-4xl mx-auto mt-3 grid grid-cols-5 gap-1.5" aria-label="Main Navigation">
+      <button type="button" data-tab="overview" onclick="switchTab('overview')"
+        class="nav-btn active rounded-xl py-2 px-1 text-xs font-semibold flex flex-col items-center justify-center gap-0.5 transition-all bg-sage text-white shadow-sm">
+        <span class="text-base leading-none">📊</span>
+        <span>Monthly</span>
+      </button>
+      <button type="button" data-tab="meals" onclick="switchTab('meals')"
+        class="nav-btn rounded-xl py-2 px-1 text-xs font-semibold flex flex-col items-center justify-center gap-0.5 transition-all bg-softpanel text-muted hover:text-ink">
+        <span class="text-base leading-none">🥗</span>
+        <span>Meals</span>
+      </button>
+      <button type="button" data-tab="movement" onclick="switchTab('movement')"
+        class="nav-btn rounded-xl py-2 px-1 text-xs font-semibold flex flex-col items-center justify-center gap-0.5 transition-all bg-softpanel text-muted hover:text-ink">
+        <span class="text-base leading-none">🏃‍♀️</span>
+        <span>Move</span>
+      </button>
+      <button type="button" data-tab="sleep" onclick="switchTab('sleep')"
+        class="nav-btn rounded-xl py-2 px-1 text-xs font-semibold flex flex-col items-center justify-center gap-0.5 transition-all bg-softpanel text-muted hover:text-ink">
+        <span class="text-base leading-none">🌙</span>
+        <span>Sleep</span>
+      </button>
+      <button type="button" data-tab="weight" onclick="switchTab('weight')"
+        class="nav-btn rounded-xl py-2 px-1 text-xs font-semibold flex flex-col items-center justify-center gap-0.5 transition-all bg-softpanel text-muted hover:text-ink">
+        <span class="text-base leading-none">⚖️</span>
+        <span>Weight</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 pt-4">
+
+    <!-- ==================== TAB 1: VISUAL MONTHLY DASHBOARD (NO WEIGHT ON FRONT PAGE) ==================== -->
+    <section id="tab-overview" class="tab-panel active">
+      <!-- 1. Monthly Visual Donut Rings Card -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm mb-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-ink">Monthly Wellness Snapshot</h2>
+            <p class="text-xs text-muted">Visual consistency across Nutrition, Exercise &amp; Sleep</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="changeMonth(-1)"
+              class="px-3 py-1.5 rounded-lg border border-sand bg-white hover:bg-softpanel text-xs font-semibold text-ink active:scale-95 transition">
+              ‹ Prev
+            </button>
+            <strong id="monthLabel" class="text-sm font-bold text-ink min-w-[116px] text-center"></strong>
+            <button type="button" onclick="changeMonth(1)"
+              class="px-3 py-1.5 rounded-lg border border-sand bg-white hover:bg-softpanel text-xs font-semibold text-ink active:scale-95 transition">
+              Next ›
+            </button>
+          </div>
+        </div>
+
+        <!-- 3 SVG Circular Donut Rings -->
+        <div id="monthlyDonutGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+      </div>
+
+      <!-- 2. Weekly Monthly Rhythm Grouped Bar Chart -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm mb-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div>
+            <h3 class="text-base font-bold text-ink">Weekly Monthly Rhythm</h3>
+            <p class="text-xs text-muted">On-target days per week across your 3 core habits</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 text-xs text-muted">
+            <span class="inline-flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-sm bg-sage inline-block"></span> Nutrition ≤1,450
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-sm bg-amberwarm inline-block"></span> Workouts
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-sm bg-indigodeep inline-block"></span> Blub &lt;11:30
+            </span>
+          </div>
+        </div>
+        <div id="weeklyRhythmChart" class="w-full overflow-x-auto"></div>
+      </div>
+
+      <!-- 3. Interactive Monthly Habit Calendar -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm mb-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div>
+            <h3 class="text-base font-bold text-ink">Monthly Habit Calendar</h3>
+            <p class="text-xs text-muted">Tap any date to inspect or log meals &amp; sleep</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 text-xs text-muted">
+            <span class="inline-flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-sage inline-block"></span> ≤1,450 kcal
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-amberwarm inline-block"></span> Workout
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-indigodeep inline-block"></span> Blub &lt;11:30
+            </span>
+          </div>
+        </div>
+        <div id="monthlyCalendar" class="grid grid-cols-7 gap-1.5 mt-2"></div>
+      </div>
+
+      <!-- 4. Today's Snapshot -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <div>
+            <h3 class="text-base font-bold text-ink">Today’s Snapshot</h3>
+            <p id="quickPulseDateLabel" class="text-xs text-muted"></p>
+          </div>
+          <button type="button" onclick="switchTab('meals')"
+            class="px-3 py-1.5 rounded-lg bg-sagelight text-sagedark text-xs font-semibold hover:opacity-90 transition">
+            Log Meals →
+          </button>
+        </div>
+        <div id="todayQuickPulse" class="grid grid-cols-1 md:grid-cols-3 gap-3"></div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: MEALS & MACROS ==================== -->
+    <section id="tab-meals" class="tab-panel">
+      <!-- Date & Daily Macro Runway -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm mb-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-ink">Daily Macro Runway</h2>
+            <p class="text-xs text-muted">1,450 kcal ceiling • 95–100g protein floor • 22–25g fiber</p>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="shiftMealDate(-1)"
+              class="px-3 py-1.5 rounded-lg border border-sand bg-white hover:bg-softpanel text-xs font-bold">
+              ‹
+            </button>
+            <input type="date" id="mealDateInput" onchange="onMealDateChange()"
+              class="px-2.5 py-1.5 rounded-lg border border-sand bg-white text-xs font-semibold text-ink focus:outline-none focus:border-sage" />
+            <button type="button" onclick="shiftMealDate(1)"
+              class="px-3 py-1.5 rounded-lg border border-sand bg-white hover:bg-softpanel text-xs font-bold">
+              ›
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Calories Runway -->
+          <div class="bg-softpanel/60 p-3 rounded-xl border border-sand/60">
+            <div class="flex justify-between text-xs font-semibold">
+              <span class="text-ink">Calories</span>
+              <span id="runwayCalText" class="text-ink">0 / 1,450 kcal</span>
+            </div>
+            <div class="w-full h-2.5 bg-softpanel rounded-full overflow-hidden my-2">
+              <div id="runwayCalBar" class="h-full bg-sage rounded-full transition-all duration-300" style="width:0%"></div>
+            </div>
+            <div id="runwayCalRem" class="text-xs text-muted">1,450 kcal remaining</div>
+          </div>
+
+          <!-- Protein Runway -->
+          <div class="bg-softpanel/60 p-3 rounded-xl border border-sand/60">
+            <div class="flex justify-between text-xs font-semibold">
+              <span class="text-ink">Protein (Floor)</span>
+              <span id="runwayProText" class="text-ink">0 / 95–100 g</span>
+            </div>
+            <div class="w-full h-2.5 bg-softpanel rounded-full overflow-hidden my-2">
+              <div id="runwayProBar" class="h-full bg-sage rounded-full transition-all duration-300" style="width:0%"></div>
+            </div>
+            <div id="runwayProRem" class="text-xs text-muted">95 g needed to hit floor</div>
+          </div>
+
+          <!-- Fiber Runway -->
+          <div class="bg-softpanel/60 p-3 rounded-xl border border-sand/60">
+            <div class="flex justify-between text-xs font-semibold">
+              <span class="text-ink">Fiber Target</span>
+              <span id="runwayFibText" class="text-ink">0 / 22–25 g</span>
+            </div>
+            <div class="w-full h-2.5 bg-softpanel rounded-full overflow-hidden my-2">
+              <div id="runwayFibBar" class="h-full bg-sage rounded-full transition-all duration-300" style="width:0%"></div>
+            </div>
+            <div id="runwayFibRem" class="text-xs text-muted">22 g needed to hit target</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Log Meal Form with Photo Library, Live Camera & HPB SG FoodID Estimator -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm mb-4">
+        <div class="mb-3">
+          <h3 class="text-base font-bold text-ink">Log a Meal or Drink</h3>
+          <p class="text-xs text-muted">Choose from Photo Library, snap a photo, or look up via HPB Singapore FoodID</p>
+        </div>
+
+        <!-- Two Separate File Inputs:
+             1) Photo Library (NO capture attribute so iOS opens Photo Library directly!)
+             2) Live Camera (capture="environment") -->
+        <input type="file" id="mealPhotoLibraryInput" accept="image/*" class="hidden" onchange="handleMealPhotoSelect(event)" />
+        <input type="file" id="mealPhotoCameraInput" accept="image/*" capture="environment" class="hidden" onchange="handleMealPhotoSelect(event)" />
+
+        <div class="flex flex-wrap gap-2 mb-3">
+          <button type="button" onclick="document.getElementById('mealPhotoLibraryInput').click()"
+            class="px-3.5 py-2.5 rounded-xl bg-sagelight text-sagedark text-xs font-semibold hover:opacity-90 active:scale-95 transition inline-flex items-center gap-1.5">
+            🖼️ Choose from Photo Library
+          </button>
+          <button type="button" onclick="document.getElementById('mealPhotoCameraInput').click()"
+            class="px-3.5 py-2.5 rounded-xl border border-sand bg-white text-ink text-xs font-semibold hover:bg-softpanel active:scale-95 transition inline-flex items-center gap-1.5">
+            📷 Take Photo
+          </button>
+        </div>
+
+        <!-- Attached Photo Preview -->
+        <div id="pendingPhotoWrap" class="hidden items-center gap-3 bg-softpanel p-2.5 rounded-xl mb-3 border border-sand">
+          <img id="pendingPhotoImg" src="" alt="Selected meal preview" class="w-14 h-14 object-cover rounded-lg border border-sand shrink-0" />
+          <div class="flex-1 min-w-0">
+            <div class="text-xs font-bold text-ink">Photo attached to meal</div>
+            <div class="text-[11.5px] text-muted">Add a food description or tap ✨ HPB Estimate below</div>
+          </div>
+          <button type="button" onclick="clearPendingPhoto()"
+            class="px-2.5 py-1.5 rounded-lg border border-sand bg-white text-xs font-semibold text-muted hover:text-terracotta">
+            Remove
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1">Meal Slot</label>
+            <select id="mealSlotSelect"
+              class="w-full px-3 py-2.5 rounded-lg border border-sand bg-white text-sm text-ink focus:outline-none focus:border-sage">
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+              <option value="snacks">Snacks &amp; Drinks</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1">Food / Drink Description (HPB SG FoodID)</label>
+            <input type="text" id="mealNameInput" placeholder="e.g., Sliced fish soup with milk, half rice"
+              class="w-full px-3 py-2.5 rounded-lg border border-sand bg-white text-sm text-ink focus:outline-none focus:border-sage" />
+          </div>
+        </div>
+
+        <!-- HPB Estimate & Direct Official HPB SG FoodID Search Link -->
+        <div class="flex flex-wrap items-center gap-2 mt-2.5">
+          <button type="button" id="estimateBtn" onclick="runSmartEstimate()"
+            class="px-3.5 py-2 rounded-lg bg-sagelight text-sagedark text-xs font-bold whitespace-nowrap hover:opacity-90 active:scale-95 transition">
+            ✨ HPB Estimate
+          </button>
+          <a href="https://pphtpc.hpb.gov.sg/web/sgfoodid/tools/food-search?utm_source=hpbcorporate&utm_medium=linkout&utm_campaign=foodsearchtool"
+            target="_blank" rel="noopener noreferrer" onclick="copyFoodNameForHpb()"
+            class="px-3.5 py-2 rounded-lg border border-sand bg-white text-ink text-xs font-semibold whitespace-nowrap hover:bg-softpanel active:scale-95 transition inline-flex items-center gap-1">
+            Search HPB SG FoodID ↗
+          </a>
+        </div>
+
+        <div id="estimateSourceNote" class="hidden mt-2.5 px-3 py-2.5 rounded-lg bg-sagelight text-sagedark text-xs font-medium leading-relaxed"></div>
+
+        <div class="grid grid-cols-3 gap-2.5 mt-3">
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1">Calories (kcal)</label>
+            <input type="number" id="mealCalInput" min="0" step="1" placeholder="0"
+              class="w-full px-3 py-2 rounded-lg border border-sand bg-white text-sm text-ink focus:outline-none focus:border-sage" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1">Protein (g)</label>
+            <input type="number" id="mealProInput" min="0" step="0.5" placeholder="0"
+              class="w-full px-3 py-2 rounded-lg border border-sand bg-white text-sm text-ink focus:outline-none focus:border-sage" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1">Fiber (g)</label>
+            <input type="number" id="mealFibInput" min="0" step="0.5" placeholder="0"
+              class="w-full px-3 py-2 rounded-lg border border-sand bg-white text-sm text-ink focus:outline-none focus:border-sage" />
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-softpanel">
+          <label class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-ink cursor-pointer select-none">
+            <input type="checkbox" id="saveToLibraryCheck" class="w-4 h-4 rounded accent-[#2D5A43]" />
+            <span>Save to my Food Library</span>
+          </label>
+          <button type="button" onclick="addMealEntry()"
+            class="px-5 py-2.5 rounded-xl bg-sage text-white text-sm font-semibold hover:bg-sagedark active:scale-95 transition shadow-sm">
+            + Log Meal
+          </button>
+        </div>
+      </div>
+
+      <!-- Per-Meal Breakdown (Actual vs. Recommended) -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm mb-4">
+        <div class="mb-3">
+          <h3 class="text-base font-bold text-ink">Per-Meal Breakdown (Actual vs. Recommended)</h3>
+          <p class="text-xs text-muted">Balanced across 4 daily eating windows for steady satiety</p>
+        </div>
+        <div id="mealBreakdownContainer" class="space-y-3"></div>
+      </div>
+
+      <!-- Custom Food Library (Starts Completely Empty) -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div>
+            <h3 class="text-base font-bold text-ink">Food Library</h3>
+            <p class="text-xs text-muted">Your personal go-to meals &amp; drinks (e.g., Matcha Latte) for 1-tap logging</p>
+          </div>
+          <button type="button" onclick="toggleAddLibraryForm()"
+            class="px-3 py-2 rounded-xl bg-sagelight text-sagedark text-xs font-semibold hover:opacity-90 transition">
+            + Add Custom Staple
+          </button>
+        </div>
+
+        <div id="addLibraryForm" class="hidden bg-softpanel p-3.5 rounded-xl mb-3 border border-sand">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-muted mb-1">Item Name</label>
+              <input type="text" id="libNameInput" placeholder="e.g., Iced Matcha Latte (Oat Milk, Siew Dai)"
+                class="w-full px-3 py-2 rounded-lg border border-sand bg-white text-sm focus:outline-none focus:border-sage" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-muted mb-1">Default Meal Slot</label>
+              <select id="libSlotInput"
+                class="w-full px-3 py-2 rounded-lg border border-sand bg-white text-sm focus:outline-none focus:border-sage">
+                <option value="snacks">Snacks &amp; Drinks</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-2.5 mt-2.5">
+            <div>
+              <label class="block text-xs font-semibold text-muted mb-1">Calories (kcal)</label>
+              <input type="number" id="libCalInput" min="0" placeholder="140"
+                class="w-full px-3 py-2 rounded-lg border border-sand bg-white text-sm focus:outline-none focus:border-sage" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-muted mb-1">Protein (g)</label>
+              <input type="number" id="libProInput" min="0" step="0.5" placeholder="4"
+                class="w-full px-3 py-2 rounded-lg border border-sand bg-white text-sm focus:outline-none focus:border-sage" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-muted mb-1">Fiber (g)</label>
+              <input type="number" id="libFibInput" min="0" step="0.5" placeholder="2"
+                class="w-full px-3 py-2 rounded-lg border border-sand bg-white text-sm focus:outline-none focus:border-sage" />
+            </div>
+          </div>
+          <div class="mt-3 flex justify-end gap-2">
+            <button type="button" onclick="toggleAddLibraryForm()"
+              class="px-3 py-1.5 rounded-lg border border-sand bg-white text-xs font-semibold text-muted">
+              Cancel
+            </button>
+            <button type="button" onclick="saveNewLibraryItem()"
+              class="px-4 py-1.5 rounded-lg bg-sage text-white text-xs font-semibold hover:bg-sagedark">
+              Save to Food Library
+            </button>
+          </div>
+        </div>
+
+        <div id="foodLibraryList"></div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: MOVE (WEEKLY MOVEMENT TRACKER) ==================== -->
+    <section id="tab-movement" class="tab-panel">
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm mb-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-ink">Weekly Movement Tracker</h2>
+            <p class="text-xs text-muted">Choose your activity, log duration in minutes, and mark sessions done</p>
+          </div>
+          <button type="button" onclick="archiveCurrentWeek()"
+            class="px-3 py-2 rounded-xl bg-sagelight text-sagedark text-xs font-semibold hover:opacity-90 transition">
+            Archive Week &amp; Reset
+          </button>
+        </div>
+
+        <!-- Single Clean Weekly Active Movement Gauge -->
+        <div class="bg-softpanel p-3.5 rounded-xl mb-4">
+          <div class="flex justify-between text-xs font-semibold">
+            <span class="text-ink">Active Movement Minutes</span>
+            <span id="wkMinsText" class="text-ink">0 / 160 mins</span>
+          </div>
+          <div class="w-full h-2.5 bg-white rounded-full overflow-hidden my-2">
+            <div id="wkMinsBar" class="h-full bg-sage rounded-full transition-all duration-300" style="width:0%"></div>
+          </div>
+          <div id="wkSessionsText" class="text-xs text-muted">0 / 4 movement sessions completed</div>
+        </div>
+
+        <!-- 7-Day Routine List -->
+        <div id="weeklyDaysContainer" class="space-y-2.5"></div>
+      </div>
+
+      <!-- Archived Weeks -->
+      <div id="pastWeeksCard" class="hidden bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm">
+        <h3 class="text-base font-bold text-ink mb-2">Archived Weekly Summaries</h3>
+        <div id="pastWeeksList" class="divide-y divide-softpanel"></div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: SLEEP TRACKER (BLUB & HL SEPARATE, FULL MONTH) ==================== -->
+    <section id="tab-sleep" class="tab-panel">
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm mb-4">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-ink">11:30 PM Sleep Habit Tracker</h2>
+            <p class="text-xs text-muted">Goal: Asleep before 11:30 PM every night • Separate logs for Blub &amp; HL</p>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="shiftSleepDate(-1)"
+              class="px-3 py-1.5 rounded-lg border border-sand bg-white hover:bg-softpanel text-xs font-bold">
+              ‹
+            </button>
+            <input type="date" id="sleepDateInput" onchange="renderSleepTab()"
+              class="px-2.5 py-1.5 rounded-lg border border-sand bg-white text-xs font-semibold text-ink focus:outline-none focus:border-sage" />
+            <button type="button" onclick="shiftSleepDate(1)"
+              class="px-3 py-1.5 rounded-lg border border-sand bg-white hover:bg-softpanel text-xs font-bold">
+              ›
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Blub's Sleep Card -->
+        <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-2 mb-3">
+            <div>
+              <h3 class="text-base font-bold text-ink">🌿 Blub’s Sleep Log</h3>
+              <p id="blubSleepDateLabel" class="text-xs text-muted">Selected night</p>
+            </div>
+            <span id="blubSleepStreakBadge" class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-sagelight text-sagedark">
+              0 night streak
+            </span>
+          </div>
+
+          <p class="text-xs sm:text-sm font-semibold text-ink mb-2">Did Blub sleep before 11:30 PM?</p>
+          <div class="grid grid-cols-2 gap-2.5 mb-3">
+            <button type="button" id="blubYesBtn" onclick="setSleepLog('blub', true)"
+              class="py-3 px-2 rounded-xl border border-sand bg-white text-xs sm:text-sm font-bold text-ink transition active:scale-95">
+              ✅ Yes (&lt;11:30)
+            </button>
+            <button type="button" id="blubNoBtn" onclick="setSleepLog('blub', false)"
+              class="py-3 px-2 rounded-xl border border-sand bg-white text-xs sm:text-sm font-bold text-ink transition active:scale-95">
+              ❌ No (&gt;11:30)
+            </button>
+          </div>
+
+          <div id="blubSleepSummary" class="bg-softpanel p-3 rounded-xl text-xs text-ink font-medium"></div>
+
+          <div class="mt-3.5">
+            <div class="flex items-center justify-between mb-1.5">
+              <span id="blubMonthGridLabel" class="text-xs font-bold text-ink">Month Nights</span>
+              <span class="text-[11px] text-muted">Tap any night to toggle</span>
+            </div>
+            <div id="blubSleepMonthGrid" class="grid grid-cols-7 gap-1"></div>
+          </div>
+        </div>
+
+        <!-- HL's Sleep Card -->
+        <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-2 mb-3">
+            <div>
+              <h3 class="text-base font-bold text-ink">🧭 HL’s Sleep Log</h3>
+              <p id="hlSleepDateLabel" class="text-xs text-muted">Selected night</p>
+            </div>
+            <span id="hlSleepStreakBadge" class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-indigolight text-indigodeep">
+              0 night streak
+            </span>
+          </div>
+
+          <p class="text-xs sm:text-sm font-semibold text-ink mb-2">Did HL sleep before 11:30 PM?</p>
+          <div class="grid grid-cols-2 gap-2.5 mb-3">
+            <button type="button" id="hlYesBtn" onclick="setSleepLog('hl', true)"
+              class="py-3 px-2 rounded-xl border border-sand bg-white text-xs sm:text-sm font-bold text-ink transition active:scale-95">
+              ✅ Yes (&lt;11:30)
+            </button>
+            <button type="button" id="hlNoBtn" onclick="setSleepLog('hl', false)"
+              class="py-3 px-2 rounded-xl border border-sand bg-white text-xs sm:text-sm font-bold text-ink transition active:scale-95">
+              ❌ No (&gt;11:30)
+            </button>
+          </div>
+
+          <div id="hlSleepSummary" class="bg-softpanel p-3 rounded-xl text-xs text-ink font-medium"></div>
+
+          <div class="mt-3.5">
+            <div class="flex items-center justify-between mb-1.5">
+              <span id="hlMonthGridLabel" class="text-xs font-bold text-ink">Month Nights</span>
+              <span class="text-[11px] text-muted">Tap any night to toggle</span>
+            </div>
+            <div id="hlSleepMonthGrid" class="grid grid-cols-7 gap-1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 5: WEIGHT & PROGRESS (60.0 KG -> 55.0 KG) ==================== -->
+    <section id="tab-weight" class="tab-panel">
+      <!-- Goal Progress Summary -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm mb-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-ink">Weight Progress (60.0 kg → 55.0 kg)</h2>
+            <p class="text-xs text-muted">Log weigh-ins across different time points to monitor trends</p>
+          </div>
+          <span id="weightGoalPctBadge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-sagelight text-sagedark">
+            0% to 55.0 kg
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+          <div class="bg-softpanel p-3.5 rounded-xl">
+            <div class="text-xs text-muted">Starting Weight</div>
+            <div id="wStartDisplay" class="text-xl font-extrabold text-ink mt-0.5">60.0 kg</div>
+          </div>
+          <div class="bg-sagelight p-3.5 rounded-xl">
+            <div class="text-xs text-sagedark font-medium">Latest Logged Weight</div>
+            <div id="wCurrentDisplay" class="text-xl font-extrabold text-sagedark mt-0.5">60.0 kg</div>
+          </div>
+          <div class="bg-softpanel p-3.5 rounded-xl">
+            <div class="text-xs text-muted">Goal &amp; Remaining</div>
+            <div id="wRemDisplay" class="text-xl font-extrabold text-ink mt-0.5">5.0 kg left</div>
+          </div>
+        </div>
+
+        <div class="w-full h-3 bg-softpanel rounded-full overflow-hidden">
+          <div id="wGoalBar" class="h-full bg-sage rounded-full transition-all duration-300" style="width:0%"></div>
+        </div>
+        <div id="wTimelineNote" class="text-xs text-muted mt-1.5">
+          At a sustainable ~0.35 kg/week pace, 5.0 kg takes ~14 weeks.
+        </div>
+      </div>
+
+      <!-- Log Weight Time Point -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm mb-4">
+        <h3 class="text-base font-bold text-ink mb-3">Log Weight Time Point</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1">Date</label>
+            <input type="date" id="wDateInput"
+              class="w-full px-3 py-2.5 rounded-lg border border-sand bg-white text-sm text-ink focus:outline-none focus:border-sage" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1">Time Point</label>
+            <select id="wTimePointSelect"
+              class="w-full px-3 py-2.5 rounded-lg border border-sand bg-white text-sm text-ink focus:outline-none focus:border-sage">
+              <option value="Morning (Fasted)">Morning (Fasted)</option>
+              <option value="After Breakfast / Lunch">After Breakfast / Lunch</option>
+              <option value="Pre-Workout">Pre-Workout</option>
+              <option value="Post-Workout">Post-Workout</option>
+              <option value="Evening / Before Bed">Evening / Before Bed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1">Weight (kg)</label>
+            <input type="number" id="wValueInput" step="0.1" min="35" max="150" placeholder="e.g., 59.4"
+              class="w-full px-3 py-2.5 rounded-lg border border-sand bg-white text-sm text-ink focus:outline-none focus:border-sage" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1">Note (Optional)</label>
+            <input type="text" id="wNoteInput" placeholder="e.g., Good sleep, low sodium dinner"
+              class="w-full px-3 py-2.5 rounded-lg border border-sand bg-white text-sm text-ink focus:outline-none focus:border-sage" />
+          </div>
+        </div>
+
+        <div class="mt-4 flex justify-end">
+          <button type="button" onclick="addWeightEntry()"
+            class="px-5 py-2.5 rounded-xl bg-sage text-white text-sm font-semibold hover:bg-sagedark active:scale-95 transition shadow-sm">
+            + Save Weight Entry
+          </button>
+        </div>
+      </div>
+
+      <!-- Weight Trend SVG Chart -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm mb-4">
+        <div class="mb-2">
+          <h3 class="text-base font-bold text-ink">Weight Trend Chart</h3>
+          <p class="text-xs text-muted">Dashed green line = 55.0 kg target</p>
+        </div>
+        <div id="weightChartContainer" class="w-full overflow-x-auto"></div>
+      </div>
+
+      <!-- Logged Time Points Table -->
+      <div class="bg-white border border-sand rounded-2xl p-4 sm:p-5 shadow-sm">
+        <h3 class="text-base font-bold text-ink mb-3">Logged Time Points</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="border-b border-sand text-[11px] uppercase tracking-wider text-muted">
+                <th class="py-2.5 px-2">Date</th>
+                <th class="py-2.5 px-2">Time Point</th>
+                <th class="py-2.5 px-2">Weight</th>
+                <th class="py-2.5 px-2">vs Start</th>
+                <th class="py-2.5 px-2">Note</th>
+                <th class="py-2.5 px-2"></th>
+              </tr>
+            </thead>
+            <tbody id="weightHistoryBody" class="divide-y divide-softpanel"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Photo Lightbox Modal (for tapping any logged meal thumbnail) -->
+  <div id="photoModal" class="hidden fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4" onclick="closePhotoModal()">
+    <div class="bg-white rounded-2xl p-3 max-w-md w-full shadow-xl" onclick="event.stopPropagation()">
+      <img id="photoModalImg" src="" alt="Meal full view" class="w-full max-h-[70vh] object-contain rounded-xl" />
+      <div class="flex items-center justify-between mt-2.5 px-1">
+        <span id="photoModalCaption" class="text-xs font-semibold text-ink"></span>
+        <button type="button" onclick="closePhotoModal()"
+          class="px-3 py-1.5 rounded-lg bg-softpanel text-xs font-semibold text-ink">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-banner fixed bottom-5 left-1/2 z-50 bg-ink text-white px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold shadow-lg pointer-events-none"></div>
+
+  <script>
+    /* ==================== CONSTANTS & HPB SINGAPORE FOODID DB ==================== */
+    const STORAGE_KEY = 'blubs_health_state_v3';
+    const HPB_SEARCH_URL = 'https://pphtpc.hpb.gov.sg/web/sgfoodid/tools/food-search?utm_source=hpbcorporate&utm_medium=linkout&utm_campaign=foodsearchtool';
+
+    const EXERCISE_OPTIONS = [
+      'Run',
+      'Walk',
+      'Yoga',
+      'Gym',
+      'Dance',
+      'Home exercise',
+      'Swim',
+      'Rest'
+    ];
+
+    const EXERCISE_META = {
+      'Run':           { icon: '🏃‍♀️', defaultMins: 30, kcalPerMin: 8.5 },
+      'Walk':          { icon: '🚶‍♀️', defaultMins: 45, kcalPerMin: 4.5 },
+      'Yoga':          { icon: '🧘‍♀️', defaultMins: 30, kcalPerMin: 3.5 },
+      'Gym':           { icon: '🏋️‍♀️', defaultMins: 50, kcalPerMin: 6.2 },
+      'Dance':         { icon: '💃',   defaultMins: 40, kcalPerMin: 6.5 },
+      'Home exercise': { icon: '🤸‍♀️', defaultMins: 25, kcalPerMin: 5.5 },
+      'Swim':          { icon: '🏊‍♀️', defaultMins: 35, kcalPerMin: 7.5 },
+      'Rest':          { icon: '🌿',   defaultMins: 0,  kcalPerMin: 0 }
+    };
+
+    const MEAL_SLOTS = [
+      { key: 'breakfast', label: 'Breakfast',       recCal: 350, recPro: 25, recFib: 7 },
+      { key: 'lunch',     label: 'Lunch',           recCal: 450, recPro: 35, recFib: 8 },
+      { key: 'dinner',    label: 'Dinner',          recCal: 450, recPro: 32, recFib: 7 },
+      { key: 'snacks',    label: 'Snacks & Drinks', recCal: 200, recPro: 8,  recFib: 3 }
+    ];
+
+    // Calibrated against Health Promotion Board (HPB) Singapore Energy & Nutrient Composition of Food
+    const HPB_SG_FOOD_DB = [
+      // Kopitiam & Local Cafe Beverages (per standard cup/glass ~240-300ml)
+      { keys: ['kopi c kosong', 'kopi-c kosong'], name: 'Kopi C Kosong (HPB)', cal: 35, pro: 2.0, fib: 0 },
+      { keys: ['kopi o kosong', 'kopi-o kosong'], name: 'Kopi O Kosong (HPB)', cal: 5, pro: 0.3, fib: 0 },
+      { keys: ['kopi c', 'kopi-c'], name: 'Kopi C (HPB)', cal: 95, pro: 2.2, fib: 0 },
+      { keys: ['kopi o', 'kopi-o'], name: 'Kopi O (HPB)', cal: 65, pro: 0.4, fib: 0 },
+      { keys: ['kopi'], name: 'Kopi with Condensed Milk (HPB)', cal: 115, pro: 2.3, fib: 0 },
+      { keys: ['teh c kosong', 'teh-c kosong'], name: 'Teh C Kosong (HPB)', cal: 40, pro: 2.0, fib: 0 },
+      { keys: ['teh o kosong', 'teh-o kosong'], name: 'Teh O Kosong (HPB)', cal: 5, pro: 0.1, fib: 0 },
+      { keys: ['teh c', 'teh-c'], name: 'Teh C (HPB)', cal: 100, pro: 2.2, fib: 0 },
+      { keys: ['teh o', 'teh-o'], name: 'Teh O (HPB)', cal: 70, pro: 0.2, fib: 0 },
+      { keys: ['teh tarik', 'teh'], name: 'Teh with Condensed Milk (HPB)', cal: 120, pro: 2.4, fib: 0 },
+      { keys: ['matcha latte', 'iced matcha latte', 'hot matcha latte'], name: 'Matcha Latte (Fresh Milk, HPB)', cal: 145, pro: 6.5, fib: 1.5 },
+      { keys: ['iced latte', 'cafe latte', 'latte'], name: 'Cafe Latte (Fresh Milk, HPB)', cal: 125, pro: 6.8, fib: 0 },
+      { keys: ['americano', 'long black', 'black coffee'], name: 'Americano / Black Coffee (HPB)', cal: 10, pro: 0.5, fib: 0 },
+      { keys: ['unsweetened soy milk', 'soy milk kosong', 'nutrisoy no sugar'], name: 'Unsweetened Soy Milk (250ml, HPB)', cal: 85, pro: 8.5, fib: 1.5 },
+      { keys: ['soy milk', 'soya bean milk', 'nutrisoy'], name: 'Soya Bean Milk (250ml, HPB)', cal: 135, pro: 8.0, fib: 1.5 },
+      { keys: ['milo'], name: 'Milo (1 cup, HPB)', cal: 150, pro: 4.2, fib: 1.4 },
+      { keys: ['barley'], name: 'Homemade Barley Drink (1 cup, HPB)', cal: 110, pro: 1.0, fib: 1.2 },
+      { keys: ['bubble tea', 'milk tea', 'boba'], name: 'Bubble Milk Tea (500ml, HPB)', cal: 340, pro: 2.0, fib: 0 },
+
+      // Singapore Hawker & Local Mains
+      { keys: ['fried fish soup'], name: 'Fried Fish Soup (1 bowl, HPB)', cal: 520, pro: 26.0, fib: 2.0 },
+      { keys: ['sliced fish soup', 'fish soup'], name: 'Sliced Fish Soup Clear (1 bowl, HPB)', cal: 310, pro: 28.5, fib: 2.0 },
+      { keys: ['chicken breast rice', 'steamed chicken breast rice'], name: 'Steamed Chicken Breast Rice (HPB)', cal: 485, pro: 34.0, fib: 1.5 },
+      { keys: ['steamed chicken rice', 'hainanese chicken rice', 'chicken rice'], name: 'Steamed Chicken Rice (1 plate, HPB)', cal: 545, pro: 27.5, fib: 1.5 },
+      { keys: ['roasted chicken rice'], name: 'Roasted Chicken Rice (1 plate, HPB)', cal: 615, pro: 27.0, fib: 1.5 },
+      { keys: ['yong tau foo', 'ytf'], name: 'Yong Tau Foo Soup (6 pcs + Veg, HPB)', cal: 385, pro: 24.5, fib: 5.5 },
+      { keys: ['thunder tea rice', 'lei cha'], name: 'Thunder Tea Rice / Lei Cha (HPB)', cal: 495, pro: 18.5, fib: 9.0 },
+      { keys: ['ban mian'], name: 'Ban Mian Soup (1 bowl, HPB)', cal: 475, pro: 22.0, fib: 3.5 },
+      { keys: ['fishball noodles', 'fishball mee'], name: 'Fishball Noodles Soup (1 bowl, HPB)', cal: 420, pro: 18.0, fib: 2.5 },
+      { keys: ['wanton mee', 'wanton noodles'], name: 'Wanton Mee (1 plate, HPB)', cal: 440, pro: 19.0, fib: 2.5 },
+      { keys: ['bak chor mee', 'minced pork noodles'], name: 'Bak Chor Mee (1 bowl, HPB)', cal: 515, pro: 23.0, fib: 2.5 },
+      { keys: ['char kway teow', 'ckt'], name: 'Char Kway Teow (1 plate, HPB)', cal: 740, pro: 22.0, fib: 4.0 },
+      { keys: ['laksa'], name: 'Katong / Curry Laksa (1 bowl, HPB)', cal: 610, pro: 20.5, fib: 3.5 },
+      { keys: ['nasi lemak'], name: 'Nasi Lemak with Chicken Wing (HPB)', cal: 655, pro: 19.5, fib: 3.0 },
+      { keys: ['chicken porridge', 'congee'], name: 'Chicken Porridge (1 bowl, HPB)', cal: 315, pro: 18.0, fib: 1.5 },
+      { keys: ['cai png', 'economical rice', 'mixed veg rice'], name: 'Cai Png (1 Meat + 2 Veg + Rice, HPB)', cal: 525, pro: 25.0, fib: 4.8 },
+      { keys: ['mala xiang guo', 'mala'], name: 'Mala Xiang Guo (1 sharing bowl, HPB)', cal: 680, pro: 32.0, fib: 7.0 },
+      { keys: ['duck rice', 'braised duck rice'], name: 'Braised Duck Rice (1 plate, HPB)', cal: 560, pro: 26.0, fib: 2.0 },
+      { keys: ['roti prata', 'prata'], name: 'Plain Roti Prata (1 pc, HPB)', cal: 290, pro: 6.2, fib: 1.5 },
+      { keys: ['thosai', 'dosa'], name: 'Plain Thosai (1 pc, HPB)', cal: 180, pro: 4.5, fib: 2.0 },
+
+      // Breakfast, Proteins, Grains, Veg & Snacks
+      { keys: ['kaya toast'], name: 'Kaya Butter Toast (2 slices, HPB)', cal: 280, pro: 6.0, fib: 1.5 },
+      { keys: ['soft boiled eggs', 'half boiled eggs'], name: 'Soft Boiled Eggs (2 eggs, HPB)', cal: 144, pro: 12.6, fib: 0 },
+      { keys: ['egg', 'boiled egg', 'poached egg'], name: 'Whole Egg (1 large, HPB)', cal: 72, pro: 6.3, fib: 0 },
+      { keys: ['overnight oats', 'oats', 'oatmeal'], name: 'Overnight Oats Bowl (HPB)', cal: 330, pro: 16.0, fib: 7.5 },
+      { keys: ['greek yogurt', 'yoghurt'], name: 'Plain Greek Yogurt (150g, HPB)', cal: 130, pro: 15.0, fib: 0 },
+      { keys: ['chia seeds', 'chia'], name: 'Chia Seeds (1 tbsp / 15g, HPB)', cal: 65, pro: 2.2, fib: 4.8 },
+      { keys: ['edamame'], name: 'Steamed Edamame (1 cup shelled, HPB)', cal: 125, pro: 11.5, fib: 5.2 },
+      { keys: ['popiah'], name: 'Fresh Popiah (1 roll, HPB)', cal: 188, pro: 6.0, fib: 3.5 },
+      { keys: ['chwee kueh'], name: 'Chwee Kueh (4 pcs, HPB)', cal: 225, pro: 3.2, fib: 1.5 },
+      { keys: ['tau huay', 'beancurd'], name: 'Soya Beancurd / Tau Huay (1 bowl, HPB)', cal: 145, pro: 7.2, fib: 0.5 },
+      { keys: ['salmon poke', 'poke bowl'], name: 'Salmon Poke Bowl (HPB)', cal: 495, pro: 30.0, fib: 5.5 },
+      { keys: ['chicken breast'], name: 'Skinless Chicken Breast (120g cooked, HPB)', cal: 195, pro: 36.0, fib: 0 },
+      { keys: ['salmon'], name: 'Grilled/Baked Salmon Fillet (120g, HPB)', cal: 245, pro: 26.0, fib: 0 },
+      { keys: ['tofu', 'tau kwa'], name: 'Firm Tofu / Tau Kwa (100g, HPB)', cal: 105, pro: 11.0, fib: 1.5 },
+      { keys: ['brown rice'], name: 'Cooked Brown Rice (1 bowl / 150g, HPB)', cal: 175, pro: 4.0, fib: 2.8 },
+      { keys: ['white rice', 'rice'], name: 'Cooked White Rice (1 bowl / 150g, HPB)', cal: 195, pro: 3.8, fib: 0.6 },
+      { keys: ['broccoli', 'xiao bai cai', 'chye sim', 'kai lan', 'spinach', 'vegetables', 'veg'], name: 'Stir-fried/Steamed Leafy Greens (1 serving, HPB)', cal: 50, pro: 2.8, fib: 3.2 },
+      { keys: ['avocado'], name: 'Avocado (1/2 fruit, HPB)', cal: 120, pro: 1.5, fib: 5.0 },
+      { keys: ['banana'], name: 'Banana (1 medium, HPB)', cal: 95, pro: 1.2, fib: 2.6 },
+      { keys: ['apple'], name: 'Apple (1 medium, HPB)', cal: 80, pro: 0.4, fib: 3.5 },
+      { keys: ['blueberries', 'berries'], name: 'Berries (1/2 cup, HPB)', cal: 42, pro: 0.6, fib: 2.2 },
+      { keys: ['whey protein', 'protein shake'], name: 'Whey Protein Shake (1 scoop, HPB)', cal: 125, pro: 24.0, fib: 1.0 },
+      { keys: ['chicken chop pasta', 'pasta'], name: 'Chicken Chop Pasta (1 plate, HPB)', cal: 580, pro: 34.0, fib: 3.5 }
+    ];
+
+    /* ==================== STATE MANAGEMENT ==================== */
+    function getTodayStr() {
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function defaultWeeklyPlan() {
+      return [
+        { day: 'Mon', planned: 'Dance / Run', activity: 'Dance', done: false, mins: 40, notes: '' },
+        { day: 'Tue', planned: 'Rest',        activity: 'Rest',  done: false, mins: 0,  notes: '' },
+        { day: 'Wed', planned: 'Gym',         activity: 'Gym',   done: false, mins: 50, notes: '' },
+        { day: 'Thu', planned: 'Yoga',        activity: 'Yoga',  done: false, mins: 30, notes: '' },
+        { day: 'Fri', planned: 'Rest',        activity: 'Rest',  done: false, mins: 0,  notes: '' },
+        { day: 'Sat', planned: 'Walk',        activity: 'Walk',  done: false, mins: 45, notes: '' },
+        { day: 'Sun', planned: 'Rest',        activity: 'Rest',  done: false, mins: 0,  notes: '' }
+      ];
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          return {
+            mealsByDate: parsed.mealsByDate || {},
+            foodLibrary: Array.isArray(parsed.foodLibrary) ? parsed.foodLibrary : [],
+            weeklyDays: Array.isArray(parsed.weeklyDays) && parsed.weeklyDays.length === 7 ? parsed.weeklyDays : defaultWeeklyPlan(),
+            workoutDates: parsed.workoutDates || {},
+            pastWeeks: Array.isArray(parsed.pastWeeks) ? parsed.pastWeeks : [],
+            sleep: {
+              blub: (parsed.sleep && parsed.sleep.blub) ? parsed.sleep.blub : {},
+              hl: (parsed.sleep && parsed.sleep.hl) ? parsed.sleep.hl : {}
+            },
+            weightLogs: Array.isArray(parsed.weightLogs) ? parsed.weightLogs : [],
+            startWeight: typeof parsed.startWeight === 'number' ? parsed.startWeight : 60.0,
+            goalWeight: 55.0
+          };
+        }
+      } catch (e) {
+        console.warn('Could not load saved state:', e);
+      }
+      return {
+        mealsByDate: {},
+        foodLibrary: [],
+        weeklyDays: defaultWeeklyPlan(),
+        workoutDates: {},
+        pastWeeks: [],
+        sleep: { blub: {}, hl: {} },
+        weightLogs: [],
+        startWeight: 60.0,
+        goalWeight: 55.0
+      };
+    }
+
+    let state = loadState();
+    let currentCalDate = new Date();
+    let pendingMealPhoto = null;
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        showToast('Storage almost full — try removing older meal photos.');
+      }
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => el.classList.remove('show'), 2700);
+    }
+
+    function copyTextSafe(text) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    /* ==================== NAVIGATION ==================== */
+    function switchTab(tabName) {
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        const isActive = btn.dataset.tab === tabName;
+        btn.classList.toggle('active', isActive);
+        if (isActive) {
+          btn.classList.remove('bg-softpanel', 'text-muted', 'hover:text-ink');
+          btn.classList.add('bg-sage', 'text-white', 'shadow-sm');
+        } else {
+          btn.classList.remove('bg-sage', 'text-white', 'shadow-sm');
+          btn.classList.add('bg-softpanel', 'text-muted', 'hover:text-ink');
+        }
+      });
+
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === 'tab-' + tabName);
+      });
+
+      if (tabName === 'overview') renderOverview();
+      if (tabName === 'meals') renderMealsTab();
+      if (tabName === 'movement') renderMovementTab();
+      if (tabName === 'sleep') renderSleepTab();
+      if (tabName === 'weight') renderWeightTab();
+    }
+
+    /* ==================== TAB 1: VISUAL MONTHLY OVERVIEW ==================== */
+    function changeMonth(delta) {
+      currentCalDate = new Date(currentCalDate.getFullYear(), currentCalDate.getMonth() + delta, 1);
+      renderOverview();
+    }
+
+    function buildDonutSvg(pct, centerText, colorHex, trackHex) {
+      const radius = 34;
+      const circumference = 2 * Math.PI * radius;
+      const clamped = Math.max(0, Math.min(100, pct));
+      const offset = circumference - (clamped / 100) * circumference;
+
+      return `
+        <svg viewBox="0 0 88 88" class="w-22 h-22 w-[88px] h-[88px] mx-auto block">
+          <circle cx="44" cy="44" r="${radius}" fill="none" stroke="${trackHex}" stroke-width="8" />
+          <circle cx="44" cy="44" r="${radius}" fill="none" stroke="${colorHex}" stroke-width="8"
+            stroke-linecap="round"
+            stroke-dasharray="${circumference.toFixed(2)}"
+            stroke-dashoffset="${offset.toFixed(2)}"
+            transform="rotate(-90 44 44)" />
+          <text x="44" y="48" text-anchor="middle" font-size="15" font-weight="800" fill="#1E2823">${centerText}</text>
+        </svg>
+      `;
+    }
+
+    function renderOverview() {
+      const year = currentCalDate.getFullYear();
+      const month = currentCalDate.getMonth();
+      const monthPrefix = `${year}-${String(month + 1).padStart(2, '0')}`;
+      const monthName = currentCalDate.toLocaleDateString('en-SG', { month: 'long', year: 'numeric' });
+      document.getElementById('monthLabel').textContent = monthName;
+
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const todayStr = getTodayStr();
+
+      let nutrLoggedDays = 0;
+      let nutrOnTargetDays = 0;
+      let totalPro = 0;
+      let totalFib = 0;
+
+      let moveSessions = 0;
+      let moveMins = 0;
+
+      let blubLogged = 0;
+      let blubYes = 0;
+      let hlLogged = 0;
+      let hlYes = 0;
+
+      // Weekly buckets (Wk 1: 1-7, Wk 2: 8-14, Wk 3: 15-21, Wk 4: 22-28, Wk 5: 29-31)
+      const numWeeks = daysInMonth > 28 ? 5 : 4;
+      const weeklyBuckets = Array.from({ length: numWeeks }, (_, i) => ({
+        label: `Wk ${i + 1}`,
+        nutr: 0,
+        move: 0,
+        sleep: 0
+      }));
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dateKey = `${monthPrefix}-${String(d).padStart(2, '0')}`;
+        const wkIdx = Math.min(numWeeks - 1, Math.floor((d - 1) / 7));
+
+        // Nutrition
+        const dayMeals = state.mealsByDate[dateKey];
+        if (dayMeals) {
+          const allItems = [
+            ...(dayMeals.breakfast || []),
+            ...(dayMeals.lunch || []),
+            ...(dayMeals.dinner || []),
+            ...(dayMeals.snacks || [])
+          ];
+          if (allItems.length > 0) {
+            nutrLoggedDays++;
+            const cal = allItems.reduce((s, x) => s + (Number(x.cal) || 0), 0);
+            const pro = allItems.reduce((s, x) => s + (Number(x.pro) || 0), 0);
+            const fib = allItems.reduce((s, x) => s + (Number(x.fib) || 0), 0);
+            totalPro += pro;
+            totalFib += fib;
+            if (cal <= 1450) {
+              nutrOnTargetDays++;
+              weeklyBuckets[wkIdx].nutr++;
+            }
+          }
+        }
+
+        // Exercise
+        const wRec = state.workoutDates[dateKey];
+        if (wRec && wRec.activity && wRec.activity !== 'Rest') {
+          moveSessions++;
+          moveMins += Number(wRec.mins) || 0;
+          weeklyBuckets[wkIdx].move++;
+        }
+
+        // Sleep
+        if (typeof state.sleep.blub[dateKey] === 'boolean') {
+          blubLogged++;
+          if (state.sleep.blub[dateKey]) {
+            blubYes++;
+            weeklyBuckets[wkIdx].sleep++;
+          }
+        }
+        if (typeof state.sleep.hl[dateKey] === 'boolean') {
+          hlLogged++;
+          if (state.sleep.hl[dateKey]) hlYes++;
+        }
+      }
+
+      // 1. Render 3 SVG Circular Progress Donut Cards
+      const nutrPct = nutrLoggedDays > 0 ? Math.round((nutrOnTargetDays / nutrLoggedDays) * 100) : 0;
+      const avgPro = nutrLoggedDays > 0 ? Math.round(totalPro / nutrLoggedDays) : 0;
+      const avgFib = nutrLoggedDays > 0 ? Math.round(totalFib / nutrLoggedDays) : 0;
+
+      const movePct = Math.min(100, Math.round((moveSessions / 16) * 100));
+      const blubPct = blubLogged > 0 ? Math.round((blubYes / blubLogged) * 100) : 0;
+      const hlPct = hlLogged > 0 ? Math.round((hlYes / hlLogged) * 100) : 0;
+
+      document.getElementById('monthlyDonutGrid').innerHTML = `
+        <div class="bg-softpanel/75 border border-sand/70 rounded-2xl p-4 text-center flex flex-col items-center">
+          <div class="text-xs font-bold text-ink mb-2">🥗 Nutrition Ceiling</div>
+          ${buildDonutSvg(nutrPct, `${nutrPct}%`, '#2D5A43', '#DCE7E1')}
+          <div class="text-xs font-bold text-sagedark mt-2">${nutrOnTargetDays} / ${nutrLoggedDays} days ≤1,450 kcal</div>
+          <div class="text-[11px] text-muted mt-0.5">Avg ${avgPro}g protein • ${avgFib}g fiber</div>
+        </div>
+
+        <div class="bg-softpanel/75 border border-sand/70 rounded-2xl p-4 text-center flex flex-col items-center">
+          <div class="text-xs font-bold text-ink mb-2">🏃‍♀️ Monthly Exercise</div>
+          ${buildDonutSvg(movePct, `${moveSessions}/16`, '#C9822B', '#F5E6D0')}
+          <div class="text-xs font-bold text-[#8F5814] mt-2">${moveSessions} of 16 target sessions</div>
+          <div class="text-[11px] text-muted mt-0.5">${moveMins} active mins logged</div>
+        </div>
+
+        <div class="bg-softpanel/75 border border-sand/70 rounded-2xl p-4 text-center flex flex-col items-center">
+          <div class="text-xs font-bold text-ink mb-2">🌙 Sleep (&lt;11:30 PM)</div>
+          ${buildDonutSvg(blubPct, `${blubPct}%`, '#4B5B8C', '#DCE1F0')}
+          <div class="text-xs font-bold text-indigodeep mt-2">Blub: ${blubYes}/${blubLogged} nights</div>
+          <div class="text-[11px] text-muted mt-0.5">HL: ${hlYes}/${hlLogged} nights (${hlPct}%)</div>
+        </div>
+      `;
+
+      // 2. Render SVG Weekly Monthly Rhythm Grouped Bar Chart
+      const W = 560;
+      const H = 175;
+      const padL = 28, padR = 14, padT = 18, padB = 28;
+      const chartW = W - padL - padR;
+      const chartH = H - padT - padB;
+      const maxDays = 7;
+
+      const gridLines = [0, 2, 4, 6, 7].map(val => {
+        const y = padT + chartH - (val / maxDays) * chartH;
+        return `
+          <line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#E6E0D6" stroke-dasharray="${val === 0 ? '0' : '3,3'}" stroke-width="1" />
+          <text x="${padL - 6}" y="${y + 3}" text-anchor="end" font-size="9.5" fill="#606D66">${val}</text>
+        `;
+      }).join('');
+
+      const groupWidth = chartW / weeklyBuckets.length;
+      const barW = Math.min(20, Math.floor((groupWidth - 22) / 3));
+      const barGap = 4;
+
+      const barsSvg = weeklyBuckets.map((wk, idx) => {
+        const groupCenter = padL + groupWidth * (idx + 0.5);
+        const totalBarsW = barW * 3 + barGap * 2;
+        const startX = groupCenter - totalBarsW / 2;
+
+        const series = [
+          { val: wk.nutr,  color: '#2D5A43' },
+          { val: wk.move,  color: '#C9822B' },
+          { val: wk.sleep, color: '#4B5B8C' }
+        ];
+
+        const rects = series.map((s, sIdx) => {
+          const x = startX + sIdx * (barW + barGap);
+          const barH = Math.max(s.val > 0 ? 4 : 0, (s.val / maxDays) * chartH);
+          const y = padT + chartH - barH;
+          return `
+            <rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="4" fill="${s.color}" />
+            ${s.val > 0 ? `<text x="${x + barW / 2}" y="${y - 4}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E2823">${s.val}</text>` : ''}
+          `;
+        }).join('');
+
+        return `
+          ${rects}
+          <text x="${groupCenter}" y="${H - 8}" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E2823">${wk.label}</text>
+        `;
+      }).join('');
+
+      document.getElementById('weeklyRhythmChart').innerHTML = `
+        <svg viewBox="0 0 ${W} ${H}" class="w-full min-w-[320px] h-auto block">
+          ${gridLines}
+          ${barsSvg}
+        </svg>
+      `;
+
+      // 3. Render Calendar Heatmap (Mon-Sun)
+      const calEl = document.getElementById('monthlyCalendar');
+      const dows = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      let html = dows.map(w => `<div class="text-center text-[11px] font-bold text-muted pb-1">${w}</div>`).join('');
+
+      const firstDayRaw = new Date(year, month, 1).getDay();
+      const startOffset = (firstDayRaw + 6) % 7;
+      for (let i = 0; i < startOffset; i++) {
+        html += `<div class="min-h-[50px]"></div>`;
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dateKey = `${monthPrefix}-${String(d).padStart(2, '0')}`;
+        const isToday = dateKey === todayStr;
+
+        let nutrDot = 'bg-[#DCD6CC]';
+        const dm = state.mealsByDate[dateKey];
+        if (dm) {
+          const items = [...(dm.breakfast || []), ...(dm.lunch || []), ...(dm.dinner || []), ...(dm.snacks || [])];
+          if (items.length > 0) {
+            const c = items.reduce((s, x) => s + (Number(x.cal) || 0), 0);
+            nutrDot = c <= 1450 ? 'bg-sage' : 'bg-terracotta';
+          }
+        }
+        const moveDot = (state.workoutDates[dateKey] && state.workoutDates[dateKey].activity !== 'Rest') ? 'bg-amberwarm' : 'bg-[#DCD6CC]';
+        const sleepDot = state.sleep.blub[dateKey] === true ? 'bg-indigodeep' : 'bg-[#DCD6CC]';
+
+        html += `
+          <button type="button" onclick="inspectCalendarDate('${dateKey}')"
+            class="border ${isToday ? 'border-sage bg-sagelight' : 'border-sand bg-white hover:bg-softpanel/60'} rounded-xl py-1.5 px-1 min-h-[50px] flex flex-col items-center justify-between transition active:scale-95">
+            <span class="text-xs font-bold ${isToday ? 'text-sagedark' : 'text-ink'}">${d}</span>
+            <span class="flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full ${nutrDot}"></span>
+              <span class="w-1.5 h-1.5 rounded-full ${moveDot}"></span>
+              <span class="w-1.5 h-1.5 rounded-full ${sleepDot}"></span>
+            </span>
+          </button>
+        `;
+      }
+      calEl.innerHTML = html;
+
+      // 4. Render Today's Snapshot
+      document.getElementById('quickPulseDateLabel').textContent = new Date().toLocaleDateString('en-SG', {
+        weekday: 'long', day: 'numeric', month: 'short', year: 'numeric'
+      });
+
+      const tMeals = state.mealsByDate[todayStr] || {};
+      const tItems = [...(tMeals.breakfast || []), ...(tMeals.lunch || []), ...(tMeals.dinner || []), ...(tMeals.snacks || [])];
+      const tCal = Math.round(tItems.reduce((s, x) => s + (Number(x.cal) || 0), 0));
+      const tPro = Math.round(tItems.reduce((s, x) => s + (Number(x.pro) || 0), 0));
+      const tMove = state.workoutDates[todayStr];
+      const tBlubSleep = state.sleep.blub[todayStr];
+      const tHlSleep = state.sleep.hl[todayStr];
+
+      document.getElementById('todayQuickPulse').innerHTML = `
+        <div class="bg-softpanel p-3.5 rounded-xl">
+          <div class="text-xs text-muted">Today’s Macros</div>
+          <div class="text-sm font-bold text-ink mt-0.5">${tCal} / 1,450 kcal</div>
+          <div class="text-xs text-sagedark font-medium">${tPro}g / 95g protein</div>
+        </div>
+        <div class="bg-softpanel p-3.5 rounded-xl">
+          <div class="text-xs text-muted">Today’s Exercise</div>
+          <div class="text-sm font-bold text-ink mt-0.5">
+            ${tMove && tMove.activity !== 'Rest' ? `${EXERCISE_META[tMove.activity]?.icon || '🏃‍♀️'} ${tMove.activity} (${tMove.mins}m)` : 'Not logged yet'}
+          </div>
+          <button type="button" onclick="switchTab('movement')" class="text-xs text-amberwarm font-semibold mt-0.5 hover:underline">
+            Open Move tab →
+          </button>
+        </div>
+        <div class="bg-softpanel p-3.5 rounded-xl">
+          <div class="text-xs text-muted">Tonight’s Sleep (&lt;11:30)</div>
+          <div class="text-sm font-bold text-ink mt-0.5">
+            Blub: ${tBlubSleep === true ? '✅ Yes' : tBlubSleep === false ? '❌ No' : '—'} •
+            HL: ${tHlSleep === true ? '✅ Yes' : tHlSleep === false ? '❌ No' : '—'}
+          </div>
+          <button type="button" onclick="switchTab('sleep')" class="text-xs text-indigodeep font-semibold mt-0.5 hover:underline">
+            Log Sleep →
+          </button>
+        </div>
+      `;
+    }
+
+    function inspectCalendarDate(dateKey) {
+      document.getElementById('mealDateInput').value = dateKey;
+      document.getElementById('sleepDateInput').value = dateKey;
+      switchTab('meals');
+      showToast(`Viewing ${dateKey}`);
+    }
+
+    /* ==================== TAB 2: MEALS & MACROS ==================== */
+    function shiftMealDate(delta) {
+      const inp = document.getElementById('mealDateInput');
+      const cur = new Date((inp.value || getTodayStr()) + 'T00:00:00');
+      cur.setDate(cur.getDate() + delta);
+      inp.value = cur.toISOString().slice(0, 10);
+      renderMealsTab();
+    }
+
+    function onMealDateChange() {
+      renderMealsTab();
+    }
+
+    // Photo Library & Camera Handler (Compresses image via HTML5 Canvas for reliable localStorage)
+    function handleMealPhotoSelect(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const MAX_DIM = 600;
+          let w = img.width;
+          let h = img.height;
+          if (w > h && w > MAX_DIM) {
+            h = Math.round((h * MAX_DIM) / w);
+            w = MAX_DIM;
+          } else if (h >= w && h > MAX_DIM) {
+            w = Math.round((w * MAX_DIM) / h);
+            h = MAX_DIM;
+          }
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          pendingMealPhoto = canvas.toDataURL('image/jpeg', 0.72);
+
+          document.getElementById('pendingPhotoImg').src = pendingMealPhoto;
+          const wrap = document.getElementById('pendingPhotoWrap');
+          wrap.classList.remove('hidden');
+          wrap.classList.add('flex');
+          showToast('Meal photo attached!');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+      event.target.value = '';
+    }
+
+    function clearPendingPhoto() {
+      pendingMealPhoto = null;
+      const wrap = document.getElementById('pendingPhotoWrap');
+      wrap.classList.add('hidden');
+      wrap.classList.remove('flex');
+      document.getElementById('pendingPhotoImg').src = '';
+    }
+
+    function openPhotoModal(src, caption) {
+      document.getElementById('photoModalImg').src = src;
+      document.getElementById('photoModalCaption').textContent = caption || 'Meal Photo';
+      document.getElementById('photoModal').classList.remove('hidden');
+    }
+
+    function closePhotoModal() {
+      document.getElementById('photoModal').classList.add('hidden');
+    }
+
+    function copyFoodNameForHpb() {
+      const foodText = document.getElementById('mealNameInput').value.trim();
+      if (foodText && copyTextSafe(foodText)) {
+        showToast(`Copied "${foodText}" — paste into HPB SG FoodID!`);
+      }
+    }
+
+    // HPB Singapore FoodID Nutrition Estimator
+    function estimateFromHpbSingapore(rawText) {
+      const text = rawText.toLowerCase().trim();
+      if (!text) return null;
+
+      const parts = text.split(/,|\+|&|\band\b|\bwith\b/).map(s => s.trim()).filter(Boolean);
+      let totalCal = 0;
+      let totalPro = 0;
+      let totalFib = 0;
+      const matchedLabels = [];
+
+      const hasSiewDai = /\bsiew dai\b|\bless sweet\b|\bless sugar\b/.test(text);
+      const hasKosong = /\bkosong\b|\bno sugar\b|\bunsweetened\b/.test(text);
+      const hasOatMilk = /\boat milk\b|\boat\b/.test(text);
+      const hasSoyMilk = /\bsoy milk\b|\bsoya\b/.test(text);
+      const hasHalfRice = /\bhalf rice\b|\bless rice\b|\b1\/2 rice\b/.test(text);
+      const hasNoRice = /\bno rice\b|\bwithout rice\b/.test(text);
+      const hasWithMilk = /\bwith milk\b|\bmilk\b/.test(text);
+
+      for (const part of parts) {
+        let portionMult = 1.0;
+        if (/\bhalf\b|\b1\/2\b|\bsmall\b/.test(part)) portionMult = 0.5;
+        else if (/\b2x\b|\bdouble\b|\btwo\b|\b2\s/.test(part)) portionMult = 2.0;
+        else if (/\b3\s|\bthree\b/.test(part)) portionMult = 3.0;
+
+        let bestItem = null;
+        let bestKeyLen = 0;
+        for (const item of HPB_SG_FOOD_DB) {
+          for (const k of item.keys) {
+            if (part.includes(k) && k.length > bestKeyLen) {
+              bestItem = item;
+              bestKeyLen = k.length;
+            }
+          }
+        }
+
+        if (bestItem) {
+          let cal = bestItem.cal * portionMult;
+          let pro = bestItem.pro * portionMult;
+          let fib = bestItem.fib * portionMult;
+          let note = bestItem.name;
+
+          if (bestItem.name.includes('Fish Soup') && hasWithMilk && !part.includes('soy') && !part.includes('oat')) {
+            cal += 45;
+            pro += 1.5;
+            note += ' + evaporated milk';
+          }
+          if (bestItem.name.includes('Chicken Rice') || bestItem.name.includes('Duck Rice') || bestItem.name.includes('Cai Png')) {
+            if (hasNoRice) {
+              cal -= 195;
+              pro -= 3.8;
+              note += ' (no rice)';
+            } else if (hasHalfRice) {
+              cal -= 98;
+              pro -= 1.9;
+              note += ' (half rice)';
+            }
+          }
+          if (bestItem.name.includes('Latte') || bestItem.name.includes('Kopi') || bestItem.name.includes('Teh')) {
+            if (hasKosong && !bestItem.name.includes('Kosong')) {
+              cal = Math.max(5, cal - 55);
+              note += ' [Kosong]';
+            } else if (hasSiewDai) {
+              cal = Math.max(10, cal - 25);
+              note += ' [Siew Dai]';
+            }
+            if (hasOatMilk && bestItem.name.includes('Matcha Latte')) {
+              cal += 20;
+              pro -= 2.5;
+              fib += 1.0;
+              note = note.replace('Fresh Milk', 'Oat Milk');
+            } else if (hasSoyMilk && bestItem.name.includes('Matcha Latte')) {
+              cal -= 10;
+              pro += 1.0;
+              fib += 1.0;
+              note = note.replace('Fresh Milk', 'Soy Milk');
+            }
+          }
+
+          if (portionMult !== 1.0) note = `${portionMult}× ${note}`;
+          totalCal += cal;
+          totalPro += pro;
+          totalFib += fib;
+          matchedLabels.push(note);
+        }
+      }
+
+      if (matchedLabels.length === 0) return null;
+
+      return {
+        cal: Math.round(totalCal),
+        pro: Math.round(totalPro * 10) / 10,
+        fib: Math.round(totalFib * 10) / 10,
+        summary: matchedLabels.join(' + ')
+      };
+    }
+
+    function runSmartEstimate() {
+      const foodText = document.getElementById('mealNameInput').value.trim();
+      const noteBox = document.getElementById('estimateSourceNote');
+
+      if (!foodText && !pendingMealPhoto) {
+        showToast('Enter a food description first to estimate via HPB SG FoodID.');
+        return;
+      }
+
+      const est = estimateFromHpbSingapore(foodText);
+      const hpbLinkHtml = `<a href="${HPB_SEARCH_URL}" target="_blank" rel="noopener noreferrer" onclick="copyFoodNameForHpb()" class="underline font-bold text-sagedark hover:text-ink">Open HPB SG FoodID Food Search ↗</a>`;
+
+      if (est) {
+        document.getElementById('mealCalInput').value = est.cal;
+        document.getElementById('mealProInput').value = est.pro;
+        document.getElementById('mealFibInput').value = est.fib;
+        noteBox.classList.remove('hidden');
+        noteBox.innerHTML = `<strong>HPB SG FoodID Estimate:</strong> ${escapeHtml(est.summary)} • ${hpbLinkHtml}`;
+        showToast('Estimated via HPB SG FoodID');
+      } else {
+        noteBox.classList.remove('hidden');
+        noteBox.innerHTML = pendingMealPhoto && !foodText
+          ? `Photo attached! Type a short food name (e.g., "Sliced fish soup" or "Matcha latte") to estimate, or look up exact values in ${hpbLinkHtml}.`
+          : `No exact local keyword match found — look up exact Singapore values directly in ${hpbLinkHtml} or enter macros manually.`;
+      }
+    }
+
+    function addMealEntry() {
+      const dateKey = document.getElementById('mealDateInput').value || getTodayStr();
+      const slot = document.getElementById('mealSlotSelect').value;
+      const name = document.getElementById('mealNameInput').value.trim();
+      const cal = parseFloat(document.getElementById('mealCalInput').value) || 0;
+      const pro = parseFloat(document.getElementById('mealProInput').value) || 0;
+      const fib = parseFloat(document.getElementById('mealFibInput').value) || 0;
+      const saveToLib = document.getElementById('saveToLibraryCheck').checked;
+
+      if (!name && !pendingMealPhoto) {
+        showToast('Please enter a meal name or attach a photo.');
+        return;
+      }
+
+      const finalName = name || 'Photo Meal Entry';
+      if (!state.mealsByDate[dateKey]) {
+        state.mealsByDate[dateKey] = { breakfast: [], lunch: [], dinner: [], snacks: [] };
+      }
+      if (!state.mealsByDate[dateKey][slot]) {
+        state.mealsByDate[dateKey][slot] = [];
+      }
+
+      state.mealsByDate[dateKey][slot].push({
+        id: 'm_' + Date.now(),
+        name: finalName,
+        cal: Math.round(cal),
+        pro: Math.round(pro * 10) / 10,
+        fib: Math.round(fib * 10) / 10,
+        photo: pendingMealPhoto || null
+      });
+
+      if (saveToLib) {
+        state.foodLibrary.push({
+          id: 'lib_' + Date.now(),
+          name: finalName,
+          defaultSlot: slot,
+          cal: Math.round(cal),
+          pro: Math.round(pro * 10) / 10,
+          fib: Math.round(fib * 10) / 10
+        });
+      }
+
+      saveState();
+
+      document.getElementById('mealNameInput').value = '';
+      document.getElementById('mealCalInput').value = '';
+      document.getElementById('mealProInput').value = '';
+      document.getElementById('mealFibInput').value = '';
+      document.getElementById('saveToLibraryCheck').checked = false;
+      document.getElementById('estimateSourceNote').classList.add('hidden');
+      clearPendingPhoto();
+
+      renderMealsTab();
+      showToast(saveToLib ? 'Meal logged & saved to Food Library!' : 'Meal logged!');
+    }
+
+    function deleteMealEntry(dateKey, slot, itemId) {
+      if (!state.mealsByDate[dateKey] || !state.mealsByDate[dateKey][slot]) return;
+      state.mealsByDate[dateKey][slot] = state.mealsByDate[dateKey][slot].filter(x => x.id !== itemId);
+      saveState();
+      renderMealsTab();
+      showToast('Meal removed');
+    }
+
+    function saveLoggedItemToLibrary(dateKey, slot, itemId) {
+      const list = state.mealsByDate[dateKey]?.[slot] || [];
+      const found = list.find(x => x.id === itemId);
+      if (!found) return;
+      state.foodLibrary.push({
+        id: 'lib_' + Date.now(),
+        name: found.name,
+        defaultSlot: slot,
+        cal: found.cal,
+        pro: found.pro,
+        fib: found.fib
+      });
+      saveState();
+      renderFoodLibrary();
+      showToast(`Saved "${found.name}" to Food Library!`);
+    }
+
+    function renderMealsTab() {
+      const inp = document.getElementById('mealDateInput');
+      if (!inp.value) inp.value = getTodayStr();
+      const dateKey = inp.value;
+
+      const dayData = state.mealsByDate[dateKey] || { breakfast: [], lunch: [], dinner: [], snacks: [] };
+      let totalCal = 0;
+      let totalPro = 0;
+      let totalFib = 0;
+
+      MEAL_SLOTS.forEach(s => {
+        (dayData[s.key] || []).forEach(item => {
+          totalCal += Number(item.cal) || 0;
+          totalPro += Number(item.pro) || 0;
+          totalFib += Number(item.fib) || 0;
+        });
+      });
+
+      totalCal = Math.round(totalCal);
+      totalPro = Math.round(totalPro * 10) / 10;
+      totalFib = Math.round(totalFib * 10) / 10;
+
+      // Update Runway Bars
+      const calPct = Math.min(100, Math.round((totalCal / 1450) * 100));
+      const calBar = document.getElementById('runwayCalBar');
+      calBar.style.width = `${calPct}%`;
+      calBar.className = 'h-full rounded-full transition-all duration-300 ' +
+        (totalCal > 1450 ? 'bg-terracotta' : totalCal >= 1300 ? 'bg-amberwarm' : 'bg-sage');
+      document.getElementById('runwayCalText').textContent = `${totalCal} / 1,450 kcal`;
+      const calDiff = 1450 - totalCal;
+      const calRemEl = document.getElementById('runwayCalRem');
+      calRemEl.textContent = calDiff >= 0
+        ? `${calDiff} kcal remaining`
+        : `${Math.abs(calDiff)} kcal over ceiling`;
+      calRemEl.className = 'text-xs ' + (calDiff < 0 ? 'text-terracotta font-semibold' : 'text-muted');
+
+      const proPct = Math.min(100, Math.round((totalPro / 95) * 100));
+      document.getElementById('runwayProBar').style.width = `${proPct}%`;
+      document.getElementById('runwayProText').textContent = `${totalPro} / 95–100 g`;
+      const proRemEl = document.getElementById('runwayProRem');
+      proRemEl.textContent = totalPro >= 95
+        ? `🎉 Protein floor hit (+${Math.round((totalPro - 95) * 10) / 10}g)`
+        : `${Math.round((95 - totalPro) * 10) / 10} g needed to hit floor`;
+      proRemEl.className = 'text-xs ' + (totalPro >= 95 ? 'text-sage font-semibold' : 'text-muted');
+
+      const fibPct = Math.min(100, Math.round((totalFib / 22) * 100));
+      document.getElementById('runwayFibBar').style.width = `${fibPct}%`;
+      document.getElementById('runwayFibText').textContent = `${totalFib} / 22–25 g`;
+      const fibRemEl = document.getElementById('runwayFibRem');
+      fibRemEl.textContent = totalFib >= 22
+        ? `🎉 Fiber target hit (+${Math.round((totalFib - 22) * 10) / 10}g)`
+        : `${Math.round((22 - totalFib) * 10) / 10} g needed to hit target`;
+      fibRemEl.className = 'text-xs ' + (totalFib >= 22 ? 'text-sage font-semibold' : 'text-muted');
+
+      // Render Per-Meal Breakdown Cards
+      const container = document.getElementById('mealBreakdownContainer');
+      container.innerHTML = MEAL_SLOTS.map(slot => {
+        const items = dayData[slot.key] || [];
+        const sCal = Math.round(items.reduce((s, x) => s + (Number(x.cal) || 0), 0));
+        const sPro = Math.round(items.reduce((s, x) => s + (Number(x.pro) || 0), 0) * 10) / 10;
+        const sFib = Math.round(items.reduce((s, x) => s + (Number(x.fib) || 0), 0) * 10) / 10;
+
+        const calVariance = sCal - slot.recCal;
+        const badgeStyle = sCal === 0
+          ? 'bg-softpanel text-muted'
+          : (sCal <= slot.recCal + 40 ? 'bg-sagelight text-sagedark' : 'bg-amberlight text-[#8F5814]');
+        const calVarText = sCal === 0 ? 'Not logged' : `${calVariance >= 0 ? '+' : ''}${calVariance} kcal vs rec`;
+
+        const itemsHtml = items.length === 0
+          ? `<div class="text-xs text-muted pt-1">No items logged yet.</div>`
+          : items.map(item => `
+            <div class="flex items-center justify-between gap-2.5 py-2 border-t border-softpanel">
+              <div class="flex items-center gap-2.5 min-w-0">
+                ${item.photo ? `<img src="${item.photo}" onclick="openPhotoModal('${item.photo}', '${escapeHtml(item.name)}')" class="w-12 h-12 rounded-lg object-cover border border-sand shrink-0 cursor-pointer" alt="Meal photo" />` : ''}
+                <div class="min-w-0">
+                  <div class="text-xs sm:text-sm font-semibold text-ink break-words">${escapeHtml(item.name)}</div>
+                  <div class="text-xs text-muted">
+                    ${item.cal} kcal • ${item.pro}g protein • ${item.fib}g fiber
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" title="Save to Food Library" onclick="saveLoggedItemToLibrary('${dateKey}', '${slot.key}', '${item.id}')"
+                  class="px-2.5 py-1.5 rounded-lg border border-sand bg-white hover:bg-amberlight text-xs font-bold text-amberwarm">
+                  ★
+                </button>
+                <button type="button" title="Delete" onclick="deleteMealEntry('${dateKey}', '${slot.key}', '${item.id}')"
+                  class="px-2.5 py-1.5 rounded-lg border border-sand bg-white hover:bg-terracottalight text-xs font-bold text-muted hover:text-terracotta">
+                  ×
+                </button>
+              </div>
+            </div>
+          `).join('');
+
+        return `
+          <div class="border border-sand rounded-xl p-3.5 bg-white">
+            <div class="flex flex-wrap items-start justify-between gap-2 mb-2.5">
+              <div>
+                <strong class="text-sm font-bold text-ink">${slot.label}</strong>
+                <span class="text-xs text-muted ml-1.5">
+                  Rec: ${slot.recCal} kcal • ${slot.recPro}g P • ${slot.recFib}g F
+                </span>
+              </div>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${badgeStyle}">
+                ${calVarText}
+              </span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 bg-softpanel p-2.5 rounded-lg mb-2.5 text-xs">
+              <div>
+                <span class="text-muted block">Calories</span>
+                <strong class="text-ink font-bold">${sCal} / ${slot.recCal} kcal</strong>
+              </div>
+              <div>
+                <span class="text-muted block">Protein</span>
+                <strong class="text-ink font-bold">${sPro} / ${slot.recPro} g</strong>
+              </div>
+              <div>
+                <span class="text-muted block">Fiber</span>
+                <strong class="text-ink font-bold">${sFib} / ${slot.recFib} g</strong>
+              </div>
+            </div>
+
+            ${itemsHtml}
+          </div>
+        `;
+      }).join('');
+
+      renderFoodLibrary();
+    }
+
+    // Custom Food Library Functions (Starts Empty)
+    function toggleAddLibraryForm() {
+      document.getElementById('addLibraryForm').classList.toggle('hidden');
+    }
+
+    function saveNewLibraryItem() {
+      const name = document.getElementById('libNameInput').value.trim();
+      const defaultSlot = document.getElementById('libSlotInput').value;
+      const cal = parseFloat(document.getElementById('libCalInput').value) || 0;
+      const pro = parseFloat(document.getElementById('libProInput').value) || 0;
+      const fib = parseFloat(document.getElementById('libFibInput').value) || 0;
+
+      if (!name) {
+        showToast('Enter an item name first.');
+        return;
+      }
+
+      state.foodLibrary.push({
+        id: 'lib_' + Date.now(),
+        name,
+        defaultSlot,
+        cal: Math.round(cal),
+        pro: Math.round(pro * 10) / 10,
+        fib: Math.round(fib * 10) / 10
+      });
+      saveState();
+
+      document.getElementById('libNameInput').value = '';
+      document.getElementById('libCalInput').value = '';
+      document.getElementById('libProInput').value = '';
+      document.getElementById('libFibInput').value = '';
+      toggleAddLibraryForm();
+      renderFoodLibrary();
+      showToast('Added to Food Library!');
+    }
+
+    function logFromFoodLibrary(libId) {
+      const item = state.foodLibrary.find(x => x.id === libId);
+      if (!item) return;
+      const dateKey = document.getElementById('mealDateInput').value || getTodayStr();
+      const slotSelect = document.getElementById(`libSlotPick_${libId}`);
+      const slot = slotSelect ? slotSelect.value : (item.defaultSlot || 'snacks');
+
+      if (!state.mealsByDate[dateKey]) {
+        state.mealsByDate[dateKey] = { breakfast: [], lunch: [], dinner: [], snacks: [] };
+      }
+      state.mealsByDate[dateKey][slot].push({
+        id: 'm_' + Date.now(),
+        name: item.name,
+        cal: item.cal,
+        pro: item.pro,
+        fib: item.fib,
+        photo: null
+      });
+      saveState();
+      renderMealsTab();
+      showToast(`Logged "${item.name}"!`);
+    }
+
+    function deleteFoodLibraryItem(libId) {
+      state.foodLibrary = state.foodLibrary.filter(x => x.id !== libId);
+      saveState();
+      renderFoodLibrary();
+      showToast('Removed from Food Library');
+    }
+
+    function renderFoodLibrary() {
+      const el = document.getElementById('foodLibraryList');
+      if (!state.foodLibrary || state.foodLibrary.length === 0) {
+        el.innerHTML = `
+          <div class="text-center py-5 px-3 bg-softpanel rounded-xl text-xs sm:text-sm text-muted">
+            Your <strong>Food Library</strong> is empty.<br/>
+            Tick <em>"Save to my Food Library"</em> when logging a meal or drink (like your Matcha Latte), or tap <strong>+ Add Custom Staple</strong> above.
+          </div>
+        `;
+        return;
+      }
+
+      el.innerHTML = `<div class="divide-y divide-softpanel">` + state.foodLibrary.map(item => `
+        <div class="flex flex-wrap items-center justify-between gap-2 py-2.5">
+          <div>
+            <div class="text-sm font-bold text-ink">${escapeHtml(item.name)}</div>
+            <div class="text-xs text-muted">
+              ${item.cal} kcal • ${item.pro}g protein • ${item.fib}g fiber
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <select id="libSlotPick_${item.id}"
+              class="px-2 py-1.5 rounded-lg border border-sand bg-white text-xs font-medium text-ink">
+              <option value="breakfast" ${item.defaultSlot === 'breakfast' ? 'selected' : ''}>Breakfast</option>
+              <option value="lunch" ${item.defaultSlot === 'lunch' ? 'selected' : ''}>Lunch</option>
+              <option value="dinner" ${item.defaultSlot === 'dinner' ? 'selected' : ''}>Dinner</option>
+              <option value="snacks" ${item.defaultSlot === 'snacks' ? 'selected' : ''}>Snacks &amp; Drinks</option>
+            </select>
+            <button type="button" onclick="logFromFoodLibrary('${item.id}')"
+              class="px-3 py-1.5 rounded-lg bg-sagelight text-sagedark text-xs font-semibold hover:opacity-90">
+              + Log
+            </button>
+            <button type="button" onclick="deleteFoodLibraryItem('${item.id}')"
+              class="px-2.5 py-1.5 rounded-lg border border-sand bg-white text-xs font-bold text-muted hover:text-terracotta">
+              ×
+            </button>
+          </div>
+        </div>
+      `).join('') + `</div>`;
+    }
+
+    /* ==================== TAB 3: MOVEMENT TRACKER ==================== */
+    function getDateForDayOfWeek(dayIndexMon0) {
+      const now = new Date();
+      const currentDowMon0 = (now.getDay() + 6) % 7;
+      const target = new Date(now);
+      target.setDate(now.getDate() - currentDowMon0 + dayIndexMon0);
+      const yyyy = target.getFullYear();
+      const mm = String(target.getMonth() + 1).padStart(2, '0');
+      const dd = String(target.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function updateDayActivity(idx, newActivity) {
+      const d = state.weeklyDays[idx];
+      d.activity = newActivity;
+      const meta = EXERCISE_META[newActivity] || { defaultMins: 30 };
+      d.mins = meta.defaultMins;
+
+      const dateKey = getDateForDayOfWeek(idx);
+      if (d.done && newActivity !== 'Rest') {
+        state.workoutDates[dateKey] = { activity: newActivity, mins: d.mins };
+      } else {
+        delete state.workoutDates[dateKey];
+      }
+      saveState();
+      renderMovementTab();
+      showToast(`${d.day} updated to ${newActivity}`);
+    }
+
+    function toggleDayDone(idx) {
+      const d = state.weeklyDays[idx];
+      d.done = !d.done;
+      const dateKey = getDateForDayOfWeek(idx);
+
+      if (d.done && d.activity !== 'Rest') {
+        state.workoutDates[dateKey] = { activity: d.activity, mins: Number(d.mins) || 30 };
+      } else {
+        delete state.workoutDates[dateKey];
+      }
+      saveState();
+      renderMovementTab();
+      showToast(d.done ? `${d.day} marked as done!` : `${d.day} unmarked`);
+    }
+
+    function updateDayMins(idx, val) {
+      const mins = Math.max(0, parseInt(val, 10) || 0);
+      state.weeklyDays[idx].mins = mins;
+      const dateKey = getDateForDayOfWeek(idx);
+      if (state.weeklyDays[idx].done && state.weeklyDays[idx].activity !== 'Rest') {
+        state.workoutDates[dateKey] = { activity: state.weeklyDays[idx].activity, mins };
+      }
+      saveState();
+      renderMovementTab();
+    }
+
+    function updateDayNotes(idx, val) {
+      state.weeklyDays[idx].notes = val;
+      saveState();
+    }
+
+    function archiveCurrentWeek() {
+      const activeDays = state.weeklyDays.filter(d => d.done && d.activity !== 'Rest');
+      const totalMins = activeDays.reduce((s, d) => s + (Number(d.mins) || 0), 0);
+      state.pastWeeks.unshift({
+        date: getTodayStr(),
+        sessions: activeDays.length,
+        mins: totalMins,
+        activities: activeDays.map(d => `${d.day}: ${d.activity} (${d.mins}m)`).join(', ') || 'Rest & recovery week'
+      });
+      state.weeklyDays.forEach(d => {
+        d.done = false;
+        d.notes = '';
+      });
+      saveState();
+      renderMovementTab();
+      showToast('Week archived & reset for a fresh start!');
+    }
+
+    function renderMovementTab() {
+      let wkMins = 0;
+      let wkSessions = 0;
+      state.weeklyDays.forEach(d => {
+        if (d.done && d.activity !== 'Rest') {
+          wkSessions++;
+          wkMins += Number(d.mins) || 0;
+        }
+      });
+
+      document.getElementById('wkMinsText').textContent = `${wkMins} / 160 mins`;
+      document.getElementById('wkMinsBar').style.width = `${Math.min(100, Math.round((wkMins / 160) * 100))}%`;
+      document.getElementById('wkSessionsText').textContent = `${wkSessions} / 4 movement sessions completed`;
+
+      const container = document.getElementById('weeklyDaysContainer');
+      container.innerHTML = state.weeklyDays.map((d, idx) => {
+        const meta = EXERCISE_META[d.activity] || EXERCISE_META['Walk'];
+        const estKcal = Math.round((Number(d.mins) || 0) * meta.kcalPerMin);
+        const optionsHtml = EXERCISE_OPTIONS.map(opt =>
+          `<option value="${opt}" ${d.activity === opt ? 'selected' : ''}>${EXERCISE_META[opt].icon} ${opt}</option>`
+        ).join('');
+
+        return `
+          <div class="border ${d.done ? 'border-sage bg-[#F6FAF8]' : 'border-sand bg-white'} rounded-xl p-3.5 transition">
+            <div class="flex flex-wrap items-center justify-between gap-2.5">
+              <!-- Day Title & Prominent Mark as Done Button -->
+              <div class="flex items-center gap-2.5">
+                <strong class="text-sm font-extrabold text-ink min-w-[36px]">${d.day}</strong>
+                <button type="button" onclick="toggleDayDone(${idx})"
+                  class="px-3.5 py-2 rounded-xl text-xs font-bold transition active:scale-95 ${d.done
+                    ? 'bg-sage text-white shadow-sm'
+                    : 'border border-sand bg-white text-ink hover:bg-sagelight hover:text-sagedark hover:border-sage'}">
+                  ${d.done ? '✓ Done' : 'Mark as Done'}
+                </button>
+              </div>
+
+              <!-- Exercise Selector + Explicitly Labeled Duration Box -->
+              <div class="flex flex-wrap items-center gap-2">
+                <select onchange="updateDayActivity(${idx}, this.value)"
+                  class="px-2.5 py-2 rounded-lg border border-sand bg-white text-xs sm:text-sm font-semibold text-ink focus:outline-none focus:border-sage">
+                  ${optionsHtml}
+                </select>
+                ${d.activity !== 'Rest' ? `
+                  <div class="inline-flex items-center gap-1.5 bg-softpanel border border-sand rounded-lg px-2.5 py-1">
+                    <span class="text-xs font-semibold text-muted">Duration:</span>
+                    <input type="number" min="0" max="240" value="${d.mins}" onchange="updateDayMins(${idx}, this.value)"
+                      aria-label="Duration in minutes"
+                      class="w-14 px-1.5 py-1 rounded border border-sand bg-white text-xs sm:text-sm font-bold text-ink text-center focus:outline-none focus:border-sage" />
+                    <span class="text-xs font-semibold text-ink">mins</span>
+                    <span class="text-[11px] text-muted">(~${estKcal} kcal)</span>
+                  </div>
+                ` : `<span class="text-xs text-muted px-2 py-1">Recovery day</span>`}
+              </div>
+            </div>
+
+            <div class="mt-2.5">
+              <input type="text" value="${escapeHtml(d.notes || '')}" placeholder="Notes / energy level (1–5)..."
+                onchange="updateDayNotes(${idx}, this.value)"
+                class="w-full px-2.5 py-1.5 rounded-lg border border-sand bg-white text-xs text-ink focus:outline-none focus:border-sage" />
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const pastCard = document.getElementById('pastWeeksCard');
+      if (state.pastWeeks.length > 0) {
+        pastCard.classList.remove('hidden');
+        document.getElementById('pastWeeksList').innerHTML = state.pastWeeks.map(w => `
+          <div class="flex items-center justify-between gap-2 py-2.5">
+            <div>
+              <strong class="text-xs sm:text-sm font-bold text-ink">Week ending ${w.date}</strong>
+              <div class="text-xs text-muted">${w.activities}</div>
+            </div>
+            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-sagelight text-sagedark">
+              ${w.sessions} sessions • ${w.mins}m
+            </span>
+          </div>
+        `).join('');
+      } else {
+        pastCard.classList.add('hidden');
+      }
+    }
+
+    /* ==================== TAB 4: SLEEP TRACKER (BLUB & HL SEPARATE, FULL MONTH) ==================== */
+    function shiftSleepDate(delta) {
+      const inp = document.getElementById('sleepDateInput');
+      const cur = new Date((inp.value || getTodayStr()) + 'T00:00:00');
+      cur.setDate(cur.getDate() + delta);
+      inp.value = cur.toISOString().slice(0, 10);
+      renderSleepTab();
+    }
+
+    function setSleepLog(person, isBefore1130) {
+      const dateKey = document.getElementById('sleepDateInput').value || getTodayStr();
+      state.sleep[person][dateKey] = isBefore1130;
+      saveState();
+      renderSleepTab();
+      const label = person === 'blub' ? 'Blub' : 'HL';
+      showToast(`${label} sleep logged: ${isBefore1130 ? 'Yes (<11:30 PM)' : 'No (>11:30 PM)'}`);
+    }
+
+    function toggleSleepDateChip(person, dateKey) {
+      document.getElementById('sleepDateInput').value = dateKey;
+      const cur = state.sleep[person][dateKey];
+      if (cur === undefined) state.sleep[person][dateKey] = true;
+      else if (cur === true) state.sleep[person][dateKey] = false;
+      else delete state.sleep[person][dateKey];
+      saveState();
+      renderSleepTab();
+    }
+
+    function computeSleepStats(recordMap, monthPrefix) {
+      const keys = Object.keys(recordMap).sort();
+      let totalLogged = 0;
+      let totalYes = 0;
+      let monthLogged = 0;
+      let monthYes = 0;
+
+      keys.forEach(k => {
+        if (typeof recordMap[k] === 'boolean') {
+          totalLogged++;
+          if (recordMap[k]) totalYes++;
+          if (k.startsWith(monthPrefix)) {
+            monthLogged++;
+            if (recordMap[k]) monthYes++;
+          }
+        }
+      });
+
+      let streak = 0;
+      const d = new Date();
+      for (let i = 0; i < 365; i++) {
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+        const k = `${yyyy}-${mm}-${dd}`;
+        if (recordMap[k] === true) {
+          streak++;
+        } else if (i === 0 && recordMap[k] === undefined) {
+          // Today not logged yet — continue checking yesterday
+        } else {
+          break;
+        }
+        d.setDate(d.getDate() - 1);
+      }
+
+      const monthPct = monthLogged > 0 ? Math.round((monthYes / monthLogged) * 100) : 0;
+      const pct = totalLogged > 0 ? Math.round((totalYes / totalLogged) * 100) : 0;
+      return { totalLogged, totalYes, monthLogged, monthYes, monthPct, streak, pct };
+    }
+
+    function renderSleepTab() {
+      const inp = document.getElementById('sleepDateInput');
+      if (!inp.value) inp.value = getTodayStr();
+      const dateKey = inp.value;
+
+      const selectedDateObj = new Date(dateKey + 'T00:00:00');
+      const year = selectedDateObj.getFullYear();
+      const month = selectedDateObj.getMonth();
+      const monthPrefix = `${year}-${String(month + 1).padStart(2, '0')}`;
+      const monthTitle = selectedDateObj.toLocaleDateString('en-SG', { month: 'long', year: 'numeric' });
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const firstDayRaw = new Date(year, month, 1).getDay();
+      const startOffset = (firstDayRaw + 6) % 7;
+      const dows = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+
+      ['blub', 'hl'].forEach(person => {
+        const map = state.sleep[person];
+        const val = map[dateKey];
+        const yesBtn = document.getElementById(`${person}YesBtn`);
+        const noBtn = document.getElementById(`${person}NoBtn`);
+
+        if (val === true) {
+          yesBtn.className = 'py-3 px-2 rounded-xl border-2 border-sage bg-sage text-white text-xs sm:text-sm font-bold transition active:scale-95 shadow-sm';
+        } else {
+          yesBtn.className = 'py-3 px-2 rounded-xl border border-sand bg-white text-ink hover:bg-softpanel text-xs sm:text-sm font-bold transition active:scale-95';
+        }
+
+        if (val === false) {
+          noBtn.className = 'py-3 px-2 rounded-xl border-2 border-terracotta bg-terracotta text-white text-xs sm:text-sm font-bold transition active:scale-95 shadow-sm';
+        } else {
+          noBtn.className = 'py-3 px-2 rounded-xl border border-sand bg-white text-ink hover:bg-softpanel text-xs sm:text-sm font-bold transition active:scale-95';
+        }
+
+        document.getElementById(`${person}SleepDateLabel`).textContent = `Night of ${dateKey}`;
+        const stats = computeSleepStats(map, monthPrefix);
+        document.getElementById(`${person}SleepStreakBadge`).textContent = `${stats.streak} night streak`;
+        document.getElementById(`${person}SleepSummary`).textContent =
+          `${monthTitle}: ${stats.monthYes}/${stats.monthLogged} nights (${stats.monthPct}%) • All-time: ${stats.totalYes}/${stats.totalLogged} (${stats.pct}%)`;
+
+        document.getElementById(`${person}MonthGridLabel`).textContent = `${monthTitle} Nights`;
+
+        // Full month 7-column calendar grid
+        const gridEl = document.getElementById(`${person}SleepMonthGrid`);
+        let gridHtml = dows.map(w => `<div class="text-center text-[10px] font-bold text-muted pb-0.5">${w}</div>`).join('');
+
+        for (let i = 0; i < startOffset; i++) {
+          gridHtml += `<div class="h-10"></div>`;
+        }
+
+        for (let d = 1; d <= daysInMonth; d++) {
+          const k = `${monthPrefix}-${String(d).padStart(2, '0')}`;
+          const st = map[k];
+          const isSelected = k === dateKey;
+
+          let chipStyle = 'border-sand bg-white text-muted';
+          let mark = '·';
+          if (st === true) {
+            chipStyle = 'border-sage bg-sagelight text-sagedark font-bold';
+            mark = '✓';
+          } else if (st === false) {
+            chipStyle = 'border-terracotta bg-terracottalight text-terracotta font-bold';
+            mark = '✕';
+          }
+
+          const ringClass = isSelected ? 'ring-2 ring-ink ring-offset-1' : '';
+
+          gridHtml += `
+            <button type="button" onclick="toggleSleepDateChip('${person}', '${k}')" title="${k}"
+              class="h-10 rounded-lg border ${chipStyle} ${ringClass} flex flex-col items-center justify-center text-[10px] leading-tight transition active:scale-95">
+              <span>${d}</span>
+              <span>${mark}</span>
+            </button>
+          `;
+        }
+
+        gridEl.innerHTML = gridHtml;
+      });
+    }
+
+    /* ==================== TAB 5: WEIGHT & PROGRESS (60.0 KG -> 55.0 KG) ==================== */
+    function addWeightEntry() {
+      const date = document.getElementById('wDateInput').value || getTodayStr();
+      const timePoint = document.getElementById('wTimePointSelect').value;
+      const weight = parseFloat(document.getElementById('wValueInput').value);
+      const note = document.getElementById('wNoteInput').value.trim();
+
+      if (isNaN(weight) || weight < 35 || weight > 150) {
+        showToast('Please enter a valid weight in kg (e.g., 59.4).');
+        return;
+      }
+
+      state.weightLogs.push({
+        id: 'w_' + Date.now(),
+        date,
+        timePoint,
+        weight: Math.round(weight * 10) / 10,
+        note
+      });
+
+      state.weightLogs.sort((a, b) => a.date.localeCompare(b.date));
+      saveState();
+
+      document.getElementById('wValueInput').value = '';
+      document.getElementById('wNoteInput').value = '';
+      renderWeightTab();
+      showToast(`Logged ${weight.toFixed(1)} kg (${timePoint})`);
+    }
+
+    function deleteWeightEntry(id) {
+      state.weightLogs = state.weightLogs.filter(x => x.id !== id);
+      saveState();
+      renderWeightTab();
+      showToast('Weight entry removed');
+    }
+
+    function renderWeightTab() {
+      const wDateInp = document.getElementById('wDateInput');
+      if (!wDateInp.value) wDateInp.value = getTodayStr();
+
+      const startW = state.startWeight || 60.0;
+      const goalW = 55.0;
+      const logs = state.weightLogs || [];
+      const currentW = logs.length > 0 ? logs[logs.length - 1].weight : startW;
+
+      const totalToLose = Math.max(0.1, startW - goalW);
+      const lostSoFar = Math.max(0, startW - currentW);
+      const remaining = Math.max(0, Math.round((currentW - goalW) * 10) / 10);
+      const pct = Math.min(100, Math.max(0, Math.round((lostSoFar / totalToLose) * 100)));
+
+      document.getElementById('wStartDisplay').textContent = `${startW.toFixed(1)} kg`;
+      document.getElementById('wCurrentDisplay').textContent = `${currentW.toFixed(1)} kg`;
+      document.getElementById('wRemDisplay').textContent = remaining === 0 ? '🎉 Goal Reached!' : `${remaining.toFixed(1)} kg left`;
+      document.getElementById('weightGoalPctBadge').textContent = `${pct}% to 55.0 kg`;
+      document.getElementById('wGoalBar').style.width = `${pct}%`;
+
+      const estWeeks = Math.ceil(remaining / 0.35);
+      document.getElementById('wTimelineNote').textContent = remaining === 0
+        ? 'You reached your 55.0 kg goal! Focus on maintenance and strength.'
+        : `At a sustainable ~0.35 kg/week pace, ${remaining.toFixed(1)} kg remaining takes ~${estWeeks} weeks.`;
+
+      // Render SVG Chart
+      const chartBox = document.getElementById('weightChartContainer');
+      const plotPoints = logs.length > 0
+        ? logs
+        : [{ date: 'Start', timePoint: 'Baseline', weight: startW }];
+
+      const W = 620;
+      const H = 200;
+      const padL = 42, padR = 20, padT = 22, padB = 30;
+      const allVals = [...plotPoints.map(p => p.weight), startW, goalW];
+      const minW = Math.floor(Math.min(...allVals) - 0.5);
+      const maxW = Math.ceil(Math.max(...allVals) + 0.5);
+
+      const xPos = (i) => plotPoints.length === 1
+        ? padL + (W - padL - padR) / 2
+        : padL + (i / (plotPoints.length - 1)) * (W - padL - padR);
+      const yPos = (val) => padT + ((maxW - val) / Math.max(1, maxW - minW)) * (H - padT - padB);
+
+      const goalY = yPos(goalW);
+      const polyPts = plotPoints.map((p, i) => `${xPos(i)},${yPos(p.weight)}`).join(' ');
+
+      const circles = plotPoints.map((p, i) => `
+        <circle cx="${xPos(i)}" cy="${yPos(p.weight)}" r="4.5" fill="#2D5A43" />
+        <text x="${xPos(i)}" y="${yPos(p.weight) - 9}" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E2823">${p.weight.toFixed(1)}</text>
+        <text x="${xPos(i)}" y="${H - 8}" text-anchor="middle" font-size="9.5" fill="#606D66">${p.date.slice(5) || 'Start'}</text>
+      `).join('');
+
+      chartBox.innerHTML = `
+        <svg viewBox="0 0 ${W} ${H}" class="w-full min-w-[340px] h-auto block">
+          <line x1="${padL}" y1="${goalY}" x2="${W - padR}" y2="${goalY}" stroke="#2D5A43" stroke-dasharray="5,4" stroke-width="1.5" />
+          <text x="${padL + 4}" y="${goalY - 5}" font-size="10" font-weight="700" fill="#2D5A43">Goal: 55.0 kg</text>
+          ${plotPoints.length > 1 ? `<polyline fill="none" stroke="#2D5A43" stroke-width="2.5" points="${polyPts}" />` : ''}
+          ${circles}
+        </svg>
+      `;
+
+      // Render Logged Time Points Table (newest first)
+      const tbody = document.getElementById('weightHistoryBody');
+      if (logs.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="py-4 px-2 text-muted text-center">No weigh-ins logged yet. Add your first time point above!</td></tr>`;
+      } else {
+        tbody.innerHTML = [...logs].reverse().map(entry => {
+          const diff = Math.round((entry.weight - startW) * 10) / 10;
+          const diffStr = diff === 0 ? '0.0 kg' : `${diff > 0 ? '+' : ''}${diff.toFixed(1)} kg`;
+          return `
+            <tr>
+              <td class="py-2.5 px-2 font-bold text-ink whitespace-nowrap">${entry.date}</td>
+              <td class="py-2.5 px-2"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-softpanel text-muted whitespace-nowrap">${escapeHtml(entry.timePoint)}</span></td>
+              <td class="py-2.5 px-2 font-bold text-ink whitespace-nowrap">${entry.weight.toFixed(1)} kg</td>
+              <td class="py-2.5 px-2 font-semibold whitespace-nowrap ${diff <= 0 ? 'text-sage' : 'text-terracotta'}">${diffStr}</td>
+              <td class="py-2.5 px-2 text-muted">${escapeHtml(entry.note || '—')}</td>
+              <td class="py-2.5 px-2 text-right">
+                <button type="button" onclick="deleteWeightEntry('${entry.id}')"
+                  class="px-2.5 py-1 rounded-lg border border-sand bg-white text-xs font-bold text-muted hover:text-terracotta">
+                  ×
+                </button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    /* ==================== INITIALIZATION ==================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      const today = getTodayStr();
+      document.getElementById('headerDatePill').textContent = new Date().toLocaleDateString('en-SG', {
+        weekday: 'short', day: 'numeric', month: 'short'
+      });
+      document.getElementById('mealDateInput').value = today;
+      document.getElementById('sleepDateInput').value = today;
+      document.getElementById('wDateInput').value = today;
+
+      renderOverview();
+      renderMealsTab();
+      renderMovementTab();
+      renderSleepTab();
+      renderWeightTab();
+    });
+  </script>
+</body>
+</html>
